@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblEmpinfo" table="tbl_empinfo">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+        <property name="masterOrUp" type="java.lang.Integer">
+            <column name="MasterOrUp" not-null="true" default="0" />
+        </property>
+        <property name="bachelor" type="java.lang.Integer">
+            <column name="Bachelor" not-null="true" default="0" />
+        </property>
+        <property name="bachelorBelow" type="java.lang.Integer">
+            <column name="BachelorBelow" not-null="true" default="0" />
+        </property>
+        <property name="senior" type="java.lang.Integer">
+            <column name="Senior" not-null="true" default="0" />
+        </property>
+        <property name="middle" type="java.lang.Integer">
+            <column name="Middle" not-null="true" default="0" />
+        </property>
+        <property name="junior" type="java.lang.Integer">
+            <column name="Junior" not-null="true" default="0" />
+        </property>
+        <property name="manager" type="java.lang.Integer">
+            <column name="Manager" not-null="true" default="0" />
+        </property>
+        <property name="productAndSale" type="java.lang.Integer">
+            <column name="ProductAndSale" not-null="true" default="0" />
+        </property>
+        <property name="total" type="java.lang.Integer">
+            <column name="Total" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

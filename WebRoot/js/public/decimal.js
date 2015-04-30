@@ -1,0 +1,25 @@
+//控制只能输入数字、小数点
+//该方法有个问题，最后输入一个小数点无法判断
+function inputDecimal(obj) {
+	obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+	obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字而不是
+	obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的
+	obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+	obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+}
+
+//检查输入格式是否为最多两位小数的数字
+function testDecimal(data) {
+	var reg = /^(-)?(([1-9]{1}\d*)|([0]{1}))(\.(\d){1,2})?$/;
+	return reg.test(data);
+}
+
+//控制只能输入整数
+function inputInteger(obj) {
+	if(obj.value.length == 1) {
+		obj.value = obj.value.replace(/[^1-9]/g,'');
+	} else {
+		obj.value = obj.value.replace(/\D/g,'');
+	}
+}
+

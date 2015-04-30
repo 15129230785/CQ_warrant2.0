@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cq.table.TblFinanceest" table="tbl_financeest">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID"/>
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="WID" length="60" not-null="true" />
+		</property>
+		<property name="name" type="string">
+			<column name="Name" length="40" />
+		</property>
+		<property name="startDate" type="string">
+			<column name="StartDate" length="80" />
+		</property>
+		<property name="date" type="date">
+			<column name="Date" length="10" />
+		</property>
+		<property name="debt" type="double">
+			<column name="Debt" precision="22" scale="0" />
+		</property>
+		<property name="asset" type="double">
+			<column name="Asset" precision="22" scale="0" />
+		</property>
+		<property name="netAsset" type="double">
+			<column name="NetAsset" precision="22" scale="0" />
+		</property>
+		<property name="loanRemaining" type="double">
+			<column name="LoanRemaining" precision="22" scale="0" />
+		</property>
+		<property name="flowAsset" type="double">
+			<column name="FlowAsset" precision="22" scale="0" />
+		</property>
+		<property name="flowDebt" type="double">
+			<column name="FlowDebt" precision="22" scale="0" />
+		</property>
+		<property name="saleCash" type="double">
+			<column name="SaleCash" precision="22" scale="0" />
+		</property>
+		<property name="dueDebt" type="double">
+			<column name="DueDebt" precision="22" scale="0" />
+		</property>
+		<property name="saleMoney" type="double">
+			<column name="SaleMoney" precision="22" scale="0" />
+		</property>
+		<property name="meanAsset" type="double">
+			<column name="MeanAsset" precision="22" scale="0" />
+		</property>
+		<property name="netProfit" type="double">
+			<column name="NetProfit" precision="22" scale="0" />
+		</property>
+		<property name="thisYearSale" type="double">
+			<column name="ThisYearSale" precision="22" scale="0" />
+		</property>
+		<property name="lastYearSale" type="double">
+			<column name="LastYearSale" precision="22" scale="0" />
+		</property>
+		<property name="dueCash" type="double">
+			<column name="DueCash" precision="22" scale="0" />
+		</property>
+		<property name="loan" type="double">
+			<column name="Loan" precision="22" scale="0" />
+		</property>
+	</class>
+</hibernate-mapping>

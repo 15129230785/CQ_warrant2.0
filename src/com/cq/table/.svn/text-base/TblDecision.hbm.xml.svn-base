@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cq.table.TblDecision" table="tbl_decision">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="Wid" length="60" not-null="true" />
+		</property>
+		<property name="date" type="date">
+			<column name="Date" />
+		</property>
+		<property name="result" type="java.lang.Character">
+			<column name="Result" />
+		</property>
+		<property name="explains" type="string">
+			<column name="Explains" length="1024" />
+		</property>
+	</class>
+</hibernate-mapping>

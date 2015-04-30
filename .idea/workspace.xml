@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="6765e37a-4d3b-443a-a8a5-55c342607ffc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.project" afterPath="$PROJECT_DIR$/.project" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/jbpm/ApplyJudge.java" afterPath="$PROJECT_DIR$/src/com/cq/jbpm/ApplyJudge.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/ApplyService.java" afterPath="$PROJECT_DIR$/src/com/cq/service/ApplyService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ApplyServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ApplyServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ApplyWarrantAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ApplyWarrantAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/BankAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/BankAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/BankServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/BankServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/BankinfoServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/BankinfoServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/dao/base/BaseDao.java" afterPath="$PROJECT_DIR$/src/com/cq/dao/base/BaseDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ChargeAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ChargeAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ChargeServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ChargeServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ClearAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ClearAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ClearServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ClearServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ClientManageAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ClientManageAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ClientManageServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ClientManageServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/CollectDataAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/CollectDataAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/CollectDataServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/CollectDataServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ComdoclistServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ComdoclistServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/dao/impl/CominfoDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/dao/impl/CominfoDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/CompanyServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/CompanyServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/CompensatoryAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/CompensatoryAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/CompensatoryServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/CompensatoryServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ConsiderationAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ConsiderationAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ConsiderationServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ConsiderationServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/CounterSignAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/CounterSignAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/CountersignServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/CountersignServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/CustomerAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/CustomerAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/DataBaseAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/DataBaseAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/DecisionAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/DecisionAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/DecisionServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/DecisionServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/DeployAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/DeployAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/DeployServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/DeployServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/FieldSurveyAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/FieldSurveyAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/FieldSurveyServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/FieldSurveyServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/FileAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/FileAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/FileOpAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/FileOpAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/FileServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/FileServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/FinanceAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/FinanceAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/FinanceServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/FinanceServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/GuarantyAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/GuarantyAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/GuarantyServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/GuarantyServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/IntactServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/IntactServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/LawAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/LawAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/LawauditServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/LawauditServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/web/listener/LoadConfigListener.java" afterPath="$PROJECT_DIR$/src/com/cq/web/listener/LoadConfigListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/LoginAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/LoginAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/LoginCheck.java" afterPath="$PROJECT_DIR$/src/com/cq/action/LoginCheck.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/LoginServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/LoginServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/LossAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/LossAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/LossServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/LossServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/MemberAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/MemberAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/NoticeAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/NoticeAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/OperLogAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/OperLogAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/OperlogServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/OperlogServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/dao/impl/PersonDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/dao/impl/PersonDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/PersonalDecisionAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/PersonalDecisionAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/PersueAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/PersueAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/PersueServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/PersueServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ProjectHistoryServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ProjectHistoryServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ProjectManageAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ProjectManageAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ProjectManageServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ProjectManageServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ProjectMonitorServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ProjectMonitorServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ReceiveAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ReceiveAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ReceiveServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ReceiveServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/RefundAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/RefundAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/RefundServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/RefundServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ReturnBailAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ReturnBailAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ReturnBailServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ReturnBailServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ReviewChargeAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ReviewChargeAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ReviewChargeServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ReviewChargeServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/ReviewDataAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/ReviewDataAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ReviewDataServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ReviewDataServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/RiskAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/RiskAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/RiskestServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/RiskestServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/RoleAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/RoleAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/ServiceCheckServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/ServiceCheckServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/SignAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/SignAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/StartSignAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/StartSignAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/StartsignServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/StartsignServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/StationLetterAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/StationLetterAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/StationLetterServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/StationLetterServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/SysLogAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/SysLogAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/SystemNewRemind.java" afterPath="$PROJECT_DIR$/src/com/cq/action/SystemNewRemind.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TaskBaseAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TaskBaseAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/TaskBaseServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/TaskBaseServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/TaskGroupServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/TaskGroupServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblAntiwarrantAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblAntiwarrantAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblBanlancesheetAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblBanlancesheetAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblBranchinfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblBranchinfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCashflowstatementAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCashflowstatementAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCfgAnalysisindexAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCfgAnalysisindexAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCfgBankinfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCfgBankinfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCfgBasicratioAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCfgBasicratioAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCfgCalculateindexAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCfgCalculateindexAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCfgOverratioAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCfgOverratioAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCfgSrvchkAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCfgSrvchkAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/table/TblCfgSysparam.hbm.xml" afterPath="$PROJECT_DIR$/src/com/cq/table/TblCfgSysparam.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/table/TblCfgSysparam.java" afterPath="$PROJECT_DIR$/src/com/cq/table/TblCfgSysparam.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCfgSysparamAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCfgSysparamAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblChangeinfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblChangeinfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblComdoclistAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblComdoclistAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCominfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCominfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblCountersignAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblCountersignAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblDebtAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblDebtAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblDeptinfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblDeptinfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblEmpinfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblEmpinfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblFamilyAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblFamilyAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblHistoryAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblHistoryAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblIncomestatementAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblIncomestatementAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblInvestAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblInvestAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblManinfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblManinfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblPersonAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblPersonAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblPersonalwarrantAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblPersonalwarrantAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblProblemtrackAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblProblemtrackAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblProductAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblProductAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblReginfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblReginfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblRegshareholderAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblRegshareholderAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblRelatedcominfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblRelatedcominfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblSalerevenuecheckAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblSalerevenuecheckAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblShareholderAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblShareholderAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblUnduebillAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblUnduebillAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblUndueloanAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblUndueloanAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblUnduewarrantAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblUnduewarrantAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblVendorAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblVendorAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblWarrantindexAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblWarrantindexAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TblWarrantinfoAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TblWarrantinfoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/TrackAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/TrackAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/action/UserAction.java" afterPath="$PROJECT_DIR$/src/com/cq/action/UserAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/service/impl/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/dao/impl/WarrantindexDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/dao/impl/WarrantindexDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cq/dao/impl/WarrantinfoDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/cq/dao/impl/WarrantinfoDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/bankinfo/add.jsp" afterPath="$PROJECT_DIR$/WebRoot/bankinfo/add.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/addCompany.js" afterPath="$PROJECT_DIR$/WebRoot/js/addCompany.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/addPerson.js" afterPath="$PROJECT_DIR$/WebRoot/js/addPerson.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/apply.js" afterPath="$PROJECT_DIR$/WebRoot/js/apply.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/apply/apply.jsp" afterPath="$PROJECT_DIR$/WebRoot/apply/apply.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/xml/apply.xml" afterPath="$PROJECT_DIR$/src/xml/apply.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/client.js" afterPath="$PROJECT_DIR$/WebRoot/js/client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/clientManager/clientCompany.jsp" afterPath="$PROJECT_DIR$/WebRoot/clientManager/clientCompany.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/clientManager/clientManager.jsp" afterPath="$PROJECT_DIR$/WebRoot/clientManager/clientManager.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/clientManager/clientPerson.jsp" afterPath="$PROJECT_DIR$/WebRoot/clientManager/clientPerson.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/apply/companyApply.jsp" afterPath="$PROJECT_DIR$/WebRoot/apply/companyApply.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/companyinit.js" afterPath="$PROJECT_DIR$/WebRoot/js/companyinit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/consideration/consideration.jsp" afterPath="$PROJECT_DIR$/WebRoot/consideration/consideration.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/customer/customer.jsp" afterPath="$PROJECT_DIR$/WebRoot/customer/customer.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/public/decimal.js" afterPath="$PROJECT_DIR$/WebRoot/js/public/decimal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/frame_d.jsp" afterPath="$PROJECT_DIR$/WebRoot/frame_d.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/frame_e.jsp" afterPath="$PROJECT_DIR$/WebRoot/frame_e.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/frame_f.jsp" afterPath="$PROJECT_DIR$/WebRoot/frame_f.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/loan.js" afterPath="$PROJECT_DIR$/WebRoot/js/loan.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/loan/loan.jsp" afterPath="$PROJECT_DIR$/WebRoot/loan/loan.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/apply/personApply.jsp" afterPath="$PROJECT_DIR$/WebRoot/apply/personApply.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/personinit.js" afterPath="$PROJECT_DIR$/WebRoot/js/personinit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/project/project.jsp" afterPath="$PROJECT_DIR$/WebRoot/project/project.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/projectDetail.js" afterPath="$PROJECT_DIR$/WebRoot/js/projectDetail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struts.xml" afterPath="$PROJECT_DIR$/src/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/systemParameter.js" afterPath="$PROJECT_DIR$/WebRoot/js/systemParameter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/sysparam/systemParameter.jsp" afterPath="$PROJECT_DIR$/WebRoot/sysparam/systemParameter.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" />
+    </list>
+    <ignored path="CQ_warrant2.0.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="CQ_warrant2.0" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="CQGroup.hbm.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/cq/table/CQGroup.hbm.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CQGroup.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/cq/table/CQGroup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="warrant.cfg.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/warrant.cfg.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8840">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="applicationcontext.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/applicationcontext.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.84" vertical-offset="3366" max-vertical-offset="7259">
+              <caret line="211" column="63" selection-start-line="211" selection-start-column="63" selection-end-line="211" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WarrantinfoDaoImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/cq/dao/impl/WarrantinfoDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="841" max-vertical-offset="1615">
+              <caret line="63" column="56" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CQUser.hbm.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/cq/table/CQUser.hbm.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+              <caret line="10" column="60" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="log4j.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/log4j.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+              <caret line="12" column="12" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="analysisindex.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/xml/analysisindex.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+              <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="25" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/xml/data.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.14592275" vertical-offset="102" max-vertical-offset="816">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TblCfgAnalysisindexAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/cq/action/TblCfgAnalysisindexAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="2465">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="true" />
+    </FindUsagesManager>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="886" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <OptionsSetting value="true" id="Undo Check Out" />
+    <OptionsSetting value="true" id="Get Latest Version" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebRoot" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebRoot" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xml" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cq" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="listener" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CQ_warrant2.0" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cq" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <list size="0" />
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\evan.wan\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\evan.wan\Desktop\CQ_warrant2.0" />
+          <option name="myCopyRoot" value="C:\Users\evan.wan\Desktop\CQ_warrant2.0" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\evan.wan\Desktop\CQ_warrant2.0" />
+          <option name="myCopyRoot" value="C:\Users\evan.wan\Desktop\CQ_warrant2.0" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6765e37a-4d3b-443a-a8a5-55c342607ffc" name="Default" comment="" />
+      <created>1430373322418</created>
+      <updated>1430373322418</updated>
+      <workItem from="1430373324168" duration="1528000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1528000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1616" height="886" extended-state="7" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2692802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/xml/project.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cq/table/CQGroup.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="723">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cq/table/CQGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/warrant.cfg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8840">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/applicationcontext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.84" vertical-offset="3366" max-vertical-offset="7259">
+          <caret line="211" column="63" selection-start-line="211" selection-start-column="63" selection-end-line="211" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cq/dao/impl/WarrantinfoDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="841" max-vertical-offset="1615">
+          <caret line="63" column="56" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cq/table/CQUser.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+          <caret line="10" column="60" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cq/action/TblCfgAnalysisindexAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="2465">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xml/analysisindex.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="25" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xml/data.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.14592275" vertical-offset="102" max-vertical-offset="816">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

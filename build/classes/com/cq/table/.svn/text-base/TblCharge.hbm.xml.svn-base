@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblCharge" table="tbl_charge">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="WID" length="60" not-null="true" />
+		</property>
+        <property name="type" type="java.lang.Character">
+            <column name="Type" length="1" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="Date" length="10" />
+        </property>
+        <property name="money" type="double">
+            <column name="Money" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

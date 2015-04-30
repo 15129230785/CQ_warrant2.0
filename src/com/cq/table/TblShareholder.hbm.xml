@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblShareholder" table="tbl_shareholder">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID"  />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="255" not-null="true" />
+        </property>
+        <property name="type" type="java.lang.Character">
+            <column name="Type" length="1" not-null="true" />
+        </property>
+        <property name="sid" type="string">
+            <column name="SID" length="255" not-null="true" />
+        </property>
+        <property name="money" type="double">
+            <column name="Money" precision="22" scale="0"/>
+        </property>
+        <property name="mode" type="java.lang.Character">
+            <column name="Mode" length="1" not-null="true" />
+        </property>
+        <property name="proportion" type="double">
+            <column name="Proportion" precision="5" not-null="true" />
+        </property>
+        <property name="description"  type="string">
+            <column name="Description"   length="1024"   />
+        </property>
+    </class>
+</hibernate-mapping>

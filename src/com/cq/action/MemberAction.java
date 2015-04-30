@@ -1,0 +1,355 @@
+package com.cq.action;
+
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+
+import com.cq.bean.MemberShip;
+import com.cq.service.TaskGroupService;
+import com.cq.service.UserService;
+import com.cq.table.CQMemberShip;
+import com.cq.util.GlobalData;
+import com.cq.util.WarrantException;
+import com.cq.util.tools;
+
+public class MemberAction {
+	static Logger log = Logger.getLogger(MemberAction.class);
+	private String errorMsg;
+	
+	@Resource UserService userService;
+	@Resource TaskGroupService taskgroupService;
+	
+	private List<CQMemberShip> memberShipList;
+	private String userid;
+	private String groupid;
+	private long kid;
+
+	public void getMemShip() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String processid = request.getParameter("processid");
+		String num = request.getParameter("num");
+		String userName = request.getParameter("username");
+
+		List<String> taskName = null;
+		int i = 0;
+
+		taskName = new ArrayList<String>();
+		if ("transfer".equals(processid)) {
+			taskName.clear();
+			taskName.add(num);
+		} else {
+			taskName.clear();
+			switch (num) {
+			case "bank":
+				if ("nextLater".equals(processid)) {
+					taskName.add("charge");
+				} else if ("refund".equals(processid)) {
+					taskName.add("refund");
+				}
+				break;
+			case "charge":
+				if ("nextLater".equals(processid)) {
+					taskName.add("receive");
+				}
+				break;
+			case "clear":
+				if ("nextLater".equals(processid)) {
+					taskName.add("returnbail");
+				} else if ("compensatory".equals(processid)) {
+					taskName.add("compensatory");
+				}
+				break;
+			case "collect-data":
+				if ("nextLater".equals(processid)) {
+					taskName.add("review-data");
+				}
+				break;
+			case "companyApply":
+				if ("nextLater".equals(processid)) {
+					taskName.add("review-charge");
+				}
+				break;
+			case "compensatory":
+				if ("nextLater".equals(processid)) {
+					taskName.add("loss");
+				} else if ("persue".equals(processid)) {
+					taskName.add("persue");
+				}
+				break;
+			case "consideration":
+				if ("nextLater".equals(processid)) {
+					taskName.add("finance");
+					taskName.add("law");
+					taskName.add("startsign");
+					taskName.add("decision");
+				} else if ("refund".equals(processid)) {
+					taskName.add("refund");
+				} else if ("anew".equals(processid)) {
+					taskName.add("collect-data");
+				}
+				break;
+			case "countersign":
+				break;
+			case "decision":
+				if ("nextLater".equals(processid)) {
+					taskName.add("bank");
+				} else if ("refund".equals(processid)) {
+					taskName.add("refund");
+				} else if ("anew".equals(processid)) {
+					taskName.add("collect-data");
+				}
+				break;
+			case "field-survey":
+				if ("nextLater".equals(processid)) {
+					taskName.add("consideration");
+				} else if ("refund".equals(processid)) {
+					taskName.add("refund");
+				}
+				break;
+			case "file":
+				if ("nextLater".equals(processid)) {
+					taskName.add("track");
+				}
+				break;
+			case "finance":
+				if ("nextLater".equals(processid)) {
+					taskName.add("risk");
+				}
+				break;
+			case "guaranty":
+				if ("nextLater".equals(processid)) {
+					taskName.add("file");
+				}
+				break;
+			case "law":
+				break;
+			case "loss":
+				if ("nextLater".equals(processid)) {
+					taskName.add("null");
+				}
+				break;
+			case "notice":
+				if ("nextLater".equals(processid)) {
+					taskName.add("clear");
+				}
+				break;
+			case "personApply":
+				if ("nextLater".equals(processid)) {
+					taskName.add("review-charge");
+				}
+				break;
+			case "persue":
+				if ("nextLater".equals(processid)) {
+					taskName.add("loss");
+				}
+				break;
+			// Begin: Mod by Luke Chen on 2015/04/21, for process control from reviewCharge to receive, then go to collect-data
+			case "receive":
+				if ("nextLater".equals(processid) && GlobalData.reviewChargeToRecieve == true) {
+					taskName.add("collect-data");
+				} else if ("nextLater".equals(processid)) {
+					taskName.add("sign");
+				}
+				break;
+			// End: Mod by Luke Chen on 2015/04/21, for process control from reviewCharge to receive, then go to collect-data
+			case "refund":
+				break;
+			case "review-charge":
+				if ("nextLater".equals(processid)) {
+					if (GlobalData.reviewChargeToRecieve == true) {
+						taskName.add("receive");
+					} else {
+						taskName.add("collect-data");
+					}
+				}
+				break;
+			case "review-data":
+				if ("nextLater".equals(processid)) {
+					taskName.add("field-survey");
+				} else if ("refund".equals(processid)) {
+					taskName.add("refund");
+				}
+				break;
+			case "risk":
+				break;
+			case "startsign":
+				if ("nextLater".equals(processid)) {
+				}
+				break;
+			case "sign":
+				if ("nextLater".equals(processid)) {
+					taskName.add("guaranty");
+				}
+				break;
+			case "track":
+				if ("nextLater".equals(processid)) {
+					taskName.add("notice");
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		
+		List<String> grouplist = null;
+		List<String> lm = null;
+		memberShipList = userService.getMemberShip(null, null);
+		
+		JSONArray ja = new JSONArray();
+		List<CQMemberShip> tmpList = new ArrayList<CQMemberShip>();
+		
+		for (String tn : taskName) {
+			lm = new ArrayList<String>();
+			lm.clear();
+			grouplist = taskgroupService.getTaskGroupList(tn);
+			if ((grouplist == null) || (grouplist.size() == 0)) {
+				log.warn("没有获取到" + tn + "任务的处理人信息");
+			} else {
+				tmpList.clear();
+				for (CQMemberShip memberShip : memberShipList) {
+					for (String group : grouplist) {
+						if (memberShip.getGroup().getName().equals(group)) {
+							tmpList.add(memberShip);
+						}
+					}
+				}
+				if ((tmpList != null) && (tmpList.size() > 0)) {
+					for (CQMemberShip tmpmem : tmpList) {
+						String userid = tmpmem.getUser().getId();
+						if (!"root".equals(userid)) {
+							for (i = 0; i < lm.size(); i++) {
+								if ((lm.get(i).equals(userid))) {
+									break;
+								}
+							}
+							if (i >= lm.size())
+								lm.add(userid);
+						}
+					}
+				}
+			}
+			int index = lm.indexOf(userName);
+			if( index != -1) {
+				if (!("transfer".equals(processid))) {
+					lm.remove(index);
+					lm.add(0, userName);
+				} else {
+					lm.remove(index);
+				}
+			}
+			ja.add(lm);
+		}
+		
+		try {
+			JSONObject result = new JSONObject();
+			result.put("userlists", ja);
+			tools.outputInfo(result);
+		} catch(Exception e) {
+			errorMsg = "输出任务指定处理人时系统发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	/**
+	 * 添加关系
+	 * @throws Exception 
+	 * */
+	public String addMemberShip() throws Exception {
+		String gid = URLDecoder.decode(groupid, "UTF-8");
+		String uid = URLDecoder.decode(userid, "UTF-8");
+		if (uid == null || gid == null
+				|| userid.trim().equals("") || groupid.trim().equals("")) {
+			errorMsg = "用户名、组名不能为空或非法";
+			log.error(errorMsg);
+			throw new WarrantException(errorMsg);
+		}
+		
+		memberShipList = userService.getMemberShip(uid, gid);
+		if (memberShipList != null && memberShipList.size() > 0) {
+			errorMsg = "所添加的用户关系已存在";
+			log.error(errorMsg);
+			throw new WarrantException(errorMsg);
+		}
+		
+		userService.addMemberShip(uid, gid);
+		return "success";
+	}
+	
+	public String deleteMemberShip() throws Exception {
+		userService.deleteMemberShip(kid);
+		return "success";
+	}
+	
+	public void getMemberShipList() throws Exception {
+		CQMemberShip ms = null;
+		
+		String gid = URLDecoder.decode(groupid, "UTF-8");
+		String uid = URLDecoder.decode(userid, "UTF-8");
+		
+		if (StringUtils.isBlank(uid)) {
+			uid = null;
+		}
+		if (StringUtils.isBlank(gid)) {
+			gid = null;
+		}
+		
+		try {
+			memberShipList = userService.getMemberShip(uid, gid);
+			
+			if((memberShipList == null) || (memberShipList.size() <= 0)) {
+				log.warn("系统中没有配置角色数据");
+				tools.outputInfo(JSONObject.fromObject(null));
+				return;
+			}
+			JSONArray ja = new JSONArray();
+			for(int i = 0; i < memberShipList.size(); i++) {
+				MemberShip mb = new MemberShip();
+				ms = memberShipList.get(i);
+				mb.setKid(ms.getKid());
+				mb.setUserid(ms.getUser().getId());
+				mb.setGroupid(ms.getGroup().getId());
+				ja.add(JSONObject.fromObject(mb));
+			}
+			JSONObject result = new JSONObject();
+			result.put("memberShipList", ja.toString());
+			tools.outputInfo(result);
+		} catch (Exception e) {
+			errorMsg = "输出关系列表信息时系统发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getGroupid() {
+		return groupid;
+	}
+
+	public void setGroupid(String groupid) {
+		this.groupid = groupid;
+	}
+
+	public long getKid() {
+		return kid;
+	}
+
+	public void setKid(long kid) {
+		this.kid = kid;
+	}
+}

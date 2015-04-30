@@ -1,0 +1,17 @@
+#TblAntiwarrantdiv table, #TblFamilydiv table, #TblDebtdiv table, #TblPersonalwarrantdiv table, #personDiv table
+{
+	border: 1px solid #B1CDE3;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#TblAntiwarrantdiv table td, #TblFamilydiv table td, #TblDebtdiv table td, #TblPersonalwarrantdiv table td, #personDiv table td
+{
+	border: 1px solid #B1CDE3;
+	background: #fff;
+	font: normal 12px "宋体";
+	padding: 3px 0;
+	color: #4f6b72;
+	text-align: center;
+}
+

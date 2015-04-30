@@ -1,0 +1,27 @@
+#TblSalerevenuecheckdiv table, #TblRelatedcominfodiv table, #TblBanlancesheetdiv table,
+#TblIncomestatementdiv table, #TblCashflowstatementdiv table, #TblUndueloandiv table,
+#TblUnduewarrantdiv table, #TblUnduebilldiv table, #TblInvestdiv table,
+.tagCont1, #TblAntiwarrantdiv table, #TblShareholderdiv table, #TblManinfodiv table,
+#TblDeptinfodiv table, #TblBranchinfodiv table, #TblHistorydiv table, #TblProductdiv table,
+#TblVendordiv table, #TblRegshareholderdiv table, #TblChangeinfodiv table, #companyDiv table
+{
+	border: 1px solid #B1CDE3;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#TblSalerevenuecheckdiv table td, #TblRelatedcominfodiv table td, #TblBanlancesheetdiv table td,
+#TblIncomestatementdiv table td, #TblCashflowstatementdiv table td, #TblUndueloandiv table td,
+#TblUnduewarrantdiv table td, #TblUnduebilldiv table td, #TblInvestdiv table td,
+.tagCont1 td, #TblAntiwarrantdiv table td, #TblShareholderdiv table td, #TblManinfodiv table td,
+#TblDeptinfodiv table td, #TblBranchinfodiv table td, #TblHistorydiv table td, #TblProductdiv table td,
+#TblVendordiv table td, #TblRegshareholderdiv table td, #TblChangeinfodiv table td, #companyDiv table td
+{
+	border: 1px solid #B1CDE3;
+	background: #fff;
+	font: normal 12px "宋体";
+	padding: 3px 0;
+	color: #4f6b72;
+	text-align: center;
+}
+

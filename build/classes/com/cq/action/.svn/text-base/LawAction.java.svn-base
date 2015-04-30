@@ -1,0 +1,180 @@
+package com.cq.action;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+
+import org.apache.log4j.Logger;
+
+import com.cq.service.LawauditService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblLawaudit;
+import com.cq.util.tools;
+
+public class LawAction {
+	static Logger log = Logger.getLogger(LawAction.class);
+	private String errorMsg;
+	
+	private String wid;
+	private String debt;
+	private String truth;
+	private String lawful;
+	private String antiproperty;
+	private String property;
+	private String risk;
+	private Date startDate;
+	private String sel;
+	private String selValue;
+	private String taskid;
+	
+	@Resource TaskBaseService taskBaseService;
+	@Resource LawauditService lawauditService;
+
+	public String law() throws Exception {
+		if (sel.equals("transfer")) {
+			String s = taskBaseService.transfer(selValue, taskid);
+			return s;
+		}
+		
+		String temp = lawauditService.lawAudit(taskid, selValue, wid,
+			startDate, truth, antiproperty, property, debt);
+		if ("success".equals(temp) == false) {
+			tools.returnError(log, "处理担法务审查业务时系统出现错误");
+			return "error";
+		}
+		return "success";
+	}
+	
+	public void getLawauditInfo() throws Exception {
+		List<TblLawaudit> lal = null;
+		
+		TblLawaudit ss = null;
+		JsonConfig cfg = null;
+		
+		try {
+			lal = lawauditService.getLawaudit(wid);
+			
+			if((lal == null) || (lal.size() <= 0)) {
+				log.warn("系统中没有项目" + wid +"的法务审查数据");
+				tools.outputInfo(JSONObject.fromObject(null));
+				return;
+//				errorMsg = "系统中没有项目" + wid +"的法务审查数据";
+//				log.error(errorMsg);
+//				throw new WarrantException(errorMsg);
+			}
+			cfg = tools.getJsonConfig();
+			JSONArray ja = new JSONArray();
+			for(int i = 0; i < lal.size(); i++) {
+				ss = (TblLawaudit) lal.get(i);
+				ja.add(JSONObject.fromObject(ss, cfg));
+			}
+			JSONObject result = new JSONObject();
+			result.put("lawAuditInfo", ja.toString());
+			tools.outputInfo(result);
+		} catch (Exception e) {
+			errorMsg = "输出法务审查数据时系统发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	public String getWid() {
+		return wid;
+	}
+
+	public void setWid(String wid) {
+		this.wid = wid;
+	}
+
+	public String getDebt() {
+		return debt;
+	}
+
+	public void setDebt(String debt) {
+		this.debt = debt;
+	}
+
+	public String getTruth() {
+		return truth;
+	}
+
+	public void setTruth(String truth) {
+		this.truth = truth;
+	}
+
+	public String getLawful() {
+		return lawful;
+	}
+
+	public void setLawful(String lawful) {
+		this.lawful = lawful;
+	}
+
+	public String getAntiproperty() {
+		return antiproperty;
+	}
+
+	public void setAntiproperty(String antiproperty) {
+		this.antiproperty = antiproperty;
+	}
+
+	public String getProperty() {
+		return property;
+	}
+
+	public void setProperty(String property) {
+		this.property = property;
+	}
+
+	public String getRisk() {
+		return risk;
+	}
+
+	public void setRisk(String risk) {
+		this.risk = risk;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getSel() {
+		return sel;
+	}
+
+	public void setSel(String sel) {
+		this.sel = sel;
+	}
+
+	public String getSelValue() {
+		return selValue;
+	}
+
+	public void setSelValue(String selValue) {
+		this.selValue = selValue;
+	}
+
+	public String getTaskid() {
+		return taskid;
+	}
+
+	public void setTaskid(String taskid) {
+		this.taskid = taskid;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+}

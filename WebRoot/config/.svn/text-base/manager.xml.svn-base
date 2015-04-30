@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<dutys>    <!-- 职务类型 -->
+		<duty value="0" desc="法定代表人" />
+		<duty value="1" desc="实际控制人" />
+		<duty value="2" desc="总经理" />
+		<duty value="3" desc="财务总监" />
+		<duty value="4" desc="技术总监" />
+		<duty value="5" desc="大股东" />
+		<duty value="6" desc="其他高管" />
+	</dutys>
+	<educations>    <!-- 学历/教育程度 -->
+		<education value="0" desc="博士" />
+		<education value="1" desc="硕士" />
+		<education value="2" desc="本科" />
+		<education value="3" desc="大专" />
+		<education value="4" desc="高中" />
+	</educations>
+	<mss>    <!-- 婚姻状况 -->
+		<ms value="0" desc="已婚" />
+		<ms value="1" desc="未婚" />
+		<ms value="2" desc="离异" />
+	</mss>
+	<genders>    <!-- 性别 -->
+		<gender value="0" desc="女" />
+		<gender value="1" desc="男" />
+	</genders>
+</config>

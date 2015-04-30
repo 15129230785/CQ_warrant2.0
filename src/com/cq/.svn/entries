@@ -1,0 +1,58 @@
+10
+
+dir
+6122
+https://192.168.0.9/svn/cq/CQ_warrant2.0/src/com/cq
+https://192.168.0.9/svn/cq
+
+
+
+2015-02-05T09:20:52.348900Z
+5441
+cuijuntang
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a8c675a4-0420-f74b-9c62-093dccf6a243
+
+aop
+dir
+
+service
+dir
+
+dao
+dir
+
+bean
+dir
+
+table
+dir
+
+jbpm
+dir
+
+annotation
+dir
+
+action
+dir
+
+util
+dir
+
+web
+dir
+

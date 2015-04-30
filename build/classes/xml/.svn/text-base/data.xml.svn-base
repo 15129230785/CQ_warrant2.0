@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="data" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="loginCheck" class="com.cq.action.LoginCheck" />
+			<interceptor-stack name="cq-default">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginCheck" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="cq-default" />
+
+		<global-results>
+			<result name="login">/newLogin.jsp</result>
+			<result name="warrantException">/exception.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="warrantException" exception="java.lang.Exception" />
+		</global-exception-mappings>
+		<action name="DecisionSign" class="com.cq.action.DecisionAction"
+			method="decisionSign">
+		</action>
+		<action name="RiskCalculateindex" class="com.cq.action.RiskAction"
+			method="getRisk">
+		</action>
+		<action name="GetComdocList" class="com.cq.action.TblComdoclistAction" method="getComdocList"></action>
+		<!-- 添加doclist信息 -->
+		<action name="dataActionAdd" class="com.cq.action.TblComdoclistAction" method="addDocList">
+			<result name="success">/dataList/addDataSuccess.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="UpdateComdocList" class="com.cq.action.TblComdoclistAction" method="updateDocList"></action>
+		<action name="SendEmail" class="com.cq.action.SendEmailAction" method="sendEmail">
+			<result name="sendSuccess">/apply/sendmail.jsp</result>
+		</action>
+		<action name="UpdateTblCfgBankinfo" class="com.cq.action.TblCfgSysparamAction" method="updateTblCfgBankinfo"></action>
+	</package>
+</struts>

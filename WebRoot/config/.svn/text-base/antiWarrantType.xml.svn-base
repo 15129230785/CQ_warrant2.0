@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<atts>
+		<att value="0" desc="AAA信用等级企业反担保" />
+		<att value="1" desc="AA信用等级企业反担保" />
+		<att value="2" desc="A信用等级企业反担保" />
+		<att value="3" desc="一般信用等级企业反担保" />
+		<att value="4" desc="可转让动产抵押" />
+		<att value="5" desc="可转让不动产抵押" />
+		<att value="6" desc="不可转让不动产抵押" />
+		<att value="7" desc="土地使用权抵押" />
+		<att value="8" desc="在建工程抵押" />
+		<att value="9" desc="机器所有权抵押" />
+		<att value="10" desc="权利质押" />
+		<att value="11" desc="有效证件质押" />
+		<att value="12" desc="商业承兑汇票质押" />
+		<att value="13" desc="仓单质押" />
+		<att value="14" desc="提单质押" />
+		<att value="15" desc="股权和个人反担保（其它方式）" />
+	</atts>
+</config>

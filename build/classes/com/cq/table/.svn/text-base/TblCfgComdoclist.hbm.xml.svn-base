@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblCfgComdoclist" table="tbl_cfg_comdoclist">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="did" type="string">
+            <column name="DID" length="12" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="255" not-null="true" />
+        </property>
+        <property name="file" type="string">
+            <column name="FILE" length="10" not-null="true" />
+        </property>
+        <property name="collectTime" type="string">
+            <column name="CollectTime" length="20" />
+        </property>
+        <property name="fileTime" type="string">
+            <column name="FileTime" length="20" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" length="1024"/>
+        </property>
+    </class>
+</hibernate-mapping>

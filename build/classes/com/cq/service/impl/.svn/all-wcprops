@@ -1,0 +1,239 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src/com/cq/service/impl
+END
+DeployServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/3779/CQ_warrant2.0/src/com/cq/service/impl/DeployServiceImpl.java
+END
+DecisionServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/DecisionServiceImpl.java
+END
+TaskBaseServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/TaskBaseServiceImpl.java
+END
+CountersignServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/CountersignServiceImpl.java
+END
+ComdoclistServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cq/!svn/ver/3003/CQ_warrant2.0/src/com/cq/service/impl/ComdoclistServiceImpl.java
+END
+StationLetterServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/cq/!svn/ver/3439/CQ_warrant2.0/src/com/cq/service/impl/StationLetterServiceImpl.java
+END
+FieldSurveyServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/FieldSurveyServiceImpl.java
+END
+FinanceServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/FinanceServiceImpl.java
+END
+PersueServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/PersueServiceImpl.java
+END
+ReturnBailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ReturnBailServiceImpl.java
+END
+LawauditServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/LawauditServiceImpl.java
+END
+UserServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/3386/CQ_warrant2.0/src/com/cq/service/impl/UserServiceImpl.java
+END
+ProjectMonitorServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ProjectMonitorServiceImpl.java
+END
+IntactServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/IntactServiceImpl.java
+END
+RefundServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/RefundServiceImpl.java
+END
+ClientManageServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ClientManageServiceImpl.java
+END
+ProjectHistoryServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ProjectHistoryServiceImpl.java
+END
+ChargeServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ChargeServiceImpl.java
+END
+GuarantyServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/cq/!svn/ver/3003/CQ_warrant2.0/src/com/cq/service/impl/GuarantyServiceImpl.java
+END
+ServiceCheckServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/service/impl/ServiceCheckServiceImpl.java
+END
+ConsiderationServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ConsiderationServiceImpl.java
+END
+CompanyServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/3382/CQ_warrant2.0/src/com/cq/service/impl/CompanyServiceImpl.java
+END
+OperlogServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/OperlogServiceImpl.java
+END
+LoginServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/LoginServiceImpl.java
+END
+ReviewChargeServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ReviewChargeServiceImpl.java
+END
+BankServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/BankServiceImpl.java
+END
+StartsignServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/StartsignServiceImpl.java
+END
+TaskGroupServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cq/!svn/ver/3395/CQ_warrant2.0/src/com/cq/service/impl/TaskGroupServiceImpl.java
+END
+FileServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/FileServiceImpl.java
+END
+CollectDataServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/cq/!svn/ver/3366/CQ_warrant2.0/src/com/cq/service/impl/CollectDataServiceImpl.java
+END
+ProjectManageServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src/com/cq/service/impl/ProjectManageServiceImpl.java
+END
+LossServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/LossServiceImpl.java
+END
+ReceiveServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ReceiveServiceImpl.java
+END
+CompensatoryServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/CompensatoryServiceImpl.java
+END
+RiskestServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/RiskestServiceImpl.java
+END
+ApplyServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src/com/cq/service/impl/ApplyServiceImpl.java
+END
+ClearServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ClearServiceImpl.java
+END
+BankinfoServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/service/impl/BankinfoServiceImpl.java
+END
+ReviewDataServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/impl/ReviewDataServiceImpl.java
+END

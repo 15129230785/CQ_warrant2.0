@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<genders>    <!-- 性别 -->
+		<gender value="0" desc="女" />
+		<gender value="1" desc="男" />
+	</genders>
+	<relationships>    <!-- 与担保申请人的关系 -->
+		<relationship value="0" desc="父亲" />
+		<relationship value="1" desc="母亲" />
+		<relationship value="2" desc="配偶" />
+		<relationship value="3" desc="儿子" />
+		<relationship value="4" desc="女儿" />
+		<relationship value="5" desc="其他" />
+	</relationships>
+</config>

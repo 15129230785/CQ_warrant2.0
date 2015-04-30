@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cq.table.TblRiskest" table="tbl_riskest">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>	
+		<property name="wid" type="string">
+			<column name="WID" length="60" not-null="true" />
+		</property>
+		<property name="name" type="string">
+			<column name="Name" length="60" />
+		</property>
+		<property name="startDate" type="date">
+			<column name="StartDate" length="10" />
+		</property>
+		<property name="endDate" type="date">
+			<column name="EndDate" length="10" />
+		</property>
+		<property name="managerial" type="string">
+			<column name="Managerial" length="1024" />
+		</property>
+		<property name="achievement" type="string">
+			<column name="Achievement" length="1024" />
+		</property>
+		<property name="brand" type="string">
+			<column name="Brand" length="1024" />
+		</property>
+		<property name="occupancy" type="string">
+			<column name="Occupancy" length="1024" />
+		</property>
+		<property name="reser" type="string">
+			<column name="Reser" length="1024" />
+		</property>
+		<property name="nature" type="string">
+			<column name="Nature" length="1024" />
+		</property>
+		<property name="client" type="string">
+			<column name="Client" length="1024" />
+		</property>
+		<property name="myright" type="string">
+			<column name="myRight" length="1024" />
+		</property>
+		<property name="patent" type="string">
+			<column name="Patent" length="1024" />
+		</property>
+		<property name="ability" type="string">
+			<column name="Ability" length="1024" />
+		</property>
+		<property name="assessSummarize" type="string">
+			<column name="AssessSummarize" length="1024" />
+		</property>
+		<property name="due" type="string">
+			<column name="Due" length="1024" />
+		</property>
+		<property name="warrant" type="string">
+			<column name="Warrant" length="1024" />
+		</property>
+		<property name="credit" type="string">
+			<column name="Credit" length="1024" />
+		</property>
+		<property name="enterprise" type="string">
+			<column name="Enterprise" length="1024" />
+		</property>
+		<property name="creditSummary" type="string">
+			<column name="CreditSummary" length="1024" />
+		</property>
+		<!-- <property name="reimbursement" type="string">
+			<column name="Reimbursement" length="1024" />
+		</property>
+		<property name="cguemeforianaly" type="string">
+			<column name="Cguemeforianaly" length="1024" />
+		</property> -->
+		<property name="purpose" type="java.lang.Integer">
+			<column name="Purpose" length="255" />
+		</property>
+		<property name="experience" type="java.lang.Integer">
+			<column name="Experience" length="255" />
+		</property>
+		<property name="prospect" type="java.lang.Integer">
+			<column name="Prospect" length="255" />
+		</property>
+		<property name="resource" type="java.lang.Integer">
+			<column name="Resource" length="255" />
+		</property>
+		<property name="skill" type="java.lang.Integer">
+			<column name="Skill" length="255" />
+		</property>
+		<property name="credits" type="java.lang.Integer">
+			<column name="Credits" length="255" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblChangeinfo" table="tbl_changeinfo">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="rid" type="string">
+            <column name="RID" length="60" not-null="true" />
+        </property>
+        <property name="chgDate" type="date">
+            <column name="ChgDate" length="10" not-null="true" />
+        </property>
+        <property name="chgType" type="java.lang.Character">
+            <column name="ChgType" length="1" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" length="1024" />
+        </property>
+    </class>
+</hibernate-mapping>

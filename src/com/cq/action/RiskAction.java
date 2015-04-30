@@ -1,0 +1,505 @@
+package com.cq.action;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+
+import com.cq.service.RiskestService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblPersonalrisk;
+import com.cq.table.TblRiskest;
+import com.cq.util.WarrantException;
+import com.cq.util.tools;
+
+public class RiskAction {
+	static Logger log = Logger.getLogger(RiskAction.class);
+	private String errorMsg;
+	
+	private String wid;
+	private String sel;
+	private String selValue;
+	private String taskid;
+	private String serviceType;
+	
+	private Date startDate;
+	private String managerial;
+	private String achievement;
+	private String brand;
+	private String occupancy;
+	private String reserve;
+	private String nature;
+	private String client;
+	private String right;
+	private String patent;
+	private String ability;
+	private String assessSummarize;
+	private String due;
+	private String warrant;
+	private String credit;
+	private String enterprise;
+	private String creditSummary;
+	private int purpose;
+	private int experience;
+	private int prospect;
+	private int resource;
+	private int skill;
+	private int credits;
+	
+	private int age;// 个人年龄；
+	private int ducationLevel;// 最高学历
+	private int martialStatus;// 婚姻状况
+	private int liveTime;// 本地居住时间
+	private int socialSecurity;// 社保
+	private int job;// 职业
+	private double familyIncome;// 家庭总收入
+	private int numb;// 家庭人数
+	private double grossDebt;// 家庭总负债
+	private double totalAssets;// 总资产
+	private int housSituation;// 住房情况
+
+	private String reimbursement;// 还款能力分析
+	private String cguemeforianaly;// 反担保风险分析
+	private int purpos;// 贷款用途分析
+	
+	@Resource TaskBaseService taskBaseService;
+	@Resource RiskestService riskestService;
+	
+	public String risk() throws Exception {
+		String wwid = wid.substring(wid.lastIndexOf("w"));
+		String rets = "error";
+		
+		if (sel.equals("transfer")) {
+			rets = taskBaseService.transfer(selValue, taskid);
+		} else if (sel.equals("nextLater")) {
+			switch (serviceType) {
+			case "1":
+				rets = riskestService.personRiskEst(taskid, selValue, wwid,
+						 age, ducationLevel, martialStatus, liveTime, socialSecurity,
+						 job, familyIncome, numb, grossDebt, totalAssets,
+						 housSituation, reimbursement, cguemeforianaly, purpos);
+				break;
+			case "0":
+				rets = riskestService.companyRiskEst(taskid, selValue, wwid,
+						startDate, managerial, achievement, brand,
+						occupancy, reserve, nature, client,
+						right, patent, ability, assessSummarize,
+						due, warrant, credit, enterprise, creditSummary,
+						purpose, experience, prospect, resource, skill, credits);
+				break;
+			default:
+				rets = "error";
+				break;
+			}
+		} else {
+			rets = "error";
+		}
+		if (rets.equals("success") == false) {
+			tools.returnError(log, "处理退评审费业务时系统出现错误");
+			return "error";
+		}
+		return rets;
+	}
+	
+	public void getCompanyRiskestInfo() throws Exception {
+		List<TblRiskest> rl = null;
+		
+		TblRiskest ss = null;
+		JsonConfig cfg = null;
+		
+		try {
+			rl = riskestService.getTblRiskest(wid);
+			
+			if((rl == null) || (rl.size() <= 0)) {
+				tools.outputInfo(JSONObject.fromObject(null));
+				log.warn("获取企业客户风险评估信息失败" + rl);
+				return;
+			}
+			cfg = tools.getJsonConfig();
+			JSONArray ja = new JSONArray();
+			for(int i = 0; i < rl.size(); i++) {
+				ss = (TblRiskest) rl.get(i);
+				ja.add(JSONObject.fromObject(ss, cfg));
+			}
+			JSONObject result = new JSONObject();
+			result.put("companyRiskestInfo", ja.toString());
+			tools.outputInfo(result);
+		} catch (Exception e) {
+			errorMsg = "输出企业风险评估信息时系统出现异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	public void getPersonRiskestInfo() throws Exception {
+		List<TblPersonalrisk> prl = null;
+		
+		TblPersonalrisk ss = null;
+		JsonConfig cfg = null;
+		
+		try {
+			prl = riskestService.getTblPersonalrisk(wid);
+			
+			if((prl == null) || (prl.size() <= 0)) {
+				tools.outputInfo(JSONObject.fromObject(null));
+				log.warn("获取个人客户风险评估信息失败" + prl);
+				return;
+			}
+			cfg = tools.getJsonConfig();
+			JSONArray ja = new JSONArray();
+			for(int i = 0; i < prl.size(); i++) {
+				ss = (TblPersonalrisk) prl.get(i);
+				ja.add(JSONObject.fromObject(ss, cfg));
+			}
+			JSONObject result = new JSONObject();
+			result.put("personRiskestInfo", ja.toString());
+			tools.outputInfo(result);
+		} catch (Exception e) {
+			errorMsg = "输出个人客户封信评估信息时系统出现异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	public String getWid() {
+		return wid;
+	}
+
+	public void setWid(String wid) {
+		this.wid = wid;
+	}
+
+	public String getSelValue() {
+		return selValue;
+	}
+
+	public void setSelValue(String selValue) {
+		this.selValue = selValue;
+	}
+
+	public String getTaskid() {
+		return taskid;
+	}
+
+	public void setTaskid(String taskid) {
+		this.taskid = taskid;
+	}
+
+	public String getSel() {
+		return sel;
+	}
+
+	public void setSel(String sel) {
+		this.sel = sel;
+	}
+
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getManagerial() {
+		return managerial;
+	}
+
+	public void setManagerial(String managerial) {
+		this.managerial = managerial;
+	}
+
+	public String getAchievement() {
+		return achievement;
+	}
+
+	public void setAchievement(String achievement) {
+		this.achievement = achievement;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getOccupancy() {
+		return occupancy;
+	}
+
+	public void setOccupancy(String occupancy) {
+		this.occupancy = occupancy;
+	}
+
+	public String getReserve() {
+		return reserve;
+	}
+
+	public void setReserve(String reserve) {
+		this.reserve = reserve;
+	}
+
+	public String getNature() {
+		return nature;
+	}
+
+	public void setNature(String nature) {
+		this.nature = nature;
+	}
+
+	public String getClient() {
+		return client;
+	}
+
+	public void setClient(String client) {
+		this.client = client;
+	}
+
+	public String getRight() {
+		return right;
+	}
+
+	public void setRight(String right) {
+		this.right = right;
+	}
+
+	public String getPatent() {
+		return patent;
+	}
+
+	public void setPatent(String patent) {
+		this.patent = patent;
+	}
+
+	public String getAbility() {
+		return ability;
+	}
+
+	public void setAbility(String ability) {
+		this.ability = ability;
+	}
+
+	public String getAssessSummarize() {
+		return assessSummarize;
+	}
+
+	public void setAssessSummarize(String assessSummarize) {
+		this.assessSummarize = assessSummarize;
+	}
+
+	public String getDue() {
+		return due;
+	}
+
+	public void setDue(String due) {
+		this.due = due;
+	}
+
+	public String getWarrant() {
+		return warrant;
+	}
+
+	public void setWarrant(String warrant) {
+		this.warrant = warrant;
+	}
+
+	public String getCredit() {
+		return credit;
+	}
+
+	public void setCredit(String credit) {
+		this.credit = credit;
+	}
+
+	public String getEnterprise() {
+		return enterprise;
+	}
+
+	public void setEnterprise(String enterprise) {
+		this.enterprise = enterprise;
+	}
+
+	public String getCreditSummary() {
+		return creditSummary;
+	}
+
+	public void setCreditSummary(String creditSummary) {
+		this.creditSummary = creditSummary;
+	}
+
+	public int getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(int purpose) {
+		this.purpose = purpose;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+
+	public int getProspect() {
+		return prospect;
+	}
+
+	public void setProspect(int prospect) {
+		this.prospect = prospect;
+	}
+
+	public int getResource() {
+		return resource;
+	}
+
+	public void setResource(int resource) {
+		this.resource = resource;
+	}
+
+	public int getSkill() {
+		return skill;
+	}
+
+	public void setSkill(int skill) {
+		this.skill = skill;
+	}
+
+	public int getCredits() {
+		return credits;
+	}
+
+	public void setCredits(int credits) {
+		this.credits = credits;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getDucationLevel() {
+		return ducationLevel;
+	}
+
+	public void setDucationLevel(int ducationLevel) {
+		this.ducationLevel = ducationLevel;
+	}
+
+	public int getMartialStatus() {
+		return martialStatus;
+	}
+
+	public void setMartialStatus(int martialStatus) {
+		this.martialStatus = martialStatus;
+	}
+
+	public int getLiveTime() {
+		return liveTime;
+	}
+
+	public void setLiveTime(int liveTime) {
+		this.liveTime = liveTime;
+	}
+
+	public int getSocialSecurity() {
+		return socialSecurity;
+	}
+
+	public void setSocialSecurity(int socialSecurity) {
+		this.socialSecurity = socialSecurity;
+	}
+
+	public int getJob() {
+		return job;
+	}
+
+	public void setJob(int job) {
+		this.job = job;
+	}
+
+	public double getFamilyIncome() {
+		return familyIncome;
+	}
+
+	public void setFamilyIncome(double familyIncome) {
+		this.familyIncome = familyIncome;
+	}
+
+	public int getNumb() {
+		return numb;
+	}
+
+	public void setNumb(int numb) {
+		this.numb = numb;
+	}
+
+	public double getGrossDebt() {
+		return grossDebt;
+	}
+
+	public void setGrossDebt(double grossDebt) {
+		this.grossDebt = grossDebt;
+	}
+
+	public double getTotalAssets() {
+		return totalAssets;
+	}
+
+	public void setTotalAssets(double totalAssets) {
+		this.totalAssets = totalAssets;
+	}
+
+	public int getHousSituation() {
+		return housSituation;
+	}
+
+	public void setHousSituation(int housSituation) {
+		this.housSituation = housSituation;
+	}
+
+	public String getReimbursement() {
+		return reimbursement;
+	}
+
+	public void setReimbursement(String reimbursement) {
+		this.reimbursement = reimbursement;
+	}
+
+	public String getCguemeforianaly() {
+		return cguemeforianaly;
+	}
+
+	public void setCguemeforianaly(String cguemeforianaly) {
+		this.cguemeforianaly = cguemeforianaly;
+	}
+
+	public int getPurpos() {
+		return purpos;
+	}
+
+	public void setPurpos(int purpos) {
+		this.purpos = purpos;
+	}
+
+}

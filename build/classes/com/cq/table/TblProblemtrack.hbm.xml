@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cq.table.TblProblemtrack" table="tbl_problemtrack">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="WID" length="60" not-null="true" />
+		</property>
+		<property name="state" type="string">
+			<column name="State" length="60"/>
+		</property>
+		<property name="name" type="string">
+			<column name="Name" length="60" />
+		</property>
+		<property name="startDate" type="date">
+			<column name="StartDate" length="10" />
+		</property>
+		<property name="endDate" type="date">
+			<column name="EndDate" length="10" />
+		</property>
+		<property name="person" type="string">
+			<column name="Person" length="1024" />
+		</property>
+		<property name="type" type="java.lang.Character">
+			<column name="Type" length="1" default="1" />
+		</property>
+		<property name="description" type="string">
+			<column name="Description" length="1024" />
+		</property>
+		<property name="explains" type="string">
+			<column name="Explains" length="1024"/>
+		</property>
+		<property name="result" type="string">
+			<column name="Result" length="1024"/>
+		</property>
+		<property name="times" type="integer">
+			<column name="Times" length="10" />
+		</property>
+	</class>
+</hibernate-mapping>

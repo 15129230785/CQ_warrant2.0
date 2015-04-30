@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cq.table.TblPersonalrisk" table="tbl_personalrisk">
+		<id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+		<property name="wid" type="string">
+			<column name="wid" length="60" not-null="true" />
+		</property>
+		<property name="user" type="string">
+			<column name="User" length="200" not-null="true" />
+		</property>
+		<property name="startDate" type="date">
+			<column name="StartDate" length="10" />
+		</property>
+		<property name="endDate" type="date">
+			<column name="EndDate" length="10" />
+		</property>
+		<property name="age" type="java.lang.Integer">
+			<column name="Age" length="20" not-null="true" />
+		</property>
+		<property name="ducationLevel" type="java.lang.Integer">
+			<column name="DucationLevel" length="20" not-null="true" />
+		</property>
+		<property name="martialStatus" type="java.lang.Integer">
+			<column name="MartialStatus" length="20" not-null="true" />
+		</property>
+		<property name="liveTime" type="java.lang.Integer">
+			<column name="LiveTime" length="20" not-null="true" />
+		</property>
+		<property name="socialSecurity" type="java.lang.Integer">
+			<column name="SocialSecurity" length="20" not-null="true" />
+		</property>
+		<property name="job" type="java.lang.Integer">
+			<column name="Job" length="20" not-null="true" />
+		</property>
+		<property name="familyIncome" type="double">
+			<column name="FamilyIncome" precision="22" not-null="true" />
+		</property>
+		<property name="numb" type="int">
+			<column name="Numb" length="20" not-null="true" />
+		</property>
+		<property name="purpos" type="int">
+			<column name="Purpos" length="20" not-null="true" />
+		</property>
+		<property name="grossDebt" type="double">
+			<column name="GrossDebt" precision="22" not-null="true" />
+		</property>
+		<property name="totalAssets" type="double">
+			<column name="TotalAssets" precision="22" not-null="true" />
+		</property>
+		<property name="housSituation" type="java.lang.Integer">
+			<column name="HousSituation" length="20" not-null="true" />
+		</property>
+		<property name="reimbursement" type="string">
+			<column name="Reimbursement" length="1024" not-null="true" />
+		</property>
+		<property name="cguemeforianaly" type="string">
+			<column name="Cguemeforianaly" length="1024" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

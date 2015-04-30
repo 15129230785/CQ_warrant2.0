@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblCfgSysparam" table="tbl_cfg_sysparam">
+        <id name="kid" type="java.lang.Integer">
+            <column name="kid" />
+            <generator class="identity" />
+        </id>
+        <property name="passwordReminderDays" type="int">
+            <column name="passwordReminderDays" not-null="true" />
+        </property>
+        <property name="passwordExpireDays" type="int">
+            <column name="passwordExpireDays" not-null="true" />
+        </property>
+        <property name="taskReminderDays" type="int">
+            <column name="taskReminderDays" not-null="true" />
+        </property>
+        <property name="taskExpireDays" type="int">
+            <column name="taskExpireDays" not-null="true" />
+        </property>
+        <property name="advancedReminderDays" type="int">
+            <column name="advancedReminderDays" not-null="true" />
+        </property>
+        <property name="projectTrackPeriod" type="int">
+            <column name="projectTrackPeriod" not-null="true" />
+        </property>
+        <property name="maxLogResults" type="int">
+            <column name="maxLogResults" not-null="true" />
+        </property>
+        <property name="reviewGroupName" type="string">
+            <column name="reviewGroupName" length="50" not-null="true" />
+        </property>
+        <property name="antiWarrantGroups" type="string">
+            <column name="antiWarrantGroups" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

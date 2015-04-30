@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CQ-warrant-config>
+	<tasks>
+		<task name="companyApply">
+			<description>企业申请</description>
+		</task>
+		<task name="personApply">
+			<description>个人申请</description>
+		</task>
+		<task name="review-charge">
+			<description>评审收费</description>
+		</task>
+		<task name="collect-data">
+			<description>资料收集</description>
+		</task>
+		<task name="review-data">
+			<description>资料审查</description>
+		</task>
+		<task name="field-survey">
+			<description>现场调查</description>
+		</task>
+		<task name="consideration">
+			<description>业务经理审核</description>
+		</task>
+		<task name="refund">
+			<description>退评审费</description>
+		</task>
+		<task name="finance">
+			<description>财务评估</description>
+		</task>
+		<task name="law">
+			<description>法务审查</description>
+		</task>
+		<task name="risk">
+			<description>风险评审</description>
+		</task>
+		<task name="startsign">
+			<description>发起会签</description>
+		</task>
+		<task name="countersign">
+			<description>评委会签</description>
+		</task>
+		<task name="decision">
+			<description>项目决策</description>
+		</task>
+		<task name="bank">
+			<description>银行审批</description>
+		</task>
+		<task name="charge">
+			<description>项目收费</description>
+		</task>
+		<task name="receive">
+			<description>财务收款</description>
+		</task>
+		<task name="sign">
+			<description>合同签订</description>
+		</task>
+		<task name="guaranty">
+			<description>发担保函</description>
+		</task>
+		<task name="file">
+			<description>资料归档</description>
+		</task>
+		<task name="track">
+			<description>项目跟踪</description>
+		</task>
+		<task name="notice">
+			<description>还款通知</description>
+		</task>
+		<task name="clear">
+			<description>担保解除</description>
+		</task>
+		<task name="returnbail">
+			<description>退保证金</description>
+		</task>
+		<task name="compensatory">
+			<description>代偿</description>
+		</task>
+		<task name="persue">
+			<description>追偿</description>
+		</task>
+		<task name="loss">
+			<description>核销损失</description>
+		</task>
+		<task name="apply">
+			<description>担保受理</description>
+		</task>
+		<task name="clientManage">
+			<description>客户管理</description>
+		</task>
+		<task name="projectManage">
+			<description>项目管理</description>
+		</task>
+	</tasks>
+
+	<companytypes>
+		<companytype kid="1" cname="农业" />
+		<companytype kid="2" cname="林业" />
+		<companytype kid="3" cname="牧业" />
+		<companytype kid="4" cname="渔业" />
+		<companytype kid="5" cname="采矿业" />
+		<companytype kid="6" cname="制造业" />
+		<companytype kid="7" cname="电力" />
+		<companytype kid="8" cname="热力" />
+		<companytype kid="9" cname="燃气及水生产和供应业" />
+		<companytype kid="10" cname="建筑业" />
+		<companytype kid="11" cname="批发业" />
+		<companytype kid="12" cname="零售业" />
+		<companytype kid="13" cname="交通运输业" />
+		<companytype kid="14" cname="仓储业" />
+		<companytype kid="15" cname="邮政业" />
+		<companytype kid="16" cname="住宿业" />
+		<companytype kid="17" cname="餐饮业" />
+		<companytype kid="18" cname="信息传输业" />
+		<companytype kid="19" cname="软件和信息技术服务业" />
+		<companytype kid="20" cname="房地产开发经营" />
+		<companytype kid="21" cname="物业管理" />
+		<companytype kid="22" cname="租赁和商务服务业" />
+		<companytype kid="23" cname="科学研究和技术服务业" />
+		<companytype kid="24" cname="水利" />
+		<companytype kid="25" cname="环境和公共设施管理业" />
+		<companytype kid="26" cname="居民服务" />
+		<companytype kid="27" cname="修理和其他服务业" />
+		<companytype kid="28" cname="社会工作" />
+		<companytype kid="29" cname="文化" />
+		<companytype kid="30" cname="体育" />
+		<companytype kid="31" cname="娱乐业" />
+	</companytypes>
+
+	<companypropertys>
+		<companyproperty kid="1" cname="有限责任公司" />
+		<companyproperty kid="2" cname="股份有限公司" />
+		<companyproperty kid="3" cname="国有独资公司" />
+		<companyproperty kid="4" cname="个人独资企业" />
+		<companyproperty kid="5" cname="合伙企业" />
+		<companyproperty kid="6" cname="个体工商户" />
+		<companyproperty kid="7" cname="外商独资企业" />
+		<companyproperty kid="8" cname="中外合作企业" />
+		<companyproperty kid="9" cname="中外合资企业" />
+		<companyproperty kid="10" cname="私营企业" />
+		<companyproperty kid="11" cname="全民所有制企业" />
+		<companyproperty kid="12" cname="集体所有制企业" />
+	</companypropertys>
+
+	<eventtypes>
+		<eventtype id="1" name="环评" />
+		<eventtype id="2" name="生产许可" />
+		<eventtype id="3" name="资质及荣誉" />
+		<eventtype id="4" name="订立重要合同" />
+		<eventtype id="5" name="经营政策发生重大变化" />
+		<eventtype id="6" name="经营项目发生重大变化" />
+		<eventtype id="7" name="重大投行为" />
+		<eventtype id="8" name="购置金额较大的长期资产" />
+		<eventtype id="9" name="重大债务" />
+		<eventtype id="10" name="重大债务违约" />
+		<eventtype id="11" name="重大亏损" />
+		<eventtype id="12" name="经营环境变化" />
+		<eventtype id="13" name="法规影响" />
+		<eventtype id="14" name="重要人员变动" />
+		<eventtype id="15" name="重要股东变动" />
+		<eventtype id="16" name="重大诉讼" />
+		<eventtype id="17" name="清算破产" />
+		<eventtype id="18" name="公司章程变更" />
+		<eventtype id="19" name="公司注册资金变更" />
+		<eventtype id="20" name="公司注册地址变更" />
+		<eventtype id="21" name="大额银行退票" />
+		<eventtype id="22" name="审计会计事务所变更" />
+		<eventtype id="23" name="债券数额变更" />
+		<eventtype id="24" name="增资发行股票" />
+		<eventtype id="25" name="主要资产抵押" />
+		<eventtype id="26" name="主要资产出售" />
+		<eventtype id="27" name="主要资产报废" />
+		<eventtype id="28" name="重大赔偿责任" />
+		<eventtype id="29" name="决定依法被撤销" />
+		<eventtype id="30" name="禁止股权转让" />
+		<eventtype id="31" name="公司合并" />
+		<eventtype id="32" name="公司分立" />
+	</eventtypes>
+
+	<analysisindexs>
+		<analysisindex name="jkyt" cname="借款资金用途" ratio="1" />
+		<analysisindex name="cyjy" cname="从业经验" ratio="1" />
+		<analysisindex name="fzqj" cname="发展前景" ratio="1" />
+		<analysisindex name="zykz" cname="资源控制" ratio="1" />
+		<analysisindex name="js" cname="技术" ratio="1" />
+		<analysisindex name="xyjl" cname="信用记录" ratio="1" />
+	</analysisindexs>
+
+	<calculateindexs>
+		<calculateindex name="zcfzl" cname="资产负债率" floor="49"
+			ceil="50" indexvalue="5" ratio="1" />
+		<calculateindex name="zcfzl" cname="资产负债率" floor="50"
+			ceil="55" indexvalue="4" ratio="1" />
+		<calculateindex name="zcfzl" cname="资产负债率" floor="55"
+			ceil="60" indexvalue="3" ratio="1" />
+		<calculateindex name="zcfzl" cname="资产负债率" floor="60"
+			ceil="65" indexvalue="2" ratio="1" />
+		<calculateindex name="zcfzl" cname="资产负债率" floor="65"
+			ceil="70" indexvalue="1" ratio="1" />
+		<calculateindex name="jdb" cname="净资产与年末贷款余额比率" floor="180"
+			ceil="200" indexvalue="5" ratio="2" />
+		<calculateindex name="jdb" cname="净资产与年末贷款余额比率" floor="160"
+			ceil="180" indexvalue="4" ratio="2" />
+		<calculateindex name="jdb" cname="净资产与年末贷款余额比率" floor="140"
+			ceil="160" indexvalue="3" ratio="2" />
+		<calculateindex name="jdb" cname="净资产与年末贷款余额比率" floor="120"
+			ceil="140" indexvalue="2" ratio="2" />
+		<calculateindex name="jdb" cname="净资产与年末贷款余额比率" floor="100"
+			ceil="120" indexvalue="1" ratio="2" />
+		<calculateindex name="ldbl" cname="流动比率" floor="2"
+			ceil="3" indexvalue="5" ratio="2" />
+		<calculateindex name="ldbl" cname="流动比率" floor="1.8"
+			ceil="2" indexvalue="4" ratio="2" />
+		<calculateindex name="ldbl" cname="流动比率" floor="1.6"
+			ceil="1.8" indexvalue="3" ratio="2" />
+		<calculateindex name="ldbl" cname="流动比率" floor="1.4"
+			ceil="1.6" indexvalue="2" ratio="2" />
+		<calculateindex name="ldbl" cname="流动比率" floor="1.2"
+			ceil="1.4" indexvalue="1" ratio="2" />
+		<calculateindex name="xzb" cname="销售现金流对债务覆盖比" floor="6"
+			ceil="7" indexvalue="5" ratio="1" />
+		<calculateindex name="xzb" cname="销售现金流对债务覆盖比" floor="5"
+			ceil="6" indexvalue="4" ratio="1" />
+		<calculateindex name="xzb" cname="销售现金流对债务覆盖比" floor="4"
+			ceil="5" indexvalue="3" ratio="1" />
+		<calculateindex name="xzb" cname="销售现金流对债务覆盖比" floor="3"
+			ceil="4" indexvalue="2" ratio="1" />
+		<calculateindex name="xzb" cname="销售现金流对债务覆盖比" floor="2"
+			ceil="3" indexvalue="1" ratio="1" />
+		<calculateindex name="zzbl" cname="总资产周转比率" floor="2"
+			ceil="3" indexvalue="5" ratio="1" />
+		<calculateindex name="zzbl" cname="总资产周转比率" floor="1.6"
+			ceil="2" indexvalue="4" ratio="1" />
+		<calculateindex name="zzbl" cname="总资产周转比率" floor="1.2"
+			ceil="1.6" indexvalue="3" ratio="1" />
+		<calculateindex name="zzbl" cname="总资产周转比率" floor="0.8"
+			ceil="1.2" indexvalue="2" ratio="1" />
+		<calculateindex name="zzbl" cname="总资产周转比率" floor="0.4"
+			ceil="0.8" indexvalue="1" ratio="1" />
+		<calculateindex name="jlrl" cname="销售净利润率" floor="10"
+			ceil="11" indexvalue="5" ratio="2" />
+		<calculateindex name="jlrl" cname="销售净利润率" floor="8"
+			ceil="10" indexvalue="4" ratio="2" />
+		<calculateindex name="jlrl" cname="销售净利润率" floor="6"
+			ceil="8" indexvalue="3" ratio="2" />
+		<calculateindex name="jlrl" cname="销售净利润率" floor="3"
+			ceil="6" indexvalue="2" ratio="2" />
+		<calculateindex name="jlrl" cname="销售净利润率" floor="1.5"
+			ceil="3" indexvalue="1" ratio="2" />
+		<calculateindex name="syl" cname="总资产收益率" floor="9"
+			ceil="10" indexvalue="5" ratio="1" />
+		<calculateindex name="syl" cname="总资产收益率" floor="7"
+			ceil="9" indexvalue="4" ratio="1" />
+		<calculateindex name="syl" cname="总资产收益率" floor="5"
+			ceil="7" indexvalue="3" ratio="1" />
+		<calculateindex name="syl" cname="总资产收益率" floor="3"
+			ceil="5" indexvalue="2" ratio="1" />
+		<calculateindex name="syl" cname="总资产收益率" floor="1"
+			ceil="3" indexvalue="1" ratio="1" />
+		<calculateindex name="xszzbl" cname="销售增长比率" floor="15"
+			ceil="16" indexvalue="5" ratio="2" />
+		<calculateindex name="xszzbl" cname="销售增长比率" floor="10"
+			ceil="15" indexvalue="4" ratio="2" />
+		<calculateindex name="xszzbl" cname="销售增长比率" floor="8"
+			ceil="10" indexvalue="3" ratio="2" />
+		<calculateindex name="xszzbl" cname="销售增长比率" floor="5"
+			ceil="8" indexvalue="2" ratio="2" />
+		<calculateindex name="xszzbl" cname="销售增长比率" floor="3"
+			ceil="5" indexvalue="1" ratio="2" />
+		<calculateindex name="hkkkx" cname="还款资金来源及可靠性" floor="1"
+			ceil="2" indexvalue="5" ratio="2" />
+		<calculateindex name="hkkkx" cname="还款资金来源及可靠性" floor="0.9"
+			ceil="1" indexvalue="4" ratio="2" />
+		<calculateindex name="hkkkx" cname="还款资金来源及可靠性" floor="0.8"
+			ceil="0.9" indexvalue="3" ratio="2" />
+		<calculateindex name="hkkkx" cname="还款资金来源及可靠性" floor="0.6"
+			ceil="0.8" indexvalue="2" ratio="2" />
+		<calculateindex name="hkkkx" cname="还款资金来源及可靠性" floor="0.3"
+			ceil="0.6" indexvalue="1" ratio="2" />
+		<calculateindex name="age" cname="年龄" floor="18" ceil="25"
+			indexvalue="2" ratio="0" />
+		<calculateindex name="age" cname="年龄" floor="25" ceil="35"
+			indexvalue="5" ratio="0" />
+		<calculateindex name="age" cname="年龄" floor="35" ceil="50"
+			indexvalue="6" ratio="0" />
+		<calculateindex name="age" cname="年龄" floor="50" ceil="200"
+			indexvalue="4" ratio="0" />
+		<calculateindex name="livetime" cname="本地居住时间" floor="0"
+			ceil="3" indexvalue="1" ratio="0" />
+		<calculateindex name="livetime" cname="本地居住时间" floor="3"
+			ceil="10" indexvalue="3" ratio="0" />
+		<calculateindex name="livetime" cname="本地居住时间" floor="10"
+			ceil="200" indexvalue="6" ratio="0" />
+		<calculateindex name="rjsr" cname="家庭人均收入" floor="0"
+			ceil="700" indexvalue="7" ratio="0" />
+		<calculateindex name="rjsr" cname="家庭人均收入" floor="700"
+			ceil="3000" indexvalue="10" ratio="0" />
+		<calculateindex name="rjsr" cname="家庭人均收入" floor="3000"
+			ceil="7000" indexvalue="13" ratio="0" />
+		<calculateindex name="rjsr" cname="家庭人均收入" floor="7000"
+			ceil="15000" indexvalue="18" ratio="0" />
+		<calculateindex name="rjsr" cname="家庭人均收入" floor="15000"
+			ceil="5000000" indexvalue="20" ratio="0" />
+		<calculateindex name="zcfb" cname="家庭资产负债比" floor="1"
+			ceil="20" indexvalue="10" ratio="0" />
+		<calculateindex name="zcfb" cname="家庭资产负债比" floor="20"
+			ceil="50" indexvalue="7" ratio="0" />
+		<calculateindex name="zcfb" cname="家庭资产负债比" floor="50"
+			ceil="70" indexvalue="5" ratio="0" />
+		<calculateindex name="zcfb" cname="家庭资产负债比" floor="70"
+			ceil="100000" indexvalue="2" ratio="0" />
+		<calculateindex name="dzsb" cname="贷款占收入比例" floor="-9000000"
+			ceil="20" indexvalue="12" ratio="0" />
+		<calculateindex name="dzsb" cname="贷款占收入比例" floor="20"
+			ceil="50" indexvalue="8" ratio="0" />
+		<calculateindex name="dzsb" cname="贷款占收入比例" floor="50"
+			ceil="70" indexvalue="5" ratio="0" />
+		<calculateindex name="dzsb" cname="贷款占收入比例" floor="70"
+			ceil="9000000" indexvalue="2" ratio="0" />
+		<calculateindex name="hunyin" cname="婚姻" floor="0"
+			ceil="0" indexvalue="4" ratio="0" />
+		<calculateindex name="hunyin" cname="婚姻" floor="1"
+			ceil="1" indexvalue="2" ratio="0" />
+		<calculateindex name="xueli" cname="学历" floor="0" ceil="0"
+			indexvalue="5" ratio="0" />
+		<calculateindex name="xueli" cname="学历" floor="1" ceil="1"
+			indexvalue="6" ratio="0" />
+		<calculateindex name="xueli" cname="学历" floor="2" ceil="2"
+			indexvalue="7" ratio="0" />
+		<calculateindex name="xueli" cname="学历" floor="3" ceil="3"
+			indexvalue="7" ratio="0" />
+		<calculateindex name="xueli" cname="学历" floor="4" ceil="4"
+			indexvalue="4" ratio="0" />
+		<calculateindex name="shebao" cname="社保" floor="0"
+			ceil="0" indexvalue="5" ratio="0" />
+		<calculateindex name="shebao" cname="社保" floor="1"
+			ceil="1" indexvalue="2" ratio="0" />
+		<calculateindex name="jb" cname="工作" floor="0" ceil="0"
+			indexvalue="20" ratio="0" />
+		<calculateindex name="jb" cname="工作" floor="1" ceil="1"
+			indexvalue="15" ratio="0" />
+		<calculateindex name="jb" cname="工作" floor="2" ceil="2"
+			indexvalue="10" ratio="0" />
+		<calculateindex name="jb" cname="工作" floor="3" ceil="3"
+			indexvalue="13" ratio="0" />
+		<calculateindex name="zf" cname="住房" floor="0" ceil="0"
+			indexvalue="10" ratio="0" />
+		<calculateindex name="zf" cname="住房" floor="1" ceil="1"
+			indexvalue="7" ratio="0" />
+		<calculateindex name="zf" cname="住房" floor="2" ceil="2"
+			indexvalue="5" ratio="0" />
+		<calculateindex name="zf" cname="住房" floor="3" ceil="3"
+			indexvalue="4" ratio="0" />
+	</calculateindexs>
+
+	<basicratio br0="30" br1="40" br2="50" br3="70" br4="40"
+		br5="40" br6="50" br7="80" br8="100" />
+	<overratio or0="100" or1="130" or2="180" />
+	<srvchk comtype="nongye" comrevenue="100" employee="7" year="2"
+		mortgage="80" address="xian" vocation="工人" income="10" personmortgage="100" />
+
+	<comdoclist>
+		<comdoc DID="0001"
+			Name="担保申请（公司基本情况、资产负债、经营情况、发展情况、贷款用途及还款计划）以红头文件出示，附股东会或董事会关于担保的决议"
+			FILE="0" CollectTime="0" FileTime="0">
+			<description>担保申请（公司基本情况、资产负债、经营情况、发展情况、贷款用途及还款计划）以红头文件出示，附股东会或董事会关于担保的决议
+			</description>
+		</comdoc>
+		<comdoc DID="0002" Name="公司简介" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>公司简介</description>
+		</comdoc>
+		<comdoc DID="0003" Name="企业法人营业执照" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>企业法人营业执照</description>
+		</comdoc>
+		<comdoc DID="0004" Name="组织机构代码证" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>组织机构代码证</description>
+		</comdoc>
+		<comdoc DID="0005" Name="税务登记证" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>税务登记证</description>
+		</comdoc>
+		<comdoc DID="0006" Name="开户许可证" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>开户许可证</description>
+		</comdoc>
+		<comdoc DID="0007" Name="贷款卡" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>贷款卡</description>
+		</comdoc>
+		<comdoc DID="0008" Name="公司章程及工商档案变更的相关资料" FILE="0"
+			CollectTime="0" FileTime="0">
+			<description>公司章程及工商档案变更的相关资料</description>
+		</comdoc>
+		<comdoc DID="0009" Name="验资报告" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>验资报告</description>
+		</comdoc>
+		<comdoc DID="0010" Name="近三年审计报告" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>近三年审计报告</description>
+		</comdoc>
+		<comdoc DID="0011" Name="最近一期财务报表及财务报表附注" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>最近一期财务报表及财务报表附注</description>
+		</comdoc>
+		<comdoc DID="0012" Name="公司对内、外担保，反担保及借款情况证明" FILE="0" CollectTime="0" FileTime="0">
+			<description>公司对内、外担保，反担保及借款情况证明</description>
+		</comdoc>
+		<comdoc DID="0013" Name="购销合同、协议及意向书" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>购销合同、协议及意向书</description>
+		</comdoc>
+		<comdoc DID="0014" Name="项目的相关证明材料、项目可行性报告及主管部门审批件" FILE="0"
+			CollectTime="0" FileTime="0">
+			<description>项目的相关证明材料、项目可行性报告及主管部门审批件</description>
+		</comdoc>
+		<comdoc DID="0015" Name="近六个月的纳税凭证（税单、纳税申报表）" FILE="0"
+			CollectTime="0" FileTime="0">
+			<description>近六个月的纳税凭证（税单、纳税申报表）</description>
+		</comdoc>
+		<comdoc DID="0016" Name="近六个月的银行流水（需提供原件）" FILE="0"
+			CollectTime="0" FileTime="0">
+			<description>近六个月的银行流水（需提供原件）</description>
+		</comdoc>
+		<comdoc DID="0017" Name="法定代表人证明书及法定代表人、财务负责人简历说明" FILE="0"
+			CollectTime="0" FileTime="0">
+			<description>法定代表人证明书及法定代表人、财务负责人简历说明</description>
+		</comdoc>
+		<comdoc DID="0018" Name="法定代表人、股东、财务负责人及其他反担保人夫妻双方的身份证、户口本复印件及婚姻证明"
+			FILE="0" CollectTime="0" FileTime="0">
+			<description>法定代表人、股东、财务负责人及其他反担保人夫妻双方的身份证、户口本复印件及婚姻证明</description>
+		</comdoc>
+		<comdoc DID="0019" Name="公司、法定代表人、股东、财务负责人及其他反担保人银行征信信息" FILE="0"
+			CollectTime="0" FileTime="0">
+			<description>公司、法定代表人、股东、财务负责人及其他反担保人银行征信信息</description>
+		</comdoc>
+		<comdoc DID="0020" Name="公司、法定代表人、股东、财务负责人及其他反担保人资产相关资料（包括但不限于：房产、存款、车辆等）"
+			FILE="0" CollectTime="0" FileTime="0">
+			<description>公司、法定代表人、股东、财务负责人及其他反担保人资产相关资料（包括但不限于：房产、存款、车辆等）
+			</description>
+		</comdoc>
+		<comdoc DID="0021" Name="公司及法定代表人常住地证明" FILE="0" CollectTime="0"
+			FileTime="0">
+			<description>公司及法定代表人常住地证明</description>
+		</comdoc>
+		<comdoc DID="1001" Name="户口本复印件" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>户口本复印件</description>
+		</comdoc>
+		<comdoc DID="1002" Name="固定常住地地址" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>固定常住地地址</description>
+		</comdoc>
+		<comdoc DID="1003" Name="个人或夫妻共同资产清单" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>个人或夫妻共同资产清单</description>
+		</comdoc>
+		<comdoc DID="1004" Name="借款人身份证复印件" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>借款人身份证复印件</description>
+		</comdoc>
+		<comdoc DID="1005" Name="配偶户口本复印件" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>配偶户口本复印件</description>
+		</comdoc>
+		<comdoc DID="1006" Name="配偶身份证复印件" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>配偶身份证复印件</description>
+		</comdoc>
+		<comdoc DID="1007" Name="个人收入证明" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>个人收入证明</description>
+		</comdoc>
+		<comdoc DID="1008" Name="配偶收入证明" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>配偶收入证明</description>
+		</comdoc>
+		<comdoc DID="1009" Name="婚姻证明（结婚证）或未婚证明" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>婚姻证明（结婚证）或未婚证明</description>
+		</comdoc>
+		<comdoc DID="1010" Name="个人征信记录（在银行办理）" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>个人征信记录（在银行办理）</description>
+		</comdoc>
+		<comdoc DID="1011" Name="反担保资料（包括但不限于：房产、车辆及有价证券等）" FILE="1"
+			CollectTime="0" FileTime="0">
+			<description>反担保资料（包括但不限于：房产、车辆及有价证券等）</description>
+		</comdoc>
+		<comdoc DID="1012" Name="最近六个月银行流水" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>最近六个月银行流水</description>
+		</comdoc>
+		<comdoc DID="1013" Name="担保申请" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>担保申请</description>
+		</comdoc>
+		<comdoc DID="1014" Name="财产清单" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>财产清单</description>
+		</comdoc>
+		<comdoc DID="1015" Name="还款来源及还款计划" FILE="1" CollectTime="0"
+			FileTime="0">
+			<description>还款来源及还款计划</description>
+		</comdoc>
+		<comdoc DID="1016" Name="贷款用途（公司相关证件执照、上下游合同）" FILE="1"
+			CollectTime="0" FileTime="0">
+			<description>贷款用途（公司相关证件执照、上下游合同）</description>
+		</comdoc>
+	</comdoclist>
+</CQ-warrant-config>

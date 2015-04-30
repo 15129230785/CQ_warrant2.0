@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cq.table.TblLawaudit" table="tbl_lawaudit">
+		<id name="kid" type="java.lang.Integer" >
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="WID" length="60" not-null="true" />
+		</property>
+		<property name="name" type="string">
+			<column name="Name" length="60" />
+		</property>
+		<property name="startDate" type="date">
+			<column name="StartDate" length="10" />
+		</property>
+		<property name="endDate" type="date"> 
+			<column name="EndDate" length="10" /> 
+		</property>
+		<property name="truth" type="string">
+			<column name="Truth" length="1024" />
+		</property>
+		<property name="lawful" type="string">
+			<column name="Lawful" length="1024" />
+		</property>
+		<property name="antiproperty" type="string">
+			<column name="Antiproperty" length="1024" />
+		</property>
+		<property name="property" type="string">
+			<column name="Property" length="1024" />
+		</property>
+		<property name="debt" type="string">
+			<column name="Debt" length="1024" />
+		</property>
+		<property name="risk" type="string">
+			<column name="Risk" length="1024" />
+		</property>
+	</class>
+</hibernate-mapping>

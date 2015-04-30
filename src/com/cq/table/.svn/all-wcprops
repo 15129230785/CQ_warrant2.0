@@ -1,0 +1,737 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/cq/!svn/ver/5262/CQ_warrant2.0/src/com/cq/table
+END
+TblEmpinfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblEmpinfo.java
+END
+TblDecision.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblDecision.java
+END
+TblLawaudit.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblLawaudit.hbm.xml
+END
+TblRegshareholder.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblRegshareholder.java
+END
+TblSalerevenuecheck.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblSalerevenuecheck.hbm.xml
+END
+TblStationLetter.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/3439/CQ_warrant2.0/src/com/cq/table/TblStationLetter.java
+END
+CQMemberShip.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/table/CQMemberShip.hbm.xml
+END
+TblUnduewarrant.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblUnduewarrant.hbm.xml
+END
+TblCfgSysparam.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgSysparam.hbm.xml
+END
+TblCfgCalculateindex.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgCalculateindex.java
+END
+TblPersonalwarrant.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblPersonalwarrant.hbm.xml
+END
+TblCfgBankinfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgBankinfo.java
+END
+TblBranchinfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblBranchinfo.java
+END
+TblCharge.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCharge.hbm.xml
+END
+TblDebt.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblDebt.java
+END
+TblProjectmonitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblProjectmonitor.java
+END
+TblCfgSysparam.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgSysparam.java
+END
+TblRelatedcominfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblRelatedcominfo.hbm.xml
+END
+TblUnduewarrant.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblUnduewarrant.java
+END
+TblRegshareholder.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblRegshareholder.hbm.xml
+END
+TblCfgTaskgroup.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/3345/CQ_warrant2.0/src/com/cq/table/TblCfgTaskgroup.hbm.xml
+END
+CQUser.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/table/CQUser.hbm.xml
+END
+TblProjecthistory.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblProjecthistory.java
+END
+TblCfgOverratio.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgOverratio.java
+END
+TblWarrantinfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblWarrantinfo.java
+END
+TblOperlog.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblOperlog.hbm.xml
+END
+TblRelatedcominfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblRelatedcominfo.java
+END
+TblInvest.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblInvest.hbm.xml
+END
+TblBanlancesheet.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblBanlancesheet.java
+END
+TblCfgTaskgroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgTaskgroup.java
+END
+TblCfgBasicratio.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgBasicratio.java
+END
+TblChangeinfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblChangeinfo.java
+END
+TblFieldsurvey.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblFieldsurvey.java
+END
+TblManaudit.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblManaudit.java
+END
+TblDebt.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/3153/CQ_warrant2.0/src/com/cq/table/TblDebt.hbm.xml
+END
+TblProjectmonitor.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblProjectmonitor.hbm.xml
+END
+TblFinanceest.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblFinanceest.hbm.xml
+END
+TblProduct.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblProduct.hbm.xml
+END
+TblOperlog.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblOperlog.java
+END
+TblRiskest.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/3153/CQ_warrant2.0/src/com/cq/table/TblRiskest.hbm.xml
+END
+TblProblemtrack.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblProblemtrack.hbm.xml
+END
+TblManinfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblManinfo.hbm.xml
+END
+TblDocchklist.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblDocchklist.hbm.xml
+END
+TblSalerevenuecheck.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblSalerevenuecheck.java
+END
+TblContract.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblContract.java
+END
+TblWarrantinfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblWarrantinfo.hbm.xml
+END
+TblCfgOverratio.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/3178/CQ_warrant2.0/src/com/cq/table/TblCfgOverratio.hbm.xml
+END
+TblStartSign.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblStartSign.java
+END
+TblFinanceest.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblFinanceest.java
+END
+TblCfgAnalysisindex.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgAnalysisindex.hbm.xml
+END
+TblFamily.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblFamily.java
+END
+TblEmpinfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/3345/CQ_warrant2.0/src/com/cq/table/TblEmpinfo.hbm.xml
+END
+TblDecision.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblDecision.hbm.xml
+END
+TblIncomestatement.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblIncomestatement.hbm.xml
+END
+TblShareholder.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblShareholder.hbm.xml
+END
+TblCountersign.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCountersign.hbm.xml
+END
+TblStationLetter.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblStationLetter.hbm.xml
+END
+TblManaudit.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblManaudit.hbm.xml
+END
+TblDocchklist.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblDocchklist.java
+END
+TblManinfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblManinfo.java
+END
+TblPersue.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblPersue.hbm.xml
+END
+TblCfgCalculateindex.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgCalculateindex.hbm.xml
+END
+TblReginfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblReginfo.java
+END
+TblUndueloan.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblUndueloan.java
+END
+TblCfgAnalysisindex.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgAnalysisindex.java
+END
+TblDeptinfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblDeptinfo.hbm.xml
+END
+TblVendor.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblVendor.java
+END
+TblBranchinfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblBranchinfo.hbm.xml
+END
+TblIncomestatement.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblIncomestatement.java
+END
+CQUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/table/CQUser.java
+END
+TblPersonalrisk.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblPersonalrisk.hbm.xml
+END
+TblHistory.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblHistory.java
+END
+TblStartSign.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblStartSign.hbm.xml
+END
+TblPersue.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblPersue.java
+END
+TblCfgComdoclist.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgComdoclist.hbm.xml
+END
+TblCfgSrvchk.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgSrvchk.hbm.xml
+END
+TblInvest.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblInvest.java
+END
+CQMemberShip.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/table/CQMemberShip.java
+END
+CQGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/table/CQGroup.java
+END
+TblUndueloan.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblUndueloan.hbm.xml
+END
+TblCashflowstatement.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/3471/CQ_warrant2.0/src/com/cq/table/TblCashflowstatement.hbm.xml
+END
+TblDatareview.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblDatareview.hbm.xml
+END
+TblProduct.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblProduct.java
+END
+TblRiskest.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblRiskest.java
+END
+TblFieldsurvey.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblFieldsurvey.hbm.xml
+END
+TblChangeinfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/3471/CQ_warrant2.0/src/com/cq/table/TblChangeinfo.hbm.xml
+END
+TblCharge.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCharge.java
+END
+TblAntiwarrant.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblAntiwarrant.java
+END
+TblCominfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCominfo.java
+END
+TblCashflowstatement.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCashflowstatement.java
+END
+TblDatareview.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblDatareview.java
+END
+TblCountersign.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCountersign.java
+END
+TblShareholder.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblShareholder.java
+END
+TblContract.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblContract.hbm.xml
+END
+CQGroup.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/table/CQGroup.hbm.xml
+END
+TblFamily.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblFamily.hbm.xml
+END
+TblEvaluate.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblEvaluate.java
+END
+TblPerson.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblPerson.java
+END
+TblWarrantindex.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblWarrantindex.java
+END
+TblCompensatory.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCompensatory.hbm.xml
+END
+TblUnduebill.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblUnduebill.hbm.xml
+END
+TblDeptinfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblDeptinfo.java
+END
+TblLawaudit.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblLawaudit.java
+END
+TblProjecthistory.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblProjecthistory.hbm.xml
+END
+TblPersonalrisk.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/5262/CQ_warrant2.0/src/com/cq/table/TblPersonalrisk.java
+END
+TblReginfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblReginfo.hbm.xml
+END
+TblCominfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCominfo.hbm.xml
+END
+TblAntiwarrant.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3635/CQ_warrant2.0/src/com/cq/table/TblAntiwarrant.hbm.xml
+END
+TblCfgComdoclist.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgComdoclist.java
+END
+TblCfgSrvchk.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCfgSrvchk.java
+END
+TblBanlancesheet.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/3471/CQ_warrant2.0/src/com/cq/table/TblBanlancesheet.hbm.xml
+END
+TblVendor.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblVendor.hbm.xml
+END
+TblPersonalwarrant.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblPersonalwarrant.java
+END
+TblUnduebill.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblUnduebill.java
+END
+TblCompensatory.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblCompensatory.java
+END
+TblCfgBasicratio.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/3178/CQ_warrant2.0/src/com/cq/table/TblCfgBasicratio.hbm.xml
+END
+TblHistory.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblHistory.hbm.xml
+END
+TblProblemtrack.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblProblemtrack.java
+END
+TblEvaluate.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblEvaluate.hbm.xml
+END
+TblPerson.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblPerson.hbm.xml
+END
+TblWarrantindex.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/table/TblWarrantindex.hbm.xml
+END
+TblCfgBankinfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3153/CQ_warrant2.0/src/com/cq/table/TblCfgBankinfo.hbm.xml
+END

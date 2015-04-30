@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<passwordReminderDays value="7" />
+	<passwordExpireDays value="90" />
+	<taskReminderDays value="7" />
+	<taskExpireDays value="30" />
+</config>

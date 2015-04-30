@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblCominfo" table="tbl_cominfo">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="EID" length="50" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="50" not-null="true" />
+        </property>
+        <property name="type" type="string">
+            <column name="Type" length="10" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="Address" length="50" not-null="true" />
+        </property>
+        <property name="nature" type="string">
+            <column name="Nature" length="10" />
+        </property>
+        <property name="foundDate" type="date">
+            <column name="FoundDate" length="10" />
+        </property>
+        <property name="contacts" type="string">
+            <column name="Contacts" length="50"  />
+        </property>
+        <property name="phone" type="string">
+            <column name="Phone" length="20" not-null="true" />
+        </property>
+        <property name="fax" type="string">
+            <column name="Fax" length="20" />
+        </property>
+        <property name="website" type="string">
+            <column name="WEBSite" length="40" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="40" />
+        </property>
+        <property name="postCode" type="string">
+            <column name="PostCode" length="10" />
+        </property>
+        <property name="manageArea" type="string" >
+            <column name="ManageArea" length="40"/>
+        </property>
+        <property name="basicBankName" type="string">
+            <column name="BasicBankName" length="40" not-null="true" />
+        </property>
+        <property name="basicAccount" type="string">
+            <column name="BasicAccount" length="20" not-null="true" />
+        </property>
+        <property name="mainBusiness" type="string">
+            <column name="MainBusiness" length="1024" />
+        </property>
+        <property name="qualification" type="string">
+            <column name="Qualification" length="1024" />
+        </property>
+    </class>
+</hibernate-mapping>

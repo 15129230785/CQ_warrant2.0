@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--站内信映射表 -->
+<hibernate-mapping>
+	<class name="com.cq.table.TblStationLetter" table="tbl_stationLetter">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="sendID" type="string">
+			<column name="SendID" length="40"></column>
+		</property>
+		<property name="recID" type="string">
+			<column name="RecID" length="40"></column>
+		</property>
+		<property name="caption" type="string">
+			<column name="caption" length="40"></column>
+		</property>
+		<property name="message" type="string">
+			<column name="message" length="255"></column>
+		</property>
+		<property name="sendDate" type="date">
+			<column name="sendDate" length="10"></column>
+		</property>
+		<property name="sendStatus" type="int">
+			<column name="sendStatus" length="10"></column>
+		</property>
+		<property name="userType" type="int">
+			<column name="userType" length="2"></column>
+		</property>
+		<set name="recList" table="tbl_slreciever">
+			<key column="letterid" not-null="true"></key>
+			<composite-element class="com.cq.bean.StationLetterReciever">
+				<property name="name"></property>
+				<property name="status"></property>
+				<property name="readFlag"></property>
+			</composite-element>
+		</set>
+	</class>
+</hibernate-mapping>

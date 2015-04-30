@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/WebRoot/clientManager
+END
+clientCompany.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4391/CQ_warrant2.0/WebRoot/clientManager/clientCompany.jsp
+END
+clientPerson.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4391/CQ_warrant2.0/WebRoot/clientManager/clientPerson.jsp
+END
+clientManager.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/WebRoot/clientManager/clientManager.jsp
+END
+addCompanyClient.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/4391/CQ_warrant2.0/WebRoot/clientManager/addCompanyClient.jsp
+END
+addPersonClient.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/4391/CQ_warrant2.0/WebRoot/clientManager/addPersonClient.jsp
+END

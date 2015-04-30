@@ -1,0 +1,454 @@
+package com.cq.web.listener;
+
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+import org.apache.log4j.Logger;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.ServletContextResource;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.cq.bean.CompanyProperty;
+import com.cq.bean.CompanyType;
+import com.cq.bean.EventType;
+import com.cq.dao.SysparamDao;
+import com.cq.table.TblCfgSysparam;
+import com.cq.util.GlobalData;
+import com.cq.util.tools;
+
+public class LoadConfigListener implements ServletContextListener {
+	static Logger log = Logger.getLogger(LoadConfigListener.class);
+	private String errorMsg;
+	
+	@Override
+	public void contextInitialized(ServletContextEvent sce) {
+		try {
+			getTaskName();
+			getGlobalConfig();
+			
+			getSelectBoxData(sce);
+			
+			this.configSystemParameter(sce);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void configSystemParameter(ServletContextEvent sce) {
+		WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
+		SysparamDao sysparamDao = (SysparamDao) wac.getBean("sysparamDao");
+		TblCfgSysparam sp = null;
+		
+		List<TblCfgSysparam> spl = sysparamDao.list();
+		if (spl == null || spl.size() == 0) {
+			sp = new TblCfgSysparam();
+			sp.setAdvancedReminderDays(7);
+			sp.setAntiWarrantGroups("客户经理");
+			sp.setMaxLogResults(30);
+			sp.setPasswordExpireDays(90);
+			sp.setPasswordReminderDays(7);
+			sp.setProjectTrackPeriod(30);
+			sp.setReviewGroupName("评审委员会");
+			sp.setTaskExpireDays(30);
+			sp.setTaskReminderDays(7);
+			sysparamDao.save(sp);
+		} else {
+			sp = spl.get(0);
+		}
+		
+		GlobalData.advancedReminderDays = sp.getAdvancedReminderDays();
+		
+		String dd[] = sp.getAntiWarrantGroups().split(",");
+		GlobalData.antiWarrantGroups.clear();
+		for (int i = 0; i < dd.length; i++) {
+			GlobalData.antiWarrantGroups.add(dd[i]);
+		}
+		
+		GlobalData.maxLogResults = sp.getMaxLogResults();
+		GlobalData.passwordExpireDays = sp.getPasswordExpireDays();
+		GlobalData.passwordReminderDays = sp.getPasswordReminderDays();
+		GlobalData.projectTrackPeriod = sp.getProjectTrackPeriod();
+		GlobalData.reviewGroupName = sp.getReviewGroupName();
+		GlobalData.taskExpireDays = sp.getTaskExpireDays();
+		GlobalData.taskReminderDays = sp.getTaskReminderDays();
+	}
+	
+	private void getTaskName() throws Exception {
+		Resource cpr = new ClassPathResource("warrant.cfg.xml");
+		SAXReader sr = new SAXReader();
+		sr.setEncoding("utf-8");
+		Document doc = sr.read(cpr.getFile());
+		Element rootele = null;
+		
+		GlobalData.taskNames.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element tasks = rootele.element("tasks");
+			List<?> taskList = tasks.elements("task");
+			Iterator<?> iterator = taskList.iterator();
+			while(iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				Element desc = ele.element("description");
+				GlobalData.taskNames.put(ele.attributeValue("name"), desc.getTextTrim());
+			}
+		} catch (Exception e) {
+			errorMsg = "通过流程建立任务列表失败";
+			tools.throwException(e, log, errorMsg);
+		} finally {
+			doc = null;
+			cpr = null;
+		}
+	}
+	
+	private void getGlobalConfig() throws Exception {
+		Resource cpr = new ClassPathResource("warrant.cfg.xml");
+		SAXReader sr = new SAXReader();
+		sr.setEncoding("utf-8");
+		Document doc = sr.read(cpr.getFile());
+				
+		Element rootele = doc.getRootElement();
+		
+		try {
+			Element ele = rootele.element("companytypes");
+			List<?> list = ele.elements("companytype");
+			Iterator<?> iterator = list.iterator();
+			
+			GlobalData.companyTypes.clear();
+			while(iterator.hasNext()) {
+				Element ct = (Element) iterator.next();
+				
+				CompanyType comtype = new CompanyType();
+				comtype.setKid(Integer.parseInt(ct.attributeValue("kid")));
+				comtype.setCname(ct.attributeValue("cname"));
+				GlobalData.companyTypes.add(comtype);
+			}
+		} catch (Exception e) {
+			errorMsg = "通过配置获取企业类型失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		
+		try {
+			Element ele = rootele.element("companypropertys");
+			List<?> list = ele.elements("companyproperty");
+			Iterator<?> iterator = list.iterator();
+			
+			GlobalData.companyPropertys.clear();
+			while(iterator.hasNext()) {
+				Element cp = (Element) iterator.next();
+				
+				CompanyProperty comp = new CompanyProperty();
+				comp.setKid(Integer.parseInt(cp.attributeValue("kid")));
+				comp.setCname(cp.attributeValue("cname"));
+				GlobalData.companyPropertys.add(comp);
+			}
+		} catch (Exception e) {
+			errorMsg = "通过配置获取企业性质失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		
+		try {
+			Element ele = rootele.element("eventtypes");
+			List<?> list = ele.elements("eventtype");
+			Iterator<?> iterator = list.iterator();
+			
+			GlobalData.eventTypes.clear();
+			while(iterator.hasNext()) {
+				Element et = (Element) iterator.next();
+				
+				EventType eventtype = new EventType();
+				eventtype.setEtId(et.attributeValue("id"));
+				eventtype.setEtName(et.attributeValue("name"));
+				GlobalData.eventTypes.add(eventtype);
+			}
+		} catch (Exception e) {
+			errorMsg = "通过配置获取重大事件类型失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	private void getSelectBoxData(ServletContextEvent sce) throws Exception {
+		getAntiWarrantType(sce);
+		getCreditInfo(sce);
+		getChangeType(sce);
+		getInvestMode(sce);
+		getCapitalMode(sce);
+		getRelationshipInfo(sce);
+		getDutyInfo(sce);
+	}
+	
+	private void getAntiWarrantType(ServletContextEvent sce) throws Exception {
+		Resource cpr = new ServletContextResource(
+				sce.getServletContext(), "/config/antiWarrantType.xml");
+		SAXReader sr = new SAXReader();
+		sr.setEncoding("utf-8");
+		Document doc = sr.read(cpr.getFile());
+		Element rootele = null;
+		
+		GlobalData.antiWarrantTypes.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("atts");
+			List<?> attList = atts.elements("att");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.antiWarrantTypes.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取反担保类型失败";
+			tools.throwException(e, log, errorMsg);
+		} finally {
+			doc = null;
+			cpr = null;
+		}
+	}
+	
+	private void getCreditInfo(ServletContextEvent sce) throws Exception {
+		Resource cpr = new ServletContextResource(
+				sce.getServletContext(), "/config/credit.xml");
+		SAXReader sr = new SAXReader();
+		sr.setEncoding("utf-8");
+		Document doc = sr.read(cpr.getFile());
+		Element rootele = null;
+
+		GlobalData.warrantModes.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("wms");
+			List<?> attList = atts.elements("wm");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.warrantModes.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取担保方式失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		
+		GlobalData.serviceTypes.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("sts");
+			List<?> attList = atts.elements("st");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.serviceTypes.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取业务品种失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		
+		GlobalData.loanModes.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("lms");
+			List<?> attList = atts.elements("lm");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.loanModes.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取贷款模式失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	private void getChangeType(ServletContextEvent sce) throws Exception {
+		Resource cpr = new ServletContextResource(
+				sce.getServletContext(), "/config/changeType.xml");
+		SAXReader sr = new SAXReader();
+		sr.setEncoding("utf-8");
+		Document doc = sr.read(cpr.getFile());
+		Element rootele = null;
+
+		GlobalData.changeTypes.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("cts");
+			List<?> attList = atts.elements("ct");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.changeTypes.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取变更类型失败";
+			tools.throwException(e, log, errorMsg);
+		} finally {
+			doc = null;
+			cpr = null;
+		}
+	}
+	
+	private void getInvestMode(ServletContextEvent sce) throws Exception {
+		Resource cpr = new ServletContextResource(
+				sce.getServletContext(), "/config/investMode.xml");
+		SAXReader sr = new SAXReader();
+		sr.setEncoding("utf-8");
+		Document doc = sr.read(cpr.getFile());
+		Element rootele = null;
+
+		GlobalData.investModes.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("ims");
+			List<?> attList = atts.elements("im");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.investModes.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取投资模式失败";
+			tools.throwException(e, log, errorMsg);
+		} finally {
+			doc = null;
+			cpr = null;
+		}
+	}
+	
+	private void getCapitalMode(ServletContextEvent sce) throws Exception {
+		Resource cpr = new ServletContextResource(
+				sce.getServletContext(), "/config/capitalMode.xml");
+		SAXReader sr = new SAXReader();
+		sr.setEncoding("utf-8");
+		Document doc = sr.read(cpr.getFile());
+		Element rootele = null;
+
+		GlobalData.capitalModes.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("cms");
+			List<?> attList = atts.elements("cm");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.capitalModes.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取入资形式失败";
+			tools.throwException(e, log, errorMsg);
+		} finally {
+			doc = null;
+			cpr = null;
+		}
+	}
+	
+	private void getRelationshipInfo(ServletContextEvent sce) throws Exception {
+		Resource cpr = new ServletContextResource(
+				sce.getServletContext(), "/config/relationship.xml");
+		SAXReader sr = new SAXReader();
+		sr.setEncoding("utf-8");
+		Document doc = sr.read(cpr.getFile());
+		Element rootele = null;
+
+		GlobalData.gender.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("genders");
+			List<?> attList = atts.elements("gender");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.gender.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取性别类型失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		
+		GlobalData.relationships.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("relationships");
+			List<?> attList = atts.elements("relationship");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.relationships.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取家庭关系类型失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	private void getDutyInfo(ServletContextEvent sce) throws Exception {
+		Resource cpr = new ServletContextResource(
+				sce.getServletContext(), "/config/manager.xml");
+		SAXReader sr = new SAXReader();
+		sr.setEncoding("utf-8");
+		Document doc = sr.read(cpr.getFile());
+		Element rootele = null;
+
+		GlobalData.dutys.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("dutys");
+			List<?> attList = atts.elements("duty");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.dutys.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取职务类型失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		
+		GlobalData.education.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("educations");
+			List<?> attList = atts.elements("education");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.education.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取教育程度失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		
+		GlobalData.maritalStatus.clear();
+		try {
+			rootele = doc.getRootElement();
+			Element atts = rootele.element("mss");
+			List<?> attList = atts.elements("ms");
+			Iterator<?> iterator = attList.iterator();
+			while (iterator.hasNext()) {
+				Element ele = (Element) iterator.next();
+				GlobalData.maritalStatus.put(ele.attributeValue("value"), ele.attributeValue("desc"));
+			}
+		} catch (Exception e) {
+			errorMsg = "获取婚姻状况失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	@Override
+	public void contextDestroyed(ServletContextEvent arg0) {
+		
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+}

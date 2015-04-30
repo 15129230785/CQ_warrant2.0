@@ -1,0 +1,25 @@
+body {
+	font: normal 12px "宋体";
+	background: url(../tabs/images/bg.gif) repeat-x 0 5px;
+	color: #474747;
+}
+table{padding:10px 0 0;}
+
+#clientInfoDiv table{
+	border: 1px solid #B1CDE3;
+	border-collapse: collapse;
+	width: 98%;
+	margin:10px;
+}
+
+#clientInfoDiv table td{
+	border: 1px solid #B1CDE3;
+	font: normal 12px "宋体";
+	padding: 3px 0;
+	color: #4f6b72;
+	text-align: center;
+}
+
+.ui-menu {
+	width: 80px;
+}

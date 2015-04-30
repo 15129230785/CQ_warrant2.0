@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="companyApplyFhx" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="loginCheck" class="com.cq.action.LoginCheck" />
+			<interceptor-stack name="cq-default">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginCheck" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="cq-default" />
+
+		<global-results>
+			<result name="login">/newLogin.jsp</result>
+			<result name="warrantException">/exception.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="warrantException" exception="java.lang.Exception" />
+		</global-exception-mappings>
+	
+		<action name="ApplyYanZheng3" class="com.cq.action.TblManinfoAction"
+			method="applyYanZheng3"></action>
+		<action name="ApplyYanZhengtype" class="com.cq.action.TblShareholderAction"
+			method="applyYanZhengtype"></action>
+		<action name="ApplyYanZhengfzname" class="com.cq.action.TblBranchinfoAction"
+			method="applyYanZhengfzname"></action>
+		<action name="ApplyYanZhengfzname1" class="com.cq.action.TblBranchinfoAction"
+			method="applyYanZhengfzname1"></action>
+		<action name="ApplyYanZhengdparname" class="com.cq.action.TblDeptinfoAction"
+			method="applyYanZhengdparname"></action>
+		<action name="Cominfoeid" class="com.cq.action.TblCominfoAction"
+			method="cominfoeid"></action>
+		<action name="Cominname" class="com.cq.action.TblCominfoAction"
+			method="cominname"></action>
+		<action name="Yzmanagerfhx" class="com.cq.action.TblManinfoAction"
+			method="yzmanagerfhx"></action>
+		<action name="Yzstockerfhx" class="com.cq.action.TblShareholderAction"
+			method="yzstockerfhx"></action>
+		<action name="Yzstockerfhx1" class="com.cq.action.TblShareholderAction"
+			method="yzstockerfhx1"></action>
+		<action name="GetComInfo" class="com.cq.action.TblCominfoAction"
+			method="getComInfo"></action>
+		<action name="Getstock" class="com.cq.action.TblShareholderAction"
+			method="getstock"></action>
+		<action name="Applyinvest" class="com.cq.action.TblInvestAction"
+			method="applyinvest"></action>
+		<action name="Applyinvest1" class="com.cq.action.TblInvestAction"
+			method="applyinvest1"></action>
+		<!-- 冯慧雄修改 -->
+		<action name="PepsionSign" class="com.cq.action.PersonalDecisionAction"
+			method="personalDecisionSign">
+		</action>
+		<action name="YzAntiwarrantPreserveAjax" class="com.cq.action.TblAntiwarrantAction"
+			method="yzAntiwarrantPreserveAjax"></action>
+		<action name="Applybank" class="com.cq.action.TblCfgBankinfoAction"
+			method="applybank"></action>
+			<action name="ApplyYanZhengcousign" class="com.cq.action.TblCountersignAction"
+			method="applyYanZhengcousign"></action>
+		<!-- 结束 -->
+	</package>
+</struts>

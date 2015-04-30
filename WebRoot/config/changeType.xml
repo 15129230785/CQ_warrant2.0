@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<cts>
+		<ct value="0" desc="名称变更" />
+		<ct value="1" desc="住所变更" />
+		<ct value="2" desc="法人变更" />
+		<ct value="3" desc="注册资本变更" />
+		<ct value="4" desc="经营范围变更" />
+		<ct value="5" desc="类型变更" />
+		<ct value="6" desc="股东和股权变更" />
+		<ct value="7" desc="经营期限变更" />
+		<ct value="8" desc="合并变更" />
+		<ct value="9" desc="分立变更" />
+	</cts>
+</config>

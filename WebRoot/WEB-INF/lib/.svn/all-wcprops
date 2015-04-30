@@ -1,0 +1,269 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/cq/!svn/ver/3296/CQ_warrant2.0/WebRoot/WEB-INF/lib
+END
+c3p0-0.9.1.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/c3p0-0.9.1.2.jar
+END
+jstl.jar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/jstl.jar
+END
+dom4j-1.6.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/dom4j-1.6.1.jar
+END
+commons-io-2.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-io-2.2.jar
+END
+struts2-core-2.1.8.jar
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/struts2-core-2.1.8.jar
+END
+common-annotations.jar
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/common-annotations.jar
+END
+struts2-spring-plugin-2.1.8.jar
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/struts2-spring-plugin-2.1.8.jar
+END
+commons-httpclient-3.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/3296/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar
+END
+commons-fileupload-1.2.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-fileupload-1.2.1.jar
+END
+hibernate-annotations.jar
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/hibernate-annotations.jar
+END
+javassist-3.4.GA.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/javassist-3.4.GA.jar
+END
+standard.jar
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/standard.jar
+END
+log4j-1.2.15.jar
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/log4j-1.2.15.jar
+END
+hibernate-cglib-repack-2.1_3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/hibernate-cglib-repack-2.1_3.jar
+END
+ognl-2.7.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/ognl-2.7.3.jar
+END
+ejb3-persistence.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/ejb3-persistence.jar
+END
+hibernate-commons-annotations.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/hibernate-commons-annotations.jar
+END
+aspectjrt-1.6.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3158/CQ_warrant2.0/WebRoot/WEB-INF/lib/aspectjrt-1.6.6.jar
+END
+hibernate-entitymanager.jar
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/hibernate-entitymanager.jar
+END
+freemarker-2.3.15.jar
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/freemarker-2.3.15.jar
+END
+aspectjweaver-1.6.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/3158/CQ_warrant2.0/WebRoot/WEB-INF/lib/aspectjweaver-1.6.6.jar
+END
+jta-1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/jta-1.1.jar
+END
+ehcache-1.2.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/ehcache-1.2.3.jar
+END
+ezmorph-1.0.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/ezmorph-1.0.3.jar
+END
+mail.jar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/mail.jar
+END
+hibernate3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/hibernate3.jar
+END
+struts2-json-plugin-2.2.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/struts2-json-plugin-2.2.1.1.jar
+END
+commons-collections-3.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-collections-3.1.jar
+END
+commons-codec-1.4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/3296/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-codec-1.4.jar
+END
+antlr-2.7.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/antlr-2.7.6.jar
+END
+jbpm.jar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/jbpm.jar
+END
+slf4j-api-1.5.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/slf4j-api-1.5.2.jar
+END
+commons-lang-2.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-lang-2.3.jar
+END
+json-lib-2.4-jdk15.jar
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/json-lib-2.4-jdk15.jar
+END
+commons-logging-1.0.4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-logging-1.0.4.jar
+END
+commons-email-1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/3241/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-email-1.1.jar
+END
+commons-logging.jar
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-logging.jar
+END
+commons-beanutils-1.7.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/commons-beanutils-1.7.0.jar
+END
+activation.jar
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cq/!svn/ver/3241/CQ_warrant2.0/WebRoot/WEB-INF/lib/activation.jar
+END
+slf4j-log4j12.jar
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/slf4j-log4j12.jar
+END
+spring.jar
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/spring.jar
+END
+xwork-core-2.1.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/xwork-core-2.1.6.jar
+END
+cglib-nodep-2.1_3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/cglib-nodep-2.1_3.jar
+END
+mysql-connector-java-3.1.13-bin.jar
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cq/!svn/ver/2693/CQ_warrant2.0/WebRoot/WEB-INF/lib/mysql-connector-java-3.1.13-bin.jar
+END

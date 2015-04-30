@@ -1,0 +1,305 @@
+package com.cq.action;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+
+import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.annotation.CQAnnotationOperlog;
+import com.cq.dao.BankinfoDao;
+import com.cq.table.TblCfgBankinfo;
+import com.cq.util.WarrantException;
+import com.cq.util.tools;
+
+@CQAnnotationOperlog(tableName="银行基本信息", dataName="cbi")
+public class TblCfgBankinfoAction {
+    static Logger log = Logger.getLogger(TblCfgBankinfoAction.class);
+	private String errorMsg;
+	
+	private int id;
+	private String bid;
+	private Date startdate;
+	private Date enddate;
+	private String name;
+	private double quota;
+	private double remaining;
+	private TblCfgBankinfo cbi;
+	private int active;
+	
+	@Resource BankinfoDao bankinfoDao;
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void applybank() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		Double Money = Double.parseDouble(request.getParameter("Money"));
+		String Bank = request.getParameter("Bank");
+		
+		List<TblCfgBankinfo> bil = bankinfoDao.findByProperty("bid", Bank);
+		
+		String str = "bank";
+		double Number = 0;
+		try {
+			Number = (double) bil.get(0).getRemaining();
+			if (Number < Money) {
+				str = " ";
+			}
+			tools.outputInfo(str);
+		} catch (Exception e) {
+			errorMsg = "根据银行编码查询银行信息数据失败" + Bank;
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public String savaTblCfgBankinfo() throws Exception {
+		TblCfgBankinfo bankinfo = new TblCfgBankinfo();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		int number = bankinfoDao.checkBankinfo(bid, sdf.format(startdate), sdf.format(enddate));
+		if (number > 0) {
+			errorMsg = "系统中已经存在日期重叠的银行信息数据，请重新输入";
+			log.error(errorMsg);
+			throw new WarrantException(errorMsg);
+		}
+		try {
+			bankinfo.setBid(bid);
+			bankinfo.setName(name);
+			bankinfo.setStartdate(startdate);
+			bankinfo.setEnddate(enddate);
+			bankinfo.setQuota(quota);
+			bankinfo.setRemaining(quota);
+			cbi = bankinfo;
+			bankinfoDao.save(bankinfo);
+		} catch (Exception e) {
+			errorMsg = "添加银行信息数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+	
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public void outDeleteTblCfgBankinfo() throws Exception {
+		try {
+			cbi = bankinfoDao.get(id);
+			bankinfoDao.delete(id);
+			this.list();
+		} catch (Exception e) {
+			errorMsg = "删除银行信息数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public String updateTblCfgBankinfo() throws Exception {
+		cbi = bankinfoDao.get(id);
+		double quota1=bankinfoDao.get(id).getQuota();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		int number = bankinfoDao.checkBankinfo(id, cbi.getBid(),
+				sdf.format(startdate), sdf.format(enddate));
+		if (number > 0) {
+			errorMsg = "系统中已经存在日期重叠的银行信息数据，请重新输入";
+			log.error(errorMsg);
+			throw new WarrantException(errorMsg);
+		}
+		try {
+			double remaining1=remaining+(quota-quota1);
+			cbi.setStartdate(startdate);
+			cbi.setEnddate(enddate);
+			cbi.setQuota(quota);
+			cbi.setRemaining(remaining1);
+			
+			bankinfoDao.update(cbi);
+		} catch (Exception e) {
+			errorMsg = "修改银行信息数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void list() throws Exception {
+		List<TblCfgBankinfo> bil = null;
+		StringBuffer outs = null;
+		
+		bil = bankinfoDao.list();
+		DecimalFormat decimalFormat=new DecimalFormat("###0.00");
+		if (bil == null || bil.size() == 0) {
+			tools.outputInfo(new StringBuffer("<p>没有配置银行信息，请点击添加银行信息按钮添加。</p>"));
+			return;
+		} else {
+			outs = new StringBuffer();
+			outs.append("<table width='100%'>");
+			outs.append("<tr>");
+			outs.append("<th width='20%'>银行名称</th>");
+			outs.append("<th width='20%'>银行代码</th>");
+			outs.append("<th width='10%'>授信起始时间</th>");
+			outs.append("<th width='10%'>授信终止时间</th>");
+			outs.append("<th width='15%'>授信额度(万)</th>");
+			outs.append("<th width='15%'>剩余额度(万)</th>");
+			outs.append("<th width='10%'>操作</th>");
+			outs.append("</tr>");
+			for (int i = 0; i < bil.size(); i++) {
+				id = bil.get(i).getKid();
+				bid = bil.get(i).getBid();
+				startdate = bil.get(i).getStartdate();
+				enddate = bil.get(i).getEnddate();
+				name = bil.get(i).getName();
+				quota = bil.get(i).getQuota();
+				remaining = bil.get(i).getRemaining();
+
+				outs.append("<tr>");
+				outs.append("<td><a href='#' onclick='updateBankinfoJs(" + id + ")'>" + name);
+				outs.append("</td>");
+				outs.append("<td>" + bid);
+				outs.append("</td>");
+				outs.append("<td>" + startdate);
+				outs.append("</td>");
+				outs.append("<td>" + enddate);
+				outs.append("</td>");
+				outs.append("<td>" +decimalFormat.format(quota));
+				outs.append("万</td>");
+				outs.append("<td>" + decimalFormat.format(remaining));
+				outs.append("万</td>");
+				outs.append("<td><a href='#' onclick='deleteBankInfoJs("
+						+ id + ")'>删除");
+				outs.append("</a></td>");
+				outs.append("</tr>");
+			}
+			outs.append("</table>");
+			
+			tools.outputInfo(outs);
+		}
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void getBankName() throws Exception {
+		List<TblCfgBankinfo> bil = null;
+		TblCfgBankinfo tb = null;
+		JsonConfig cfg = null;
+		
+		try {
+			if (active == 1) {
+				bil = bankinfoDao.findBankinfoByNow();
+			} else {
+				bil = bankinfoDao.list();
+			}
+			
+			if((bil == null) || (bil.size() <= 0)) {
+				tools.outputInfo(JSONObject.fromObject(null));
+				log.warn("没有查询到银行信息数据" + bil);
+				return;
+			}
+			cfg = tools.getJsonConfig();
+			JSONArray ja = new JSONArray();
+			for(int i = 0; i < bil.size(); i++) {
+				tb = (TblCfgBankinfo) bil.get(i);
+				ja.add(JSONObject.fromObject(tb, cfg));
+			}
+			JSONObject result = new JSONObject();
+			result.put("banks", ja.toString());
+			tools.outputInfo(result);
+		} catch (Exception e) {
+			errorMsg = "输出银行信息数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void getTblCfgBankinfo() throws Exception {
+		TblCfgBankinfo bi = bankinfoDao.get(id);
+		
+		if(bi == null) {
+			tools.outputInfo(JSONObject.fromObject(""));
+			log.warn("没有查询到银行信息数据" + id);
+			return;
+		}
+		tools.outputInfo(JSONObject.fromObject(bi, tools.getJsonConfig()));
+	}
+
+	public String getBid() {
+		return bid;
+	}
+
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+
+	public Date getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
+	}
+
+	public Date getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getQuota() {
+		return quota;
+	}
+
+	public void setQuota(double quota) {
+		this.quota = quota;
+	}
+
+	public double getRemaining() {
+		return remaining;
+	}
+
+	public void setRemaining(double remaining) {
+		this.remaining = remaining;
+	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setBankinfoDao(BankinfoDao bankinfoDao) {
+		this.bankinfoDao = bankinfoDao;
+	}
+
+	public TblCfgBankinfo getCbi() {
+		return cbi;
+	}
+
+	public void setCbi(TblCfgBankinfo cbi) {
+		this.cbi = cbi;
+	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+}

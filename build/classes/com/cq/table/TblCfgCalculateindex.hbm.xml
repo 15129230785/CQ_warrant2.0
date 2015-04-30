@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cq.table.TblCfgCalculateindex" table="tbl_cfg_calculateindex">
+		<id name="kid" type="java.lang.Integer">
+			<column name="kid" />
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string">
+			<column length="255" name="name" not-null="true" />
+		</property>
+		<property name="cname" type="string">
+			<column length="255" name="cname" not-null="true" />
+		</property>
+		<property name="floor" type="java.lang.Double">
+			<column name="floor" not-null="true" />
+		</property>
+		<property name="ceil" type="java.lang.Double">
+			<column name="ceil" not-null="true" />
+		</property>
+		<property name="indexvalue" type="java.lang.Double">
+			<column name="indexvalue" not-null="true" />
+		</property>
+		<property name="ratio" type="java.lang.Double">
+			<column name="ratio" not-null="true" default="0" />
+		</property>
+	</class>
+</hibernate-mapping>

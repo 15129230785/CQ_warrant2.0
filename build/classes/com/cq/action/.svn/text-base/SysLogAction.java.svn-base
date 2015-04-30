@@ -1,0 +1,192 @@
+package com.cq.action;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+
+import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+
+import com.cq.service.OperlogService;
+import com.cq.util.WarrantException;
+import com.cq.util.tools;
+
+public class SysLogAction {
+	static Logger log = Logger.getLogger(SysLogAction.class);
+	private String errorMsg;
+	
+	@Resource OperlogService operlogService;
+
+	private String[] listFile(String filePath) {
+		File[] fl = null;
+		String[] fileList = null;
+
+		if ((filePath == null) || (filePath.length() == 0)) {
+			log.warn("获取文件列表时参数异常" + filePath);
+			return null;
+		}
+
+		File dir = new File(filePath);
+		if (!(dir.exists())) {
+			errorMsg = "文件目录" + filePath + "不存在";
+			log.error(errorMsg);
+			throw new WarrantException(errorMsg);
+		} else {
+			fl = dir.listFiles();
+			if (fl == null || fl.length == 0) {
+				return null;
+			} else {
+				fileList = new String[fl.length];
+				int j = 0;
+				for (int i = 0; i < fl.length; i++) {
+					String fn = fl[i].getName();
+					fn = fn.substring(fn.length() - 3);
+					if (fl[i].isFile() && !(fn.equalsIgnoreCase("zip"))) {
+						fileList[j++] = fl[i].getName();
+					}
+				}
+			}
+		}
+		return fileList;
+	}
+
+	public void getLogFileList() throws Exception {
+		String[] fileList = null;
+		String filePath = System.getProperty("warrant.root") + "/WEB-INF/logs";
+
+		try {
+			fileList = listFile(filePath);
+			if (fileList != null) {
+				tools.outputInfo(JSONArray.fromObject(fileList));
+			} else {
+				tools.outputInfo("");
+			}
+		} catch (Exception e) {
+			errorMsg = "查询文件列表时系统发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	public void downloadLogFile() throws Exception {
+		HttpServletResponse response = null;
+		OutputStream outp = null;
+		FileInputStream in = null;
+		String filePath = System.getProperty("warrant.root") + "/WEB-INF/logs";
+		File[] fileToZip = null;
+		File zipFile = null;
+		FileOutputStream fos = null;
+		ZipOutputStream zos = null;
+
+		try {
+			fileToZip = new File(filePath).listFiles();
+			if (fileToZip == null || fileToZip.length == 0) {
+				tools.outputInfo("系统中没有日志文件");
+				return;
+			}
+
+			zipFile = new File(filePath + "/log.zip");
+			if (zipFile.exists()) {
+				zipFile.delete();
+			}
+			System.out.println(zipFile.createNewFile());
+			
+			fos = new FileOutputStream(zipFile);
+			zos = new ZipOutputStream(fos);
+			
+			addZipFile(fileToZip, zos);
+			zos.close();
+
+			response = ServletActionContext.getResponse();
+			response.reset();
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("application/x-download");
+			response.addHeader("Content-Disposition", "attachment;filename=log.zip");
+			
+			outp = response.getOutputStream();
+			in = new FileInputStream(zipFile);
+			byte[] b = new byte[1024];
+			int i = 0;
+			while ((i = in.read(b)) > 0) {
+				outp.write(b, 0, i);
+			}
+			outp.flush();
+			operlogService.logFileOperation(tools.getLoginUser(),
+					"用户打包下载了系统运行日志文件");
+		} catch (Exception e) {
+			errorMsg = "下载日志文件时系统发生异常";
+			tools.throwException(e, log, errorMsg);
+		} finally {
+			if (zos != null) {
+				zos.close();
+				zos = null;
+			}
+			if (fos != null) {
+				fos.close();
+				fos = null;
+			}
+			if (in != null) {
+				in.close();
+				in = null;
+			}
+			if (outp != null) {
+				outp.close();
+				outp = null;
+			}
+		}
+	}
+	
+	private void addZipFile(File[] fileList, ZipOutputStream zos) throws Exception {
+		for (int i = 0; i < fileList.length; i++) {
+			FileInputStream fis = null;
+			BufferedInputStream bis = null;
+			File file = null;
+			try {
+				file = fileList[i];
+				String fn = file.getName();
+				fn = fn.substring(fn.length() - 3);
+				if (!(file.exists() && file.isFile()) || fn.equalsIgnoreCase("zip")) {
+					continue;
+				}
+				fis = new FileInputStream(file);
+				bis = new BufferedInputStream(fis, 512);
+				ZipEntry ze = new ZipEntry(file.getName());
+				zos.putNextEntry(ze);
+				
+				int rn = 0;
+				byte[] buffer = new byte[512];
+				while ((rn = bis.read(buffer)) != -1) {
+					zos.write(buffer, 0, rn);
+				}
+			} catch (Exception e) {
+				errorMsg = "向ZIP包中添加文件" + file.getName() + "时出现错误";
+				throw new WarrantException(errorMsg);
+			} finally {
+				if (bis != null) {
+					bis.close();
+					bis = null;
+				}
+				if (fis != null) {
+					fis.close();
+					fis = null;
+				}
+			}
+		}
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+}

@@ -1,0 +1,124 @@
+package com.cq.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+
+import org.apache.log4j.Logger;
+
+import com.cq.service.CountersignService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblCountersign;
+import com.cq.util.tools;
+
+public class CounterSignAction {
+	static Logger log = Logger.getLogger(CounterSignAction.class);
+	private String errorMsg;
+	
+	@Resource TaskBaseService taskBaseService;
+	@Resource CountersignService countersignService;
+	
+	private String sel;
+	private String wid;
+	private String cause;
+	private String decisionList;
+	private String selValue;
+	private String taskid;
+	
+	public String countersign() throws Exception {
+		String temp = "error";
+		
+		if (sel.equals("transfer")) {
+			temp = taskBaseService.transfer(selValue, taskid);
+		} else if (sel.equals("nextLater")) {
+			temp = countersignService.counterSign(taskid, wid, decisionList, cause);
+		}
+		if (temp.equals("error")) {
+			tools.returnError(log, "处理担保解除业务时系统出现错误");
+		}
+		return temp;
+	}
+	
+	public void getCounterSignInfo() throws Exception {
+		List<TblCountersign> csl = null;
+		TblCountersign cs = null;
+		JsonConfig cfg = null;
+		
+		try {
+			csl = countersignService.getTblCountersign(wid);
+			
+			if((csl == null) || (csl.size() <= 0)) {
+				tools.outputInfo(JSONObject.fromObject(null));
+//				errorMsg = "没有获取到评委专家的会签意见";
+//				log.error(errorMsg);
+//				throw new WarrantException(errorMsg);
+				return;
+			}
+			cfg = tools.getJsonConfig();
+			JSONArray ja = new JSONArray();
+			for(int i = 0; i < csl.size(); i++) {
+				cs = (TblCountersign) csl.get(i);
+				ja.add(JSONObject.fromObject(cs, cfg));
+			}
+			JSONObject result = new JSONObject();
+			result.put("counterSignInfo", ja.toString());
+			tools.outputInfo(result);
+		} catch (Exception e) {
+			errorMsg = "获取评委专家会签意见时系统出现异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	public String getSel() {
+		return sel;
+	}
+
+	public void setSel(String sel) {
+		this.sel = sel;
+	}
+
+	public String getWid() {
+		return wid;
+	}
+
+	public void setWid(String wid) {
+		this.wid = wid;
+	}
+
+	public String getCause() {
+		return cause;
+	}
+
+	public void setCause(String cause) {
+		this.cause = cause;
+	}
+
+	public String getDecisionList() {
+		return decisionList;
+	}
+
+	public void setDecisionList(String decisionList) {
+		this.decisionList = decisionList;
+	}
+
+	public String getSelValue() {
+		return selValue;
+	}
+
+	public void setSelValue(String selValue) {
+		this.selValue = selValue;
+	}
+
+	public String getTaskid() {
+		return taskid;
+	}
+
+	public void setTaskid(String taskid) {
+		this.taskid = taskid;
+	}
+
+}

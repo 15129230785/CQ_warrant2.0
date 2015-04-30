@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cq.table.TblReginfo" table="tbl_reginfo">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="rid" type="string">
+			<column name="RID" length="20" not-null="true"/>
+		</property>
+		<property name="eid" type="string">
+			<column name="eid" length="60" not-null="true" />
+		</property>
+		<property name="regName" type="string">
+			<column name="RegName" length="60" not-null="true" />
+		</property>
+		<property name="regAddress" type="string">
+			<column name="RegAddress" length="1024" not-null="true" />
+		</property>
+		<property name="regDept" type="string">
+			<column name="RegDept" length="1024" not-null="true" />
+		</property>
+		<property name="regDate" type="date">
+			<column name="RegDate" length="10" not-null="true" />
+		</property>
+		<property name="timeLimit" type="java.lang.Integer">
+			<column name="TimeLimit" not-null="true" />
+		</property>
+		<property name="regMoney" type="double">
+			<column name="RegMoney" precision="22" scale="0" not-null="true" />
+		</property>
+		<property name="stateTaxNum" type="string">
+			<column name="StateTaxNum" length="1024" not-null="true" />
+		</property>
+		<property name="localTaxNum" type="string">
+			<column name="LocalTaxNum" length="1024" not-null="true" />
+		</property>
+		<property name="scope" type="string">
+			<column name="Scope" length="1024" />
+		</property>
+	</class>
+</hibernate-mapping>

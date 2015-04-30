@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblProduct" table="tbl_product">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="60" not-null="true" />
+        </property>
+        <property name="type" type="java.lang.Character">
+            <column name="Type" length="25" />
+        </property>
+        <property name="purpose" type="string">
+            <column name="Purpose" length="255" />
+        </property>
+        <property name="tech" type="java.lang.Character">
+            <column name="Tech" length="1" />
+        </property>
+        <property name="saleDomain" type="string">
+            <column name="SaleDomain" length="1024" />
+        </property>
+        <property name="saleArea" type="string">
+            <column name="SaleArea" length="1024" />
+        </property>
+        <property name="incomeProportion" type="big_decimal">
+            <column name="IncomeProportion" precision="5" default="0" />
+        </property>
+        <property name="marketShare" type="big_decimal">
+            <column name="MarketShare" precision="5" default="0" />
+        </property>
+    </class>
+</hibernate-mapping>

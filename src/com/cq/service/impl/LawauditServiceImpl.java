@@ -1,0 +1,106 @@
+package com.cq.service.impl;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.dao.LawauditDao;
+import com.cq.service.LawauditService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblLawaudit;
+import com.cq.util.WarrantException;
+import com.cq.util.tools;
+
+public class LawauditServiceImpl implements LawauditService {
+	static Logger log = Logger.getLogger(LawauditServiceImpl.class);
+	private String errorMsg;
+	
+	private LawauditDao lawauditDao;
+	private TaskBaseService taskBaseService;
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public String lawAudit(String taskid, String selValue, String wid,
+			Date startDate, String truth, String antiproperty, String property, String debt)
+					throws Exception {
+		String user = tools.getLoginUser();
+		
+		try {
+			if (startDate == null) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = null;
+				try {
+					date = sdf.parse(sdf.format(new Date()));
+				} catch (ParseException e) {
+					errorMsg = "日期格式处理出错";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				startDate = date;
+			}
+			
+			setLawaudit(wid, user, startDate, tools.multiLine(truth.trim()), 
+					tools.multiLine(antiproperty.trim()), tools.multiLine(property.trim()), 
+					tools.multiLine(debt.trim()));
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("user", user);
+			taskBaseService.setTaskVar(taskid, "history", "提交到下一步（发起会签）处理");
+			taskBaseService.nextStep(taskid, map);
+		} catch (Exception e) {
+			errorMsg = "法务审查业务流程处理失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+	
+	private void setLawaudit(String wid, String name, Date startDate,
+			String truth, String antiproperty, String property, String debt) throws Exception {
+		
+		try {
+			Date da = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date d = sdf.parse(sdf.format(da));
+			
+			TblLawaudit tblLawaudit = new TblLawaudit();
+			tblLawaudit.setWid(wid);
+			tblLawaudit.setName(name);
+			tblLawaudit.setStartDate(startDate);
+			tblLawaudit.setEndDate(d);
+			tblLawaudit.setTruth(truth);
+			tblLawaudit.setAntiproperty(antiproperty);
+			tblLawaudit.setProperty(property);
+			tblLawaudit.setDebt(debt);
+
+			lawauditDao.save(tblLawaudit);
+		} catch (Exception e) {
+			errorMsg = "增加法务审查数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly=true)
+	public List<TblLawaudit> getLawaudit(String wid) {
+		List<TblLawaudit> ll = null;
+		
+		ll = lawauditDao.findByProperty("wid", wid);
+		return ll;
+	}
+
+	public void setLawauditDao(LawauditDao lawauditDao) {
+		this.lawauditDao = lawauditDao;
+	}
+
+	public void setTaskBaseService(TaskBaseService taskBaseService) {
+		this.taskBaseService = taskBaseService;
+	}
+
+}

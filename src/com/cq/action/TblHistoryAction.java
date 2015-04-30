@@ -1,0 +1,231 @@
+package com.cq.action;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.annotation.CQAnnotationOperlog;
+import com.cq.bean.EventType;
+import com.cq.dao.HistoryDao;
+import com.cq.table.TblHistory;
+import com.cq.util.GlobalData;
+import com.cq.util.tools;
+
+@CQAnnotationOperlog(tableName="企业历史重大事件信息", dataName="history")
+public class TblHistoryAction {
+	static Logger log = Logger.getLogger(TblHistoryAction.class);
+	private String errorMsg;
+	
+	private int kid;
+	private String eid;
+	private String type;
+	private Date date;
+	private String description;
+	private TblHistory history;
+	
+	@Resource HistoryDao historyDao;
+
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public String savaTblHistory() throws Exception {
+		try {
+			TblHistory tblHistory = new TblHistory();
+			tblHistory.setEid(eid);
+			tblHistory.setDate(date);
+			tblHistory.setDescription(tools.multiLine(description));
+			tblHistory.setType(type);
+			history = tblHistory;
+			historyDao.save(history);
+			tools.fillQueryInfo(1, eid, "TblHistory");
+		} catch (Exception e) {
+			errorMsg = "保存企业历史信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public void outDeleteTblHistory() throws Exception {
+		try {
+			history = historyDao.get(kid);
+			historyDao.delete(kid);
+			this.selectAjaxTblHistory();
+		} catch (Exception e) {
+			errorMsg = "删除企业历史信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void selectAjaxTblHistory() throws Exception {
+		String date1 = null;
+		String description1 = null;
+		StringBuffer outs = null;
+		String type2 = null;
+		List<TblHistory> listTblHistory = historyDao.findByProperty("eid", eid);
+		if (listTblHistory == null || listTblHistory.size() == 0) {
+			log.warn("没有查询到企业历史信息");
+			return;
+		}
+		
+		outs = new StringBuffer();
+		outs.append("<table>");
+		outs.append("<tr>");
+		outs.append("<th width='20%'>事件发生时间</th>");
+		outs.append("<th width='20%'>事件类型</th>");
+		outs.append("<th width='45%'>事件描述</th>");
+		outs.append("<th width='15%'>操作</th>");
+		outs.append("</tr>");
+		for (int i = 0; i < listTblHistory.size(); i++) {
+			DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+			date1 = date.format(listTblHistory.get(i).getDate());
+			description1 = listTblHistory.get(i).getDescription();
+			type2 = getEventDescription(listTblHistory.get(i).getType());
+			
+			outs.append("<tr>");
+			outs.append("<td onclick='updateZdlsJs("
+					+ listTblHistory.get(i).getKid()    
+					+ ")'><a href='#'>" + date1);
+			outs.append("</a></td>");
+			outs.append("<td>" + type2);
+			outs.append("</td>");
+			outs.append("<td>" + description1);
+			outs.append("</td>");
+			outs.append("<td onclick='zdlsListOne("
+					+ listTblHistory.get(i).getKid() + ','
+					+ listTblHistory.get(i).getEid() 
+					+ ")'><a href='#'>删除");
+			outs.append("</a></td>");
+			outs.append("</tr>");
+		}
+		outs.append("</table>");
+		
+		tools.outputInfo(outs);
+	}
+
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public String updateTblHistory() throws Exception {
+		history = historyDao.get(kid);
+		
+		try {
+			history.setDate(date);
+			history.setDescription(tools.multiLine(description));
+			history.setType(type);
+			tools.fillQueryInfo(1, eid, "TblHistory");
+			historyDao.update(history);
+		} catch (Exception e) {
+			errorMsg = "修改企业历史信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void getTblHistory() throws Exception {
+		TblHistory bi = historyDao.get(kid);
+		
+		if(bi == null) {
+			tools.outputInfo(JSONObject.fromObject(""));
+			log.warn("没有查询到企业历史重大事件信息" + kid);
+			return;
+		}
+		tools.outputInfo(JSONObject.fromObject(bi, tools.getJsonConfig()));
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void getEventTypeList() throws Exception {
+		try {
+			List<EventType> etlist = GlobalData.eventTypes;
+			if((etlist == null) || (etlist.size() <= 0)) {
+				tools.outputInfo(JSONObject.fromObject(null));
+				return;
+			}
+			JSONArray ja = new JSONArray();
+			for(int i = 0; i < etlist.size(); i++) {
+				ja.add(JSONObject.fromObject(etlist.get(i)));
+			}
+			JSONObject result = new JSONObject();
+			result.put("etList", ja.toString());
+			tools.outputInfo(result);
+		} catch (Exception e) {
+			errorMsg = "查询历史事件类型信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	private String getEventDescription(String eventid) {
+		String temp = "";
+		for (int i = 0; i < GlobalData.eventTypes.size(); i++) {
+			if (eventid.equals(GlobalData.eventTypes.get(i).getEtId())) {
+				temp = GlobalData.eventTypes.get(i).getEtName();
+				break;
+			}
+		}
+		return temp;
+	}
+
+	public int getKid() {
+		return kid;
+	}
+
+	public void setKid(int kid) {
+		this.kid = kid;
+	}
+
+	public String getEid() {
+		return eid;
+	}
+
+	public void setEid(String eid) {
+		this.eid = eid;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setHistoryDao(HistoryDao historyDao) {
+		this.historyDao = historyDao;
+	}
+
+	/*public void setEventtypeDao(EventtypeDao eventtypeDao) {
+		this.eventtypeDao = eventtypeDao;
+	}*/
+
+	public TblHistory getHistory() {
+		return history;
+	}
+
+	public void setHistory(TblHistory history) {
+		this.history = history;
+	}
+}

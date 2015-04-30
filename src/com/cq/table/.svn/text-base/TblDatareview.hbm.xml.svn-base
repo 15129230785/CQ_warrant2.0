@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblDatareview" table="tbl_datareview">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="WID" length="60" not-null="true" />
+		</property>
+        <property name="name" type="string">
+            <column name="Name" length="60" />
+        </property>
+        <property name="examinant" type="string">
+            <column name="Examinant" length="255" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="StartDate" length="10" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="EndDate" length="10" />
+        </property>
+        <property name="account" type="string">
+            <column name="Account" length="1024" />
+        </property>
+        <property name="revenue" type="string">
+            <column name="Revenue" length="1024" />
+        </property>
+        <property name="assets" type="string">
+            <column name="Assets" length="1024" />
+        </property>
+        <property name="mortgage" type="string">
+            <column name="Mortgage" length="1024" />
+        </property>
+        <property name="ownership" type="string">
+            <column name="Ownership" length="1024" />
+        </property>
+        <property name="debt" type="string">
+            <column name="Debt" length="1024" />
+        </property>
+        <property name="warrant" type="string">
+            <column name="Warrant" length="1024" />
+        </property>
+        <property name="acceptance" type="string">
+            <column name="Acceptance" length="1024" />
+        </property>
+        <property name="credit" type="string">
+            <column name="Credit" length="1024" />
+        </property>
+        <property name="assetValue" type="string">
+            <column name="AssetValue" length="1024" />
+        </property>
+        <property name="forecasting" type="string">
+            <column name="Forecasting" length="1024" />
+        </property>
+        <property name="peerSurvey" type="string">
+            <column name="PeerSurvey" length="1024" />
+        </property>
+        <property name="explains" type="string">
+            <column name="Explains" length="1024" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="project" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="loginCheck" class="com.cq.action.LoginCheck" />
+			<interceptor-stack name="cq-default">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginCheck" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="cq-default" />
+
+		<global-results>
+			<result name="login">/newLogin.jsp</result>
+			<result name="warrantException">/exception.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="warrantException" exception="java.lang.Exception" />
+		</global-exception-mappings>
+		
+		<action name="projectTblWarrantinfo" class="com.cq.action.ProjectManageAction"
+			method="getProjectList">
+		</action>
+		<action name="DeleteProjectInfo" class="com.cq.action.ProjectManageAction"
+			method="deleteProjectInfo">
+		</action>
+		<action name="ForceEndProcess" class="com.cq.action.ProjectManageAction"
+			method="forceEndProcess">
+		</action>
+		<action name="GetProjectHistory" class="com.cq.action.ProjectManageAction"
+			method="getProjectHistory">
+		</action>
+		<action name="GetProjectName" class="com.cq.action.ProjectManageAction"
+			method="getProjectName">
+		</action>
+	</package>
+</struts>

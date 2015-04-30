@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblAntiwarrant" table="tbl_antiwarrant">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID"/>
+            <generator class="identity" />
+        </id>
+	    <property name="wid" type="string">
+            <column name="Wid" length="50" not-null="true" />
+        </property>
+        <property name="type" type="string">
+            <column name="Type" length="10" not-null="true" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="StartDate" length="10" not-null="false" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="EndDate" length="10" not-null="false" />
+        </property>
+        <property name="value" type="double">
+            <column name="Value" precision="22" scale="0" not-null="false" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" length="1024"  not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

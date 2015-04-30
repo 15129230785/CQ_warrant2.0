@@ -1,0 +1,79 @@
+body {
+	font: normal 14px "宋体";
+	background: url(../tabs/images/bg.gif) repeat-x 0 5px;
+	color: #474747;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	border: 1px;
+	width: 16px;
+	height: 16px;
+}
+
+#menu {
+	margin-top: 0px;
+}
+
+.L1 table td {
+	font: bold 12px/30px "宋体";
+	color: #797268;
+	border: 1px solid #476074;
+	border-collapse: collapse;
+	line-height: 150%;
+	padding: 0 0 0 10px;
+}
+
+.L1 a {
+	color: #476074;
+	font: normal 15px/30px "";
+	display: block;
+	text-decoration: none;
+	height: 30px;
+}
+
+.L1 a:hover {
+	color: #ff3300;
+	text-decoration: underline;
+}
+
+.U1 table {
+	font: bold 14px "宋体";
+	color: #4f6b72;
+	border-collapse: collapse;
+	border: 1px solid #476074;
+}
+
+.U1 table td {
+	font: bold 12px/30px "宋体";
+	color: #797268;
+	border-collapse: collapse;
+	padding: 0 0 0 10px;
+}
+
+.U1 textarea
+{
+	color: #686868 !important; 
+	resize: none;
+	width: 600px;
+	height: 120px;
+	max-width: 600px;
+	max-height: 120px;
+	display:inline;
+	float:left;
+}
+
+fieldset
+{
+	border: 1px solid #476074;
+}
+
+fieldset legend
+{
+	color: #CC9900;
+}

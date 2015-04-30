@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-5-15 11:05:34 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.cq.table.TblCountersign" table="tbl_countersign">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="Wid" length="60" not-null="true" />
+		</property>
+		<property name="name" type="string">
+			<column name="Name" length="60"/>
+		</property>
+		<property name="date" type="date">
+			<column name="Date" />
+		</property>
+		<property name="result" type="java.lang.Character">
+			<column name="Result" length="1" />
+		</property>
+		<property name="description" type="string">
+			<column name="Description" length="1024" />
+		</property>
+		<property name="number" type="java.lang.Integer">
+			<column name="Times" />
+		</property>
+	</class>
+</hibernate-mapping>

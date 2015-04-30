@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblInvest" table="tbl_invest">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="60" not-null="true" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="StartDate" length="10" not-null="true" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="EndDate" length="10" not-null="true" />
+        </property>
+        <property name="investMode" type="java.lang.Character">
+            <column name="InvestMode" length="1" />
+        </property>
+        <property name="money" type="double">
+            <column name="Money" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="lastYearIncome" type="double">
+            <column name="LastYearIncome" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="forecastIncome" type="double">
+            <column name="ForecastIncome" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

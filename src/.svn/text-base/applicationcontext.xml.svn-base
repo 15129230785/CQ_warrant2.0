@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd" >
+	<context:component-scan base-package="com.cq" />
+	<aop:aspectj-autoproxy />
+
+	<!--jbpm4.4 工作流 -->
+	<bean id="springHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper">
+		<property name="jbpmCfg" value="jbpm.cfg.xml"></property>
+	</bean>
+	<bean id="processEngine" factory-bean="springHelper" factory-method="createProcessEngine" />
+	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+	<bean id="executionService" factory-bean="processEngine" factory-method="getExecutionService" />
+	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService"/>
+	<bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
+	<bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+
+	<!-- 数据库 -->
+	<bean id="propertyConfigurer"  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass"><value>${jdbc.database.driver}</value></property>
+		<property name="jdbcUrl"><value>${jdbc.database.url}</value></property>
+		<property name="user"><value>${jdbc.database.user}</value></property>
+		<property name="password"><value>${jdbc.database.password}</value></property>
+		<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		<property name="initialPoolSize"><value>${jdbc.pool.c3p0.initialPoolSize}</value></property>
+		<!--连接池中保留的最小连接数。 -->
+		<property name="minPoolSize"><value>${jdbc.pool.c3p0.min_size}</value></property>
+		<!--连接池中保留的最大连接数。Default: 15 -->
+		<property name="maxPoolSize"><value>${jdbc.pool.c3p0.max_size}</value></property>
+		<!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<property name="maxIdleTime"><value>${jdbc.pool.c3p0.max_idle_time}</value></property>
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<property name="acquireIncrement"><value>${jdbc.pool.c3p0.acquire_increment}</value></property>
+		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+		<property name="idleConnectionTestPeriod"><value>${jdbc.pool.c3p0.idle_connection_test_period}</value></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>jbpm.repository.hbm.xml</value>
+				<value>jbpm.execution.hbm.xml</value>
+				<value>jbpm.history.hbm.xml</value>
+				<value>jbpm.task.hbm.xml</value>
+				
+<!-- 				<value>jbpm.identity.hbm.xml</value> -->
+				<value>com/cq/table/CQUser.hbm.xml</value>
+				<value>com/cq/table/CQGroup.hbm.xml</value>
+				<value>com/cq/table/CQMemberShip.hbm.xml</value>
+				
+                <value>com/cq/table/TblAntiwarrant.hbm.xml</value>
+                <value>com/cq/table/TblBanlancesheet.hbm.xml</value>
+				<value>com/cq/table/TblBranchinfo.hbm.xml</value>
+				<value>com/cq/table/TblCashflowstatement.hbm.xml</value>
+				<value>com/cq/table/TblCfgAnalysisindex.hbm.xml</value>
+				<value>com/cq/table/TblCfgBankinfo.hbm.xml</value>
+				<value>com/cq/table/TblCfgBasicratio.hbm.xml</value>
+				<value>com/cq/table/TblCfgCalculateindex.hbm.xml</value>
+				<value>com/cq/table/TblCfgComdoclist.hbm.xml</value>
+				<value>com/cq/table/TblCfgOverratio.hbm.xml</value>
+				<value>com/cq/table/TblCfgSrvchk.hbm.xml</value>
+				<value>com/cq/table/TblCfgSysparam.hbm.xml</value>
+				<value>com/cq/table/TblCfgTaskgroup.hbm.xml</value>
+				<value>com/cq/table/TblChangeinfo.hbm.xml</value>
+				<value>com/cq/table/TblCharge.hbm.xml</value>
+				<value>com/cq/table/TblCominfo.hbm.xml</value>
+				<value>com/cq/table/TblCompensatory.hbm.xml</value>
+				<value>com/cq/table/TblContract.hbm.xml</value>
+				<value>com/cq/table/TblCountersign.hbm.xml</value>
+				<value>com/cq/table/TblDatareview.hbm.xml</value>
+				<value>com/cq/table/TblDecision.hbm.xml</value>
+				<value>com/cq/table/TblDebt.hbm.xml</value>
+				<value>com/cq/table/TblDeptinfo.hbm.xml</value>
+				<value>com/cq/table/TblDocchklist.hbm.xml</value>
+				<value>com/cq/table/TblEmpinfo.hbm.xml</value>
+				<value>com/cq/table/TblEvaluate.hbm.xml</value>
+				<value>com/cq/table/TblFamily.hbm.xml</value>
+				<value>com/cq/table/TblFieldsurvey.hbm.xml</value>
+				<value>com/cq/table/TblFinanceest.hbm.xml</value>
+				<value>com/cq/table/TblHistory.hbm.xml</value>
+				<value>com/cq/table/TblIncomestatement.hbm.xml</value>
+				<value>com/cq/table/TblInvest.hbm.xml</value>
+				<value>com/cq/table/TblLawaudit.hbm.xml</value>
+				<value>com/cq/table/TblManaudit.hbm.xml</value>
+				<value>com/cq/table/TblManinfo.hbm.xml</value>
+				<value>com/cq/table/TblOperlog.hbm.xml</value>
+				<value>com/cq/table/TblPerson.hbm.xml</value>
+				<value>com/cq/table/TblPersonalwarrant.hbm.xml</value>
+				<value>com/cq/table/TblPersue.hbm.xml</value>
+				<value>com/cq/table/TblProblemtrack.hbm.xml</value>
+				<value>com/cq/table/TblProduct.hbm.xml</value>
+				<value>com/cq/table/TblProjectmonitor.hbm.xml</value>
+				<value>com/cq/table/TblProjecthistory.hbm.xml</value>
+				<value>com/cq/table/TblReginfo.hbm.xml</value>
+				<value>com/cq/table/TblRegshareholder.hbm.xml</value>
+				<value>com/cq/table/TblRiskest.hbm.xml</value>
+				<value>com/cq/table/TblRelatedcominfo.hbm.xml</value>
+				<value>com/cq/table/TblShareholder.hbm.xml</value>
+				<value>com/cq/table/TblUnduebill.hbm.xml</value>
+				<value>com/cq/table/TblUndueloan.hbm.xml</value>
+				<value>com/cq/table/TblUnduewarrant.hbm.xml</value>
+				<value>com/cq/table/TblVendor.hbm.xml</value>
+				<value>com/cq/table/TblWarrantindex.hbm.xml</value>
+				<value>com/cq/table/TblWarrantinfo.hbm.xml</value>
+				<value>com/cq/table/TblSalerevenuecheck.hbm.xml</value>
+				<value>com/cq/table/TblStartSign.hbm.xml</value>
+				<value>com/cq/table/TblPersonalrisk.hbm.xml</value>
+				<value>com/cq/table/TblStationLetter.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+				hibernate.hbm2ddl.auto=update
+				hibernate.show_sql=false
+				hibernate.format_sql=false
+			</value>
+		</property>
+	</bean>
+	
+	<!--事务 -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager" />
+	
+	<!-- DAO -->
+	<bean id="daoTemplate" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="analysisindexDao" class="com.cq.dao.impl.AnalysisindexDaoImpl" parent="daoTemplate" />
+	<bean id="antiwarrantDao" class="com.cq.dao.impl.AntiwarrantDaoImpl" parent="daoTemplate" />
+	<bean id="bankinfoDao" class="com.cq.dao.impl.BankinfoDaoImpl" parent="daoTemplate" />
+	<bean id="banlanceSheetDao" class="com.cq.dao.impl.BanlanceSheetDaoImpl" parent="daoTemplate" />
+	<bean id="basicratioDao" class="com.cq.dao.impl.BasicratioDaoImpl" parent="daoTemplate" />
+	<bean id="branchinfoDao" class="com.cq.dao.impl.BranchinfoDaoImpl" parent="daoTemplate" />
+	<bean id="calculateindexDao" class="com.cq.dao.impl.CalculateindexDaoImpl" parent="daoTemplate" />
+	<bean id="cashflowstatementDao" class="com.cq.dao.impl.CashflowstatementDaoImpl" parent="daoTemplate" />
+	<bean id="changeinfoDao" class="com.cq.dao.impl.ChangeinfoDaoImpl" parent="daoTemplate" />
+	<bean id="chargeDao" class="com.cq.dao.impl.ChargeDaoImpl" parent="daoTemplate" />
+	<bean id="comdoclistDao" class="com.cq.dao.impl.ComdoclistDaoImpl" parent="daoTemplate" />
+	<bean id="cominfoDao" class="com.cq.dao.impl.CominfoDaoImpl" parent="daoTemplate" />
+	<bean id="compensatoryDao" class="com.cq.dao.impl.CompensatoryDaoImpl" parent="daoTemplate" />
+	<bean id="countersignDao" class="com.cq.dao.impl.CountersignDaoImpl" parent="daoTemplate" />
+	<bean id="datareviewDao" class="com.cq.dao.impl.DatareviewDaoImpl" parent="daoTemplate" />
+	<bean id="debtDao" class="com.cq.dao.impl.DebtDaoImpl" parent="daoTemplate" />
+	<bean id="decisionDao" class="com.cq.dao.impl.DecisionDaoImpl" parent="daoTemplate" />
+	<bean id="deptinfoDao" class="com.cq.dao.impl.DeptinfoDaoImpl" parent="daoTemplate" />
+	<bean id="docchklistDao" class="com.cq.dao.impl.DocchklistDaoImpl" parent="daoTemplate" />
+	<bean id="empinfoDao" class="com.cq.dao.impl.EmpinfoDaoImpl" parent="daoTemplate" />
+	<bean id="evaluateDao" class="com.cq.dao.impl.EvaluateDaoImpl" parent="daoTemplate" />
+	<bean id="familyDao" class="com.cq.dao.impl.FamilyDaoImpl" parent="daoTemplate" />
+	<bean id="fieldSurveyDao" class="com.cq.dao.impl.FieldSurveyDaoImpl" parent="daoTemplate" />
+	<bean id="financeestDao" class="com.cq.dao.impl.FinanceestDaoImpl" parent="daoTemplate" />
+	<bean id="groupDao" class="com.cq.dao.impl.CQGroupDaoImpl" parent="daoTemplate" />
+	<bean id="historyDao" class="com.cq.dao.impl.HistoryDaoImpl" parent="daoTemplate" />
+	<bean id="incomestatementDao" class="com.cq.dao.impl.IncomestatementDaoImpl" parent="daoTemplate" />
+	<bean id="investDao" class="com.cq.dao.impl.InvestDaoImpl" parent="daoTemplate" />
+	<bean id="lawauditDao" class="com.cq.dao.impl.LawauditDaoImpl" parent="daoTemplate" />
+	<bean id="manauditDao" class="com.cq.dao.impl.ManauditDaoImpl" parent="daoTemplate" />
+	<bean id="maninfoDao" class="com.cq.dao.impl.ManinfoDaoImpl" parent="daoTemplate" />
+	<bean id="memberShipDao" class="com.cq.dao.impl.CQMemberShipDaoImpl" parent="daoTemplate" />
+	<bean id="operlogDao" class="com.cq.dao.impl.OperlogDaoImpl" parent="daoTemplate" />
+	<bean id="overratioDao" class="com.cq.dao.impl.OverratioDaoImpl" parent="daoTemplate" />
+	<bean id="personalriskDao" class="com.cq.dao.impl.PersonalriskDaoImpl" parent="daoTemplate" />
+	<bean id="personalwarrantDao" class="com.cq.dao.impl.PersonalwarrantDaoImpl" parent="daoTemplate" />
+	<bean id="personDao" class="com.cq.dao.impl.PersonDaoImpl" parent="daoTemplate" />
+	<bean id="persueDao" class="com.cq.dao.impl.PersueDaoImpl" parent="daoTemplate" />
+	<bean id="problemtrackDao" class="com.cq.dao.impl.ProblemtrackDaoImpl" parent="daoTemplate" />
+	<bean id="productDao" class="com.cq.dao.impl.ProductDaoImpl" parent="daoTemplate" />
+	<bean id="projectmonitorDao" class="com.cq.dao.impl.ProjectmonitorDaoImpl" parent="daoTemplate" />
+	<bean id="projecthistoryDao" class="com.cq.dao.impl.ProjecthistoryDaoImpl" parent="daoTemplate" />
+	<bean id="reginfoDao" class="com.cq.dao.impl.ReginfoDaoImpl" parent="daoTemplate" />
+	<bean id="regshareholderDao" class="com.cq.dao.impl.RegshareholderDaoImpl" parent="daoTemplate" />
+	<bean id="relatedcominfoDao" class="com.cq.dao.impl.RelatedcominfoDaoImpl" parent="daoTemplate" />
+	<bean id="riskestDao" class="com.cq.dao.impl.RiskestDaoImpl" parent="daoTemplate" />
+	<bean id="salerevenuecheckDao" class="com.cq.dao.impl.SalerevenuecheckDaoImpl" parent="daoTemplate" />
+	<bean id="shareholderDao" class="com.cq.dao.impl.ShareholderDaoImpl" parent="daoTemplate" />
+	<bean id="srvchkDao" class="com.cq.dao.impl.SrvchkDaoImpl" parent="daoTemplate" />
+	<bean id="sysparamDao" class="com.cq.dao.impl.SysparamDaoImpl" parent="daoTemplate" />
+	<bean id="stationLetterDao"	class="com.cq.dao.impl.StationLetterDaoImpl" parent="daoTemplate"/>
+	<bean id="startsignDao" class="com.cq.dao.impl.StartsignDaoImpl" parent="daoTemplate" />
+	<bean id="taskgroupDao" class="com.cq.dao.impl.TaskGroupDaoImpl" parent="daoTemplate" />
+	<bean id="unduebillDao" class="com.cq.dao.impl.UnduebillDaoImpl" parent="daoTemplate" />
+	<bean id="undueloanDao" class="com.cq.dao.impl.UndueloanDaoImpl" parent="daoTemplate" />
+	<bean id="unduewarrantDao" class="com.cq.dao.impl.UnduewarrantDaoImpl" parent="daoTemplate" />
+	<bean id="userDao" class="com.cq.dao.impl.CQUserDaoImpl" parent="daoTemplate" />
+	<bean id="vendorDao" class="com.cq.dao.impl.VendorDaoImpl" parent="daoTemplate" />
+	<bean id="warrantindexDao" class="com.cq.dao.impl.WarrantindexDaoImpl" parent="daoTemplate" />
+	<bean id="warrantinfoDao" class="com.cq.dao.impl.WarrantinfoDaoImpl" parent="daoTemplate" />
+
+	<!-- 业务 -->
+	<bean id="applyService" class="com.cq.service.impl.ApplyServiceImpl">
+		<property name="bankinfoDao" ref="bankinfoDao" />
+		<property name="cominfoDao" ref="cominfoDao" />
+		<property name="executionService" ref="executionService" />
+		<property name="personDao" ref="personDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantindexDao" ref="warrantindexDao" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="bankinfoService" class="com.cq.service.impl.BankinfoServiceImpl">
+		<property name="bankinfoDao" ref="bankinfoDao" />
+	</bean>
+	<bean id="bankService" class="com.cq.service.impl.BankServiceImpl">
+		<property name="bankinfoDao" ref="bankinfoDao" />
+		<property name="chargeService" ref="chargeService" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="chargeService" class="com.cq.service.impl.ChargeServiceImpl">
+		<property name="chargeDao" ref="chargeDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+	</bean>
+	<bean id="clearService" class="com.cq.service.impl.ClearServiceImpl">
+		<property name="bankinfoDao" ref="bankinfoDao" />
+		<property name="chargeService" ref="chargeService" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="clientManageService" class="com.cq.service.impl.ClientManageServiceImpl">
+		<property name="cominfoDao" ref="cominfoDao" />
+		<property name="personDao" ref="personDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantindexDao" ref="warrantindexDao" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="collectDataService" class="com.cq.service.impl.CollectDataServiceImpl">
+		<property name="docchklistDao" ref="docchklistDao" />
+		<property name="warrantindexDao" ref="warrantindexDao" />
+	</bean>
+	<bean id="comdoclistService" class="com.cq.service.impl.ComdoclistServiceImpl">
+		<property name="comdoclistDao" ref="comdoclistDao" />
+		<property name="warrantindexDao" ref="warrantindexDao" />
+	</bean>
+	<bean id="companyService" class="com.cq.service.impl.CompanyServiceImpl">
+	</bean>
+	<bean id="compensatoryService" class="com.cq.service.impl.CompensatoryServiceImpl">
+		<property name="persueDao" ref="persueDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="considerationService" class="com.cq.service.impl.ConsiderationServiceImpl">
+		<property name="bankinfoDao" ref="bankinfoDao" />
+		<property name="chargeService" ref="chargeService" />
+		<property name="manauditDao" ref="manauditDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="countersignService" class="com.cq.service.impl.CountersignServiceImpl">
+		<property name="countersignDao" ref="countersignDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantindexDao" ref="warrantindexDao" />
+	</bean>
+	<bean id="decisionService" class="com.cq.service.impl.DecisionServiceImpl">
+		<property name="analysisindexDao" ref="analysisindexDao" />
+		<property name="bankinfoDao" ref="bankinfoDao" />
+		<property name="calculateindexDao" ref="calculateindexDao" />
+		<property name="chargeService" ref="chargeService" />
+		<property name="decisionDao" ref="decisionDao" />
+		<property name="financeestDao" ref="financeestDao" />
+		<property name="personalriskDao" ref="personalriskDao" />
+		<property name="riskestDao" ref="riskestDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="deployService" class="com.cq.service.impl.DeployServiceImpl">
+		<property name="analysisindexDao" ref="analysisindexDao" />
+		<property name="basicratioDao" ref="basicratioDao" />
+		<property name="calculateindexDao" ref="calculateindexDao" />
+		<property name="comdoclistDao" ref="comdoclistDao" />
+		<property name="identityService" ref="identityService" />
+		<property name="overratioDao" ref="overratioDao" />
+		<property name="repositoryService" ref="repositoryService" />
+		<property name="srvchkDao" ref="srvchkDao" />
+	</bean>
+	<bean id="fieldSurveyService" class="com.cq.service.impl.FieldSurveyServiceImpl">
+		<property name="bankinfoDao" ref="bankinfoDao" />
+		<property name="chargeService" ref="chargeService" />
+		<property name="fieldSurveyDao" ref="fieldSurveyDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="fileService" class="com.cq.service.impl.FileServiceImpl">
+		<property name="reviewDataService" ref="reviewDataService" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="financeService" class="com.cq.service.impl.FinanceServiceImpl">
+		<property name="financeestDao" ref="financeestDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+	</bean>
+	<bean id="guarantyService" class="com.cq.service.impl.GuarantyServiceImpl">
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="intactService" class="com.cq.service.impl.IntactServiceImpl">
+		<property name="comdoclistDao" ref="comdoclistDao" />
+		<property name="docchklistDao" ref="docchklistDao" />
+		<property name="warrantindexDao" ref="warrantindexDao" />
+	</bean>
+	<bean id="jbpmAutowire" class="com.cq.jbpm.JbpmFactoryLocator">
+	</bean>
+	<bean id="lawauditService" class="com.cq.service.impl.LawauditServiceImpl">
+		<property name="lawauditDao" ref="lawauditDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+	</bean>
+	<bean id="loginService" class="com.cq.service.impl.LoginServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	<bean id="lossService" class="com.cq.service.impl.LossServiceImpl">
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="operlogService" class="com.cq.service.impl.OperlogServiceImpl">
+		<property name="operlogDao" ref="operlogDao" />
+	</bean>
+	<bean id="persueService" class="com.cq.service.impl.PersueServiceImpl">
+		<property name="persueDao" ref="persueDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+	</bean>
+	<bean id="projectHistoryService" class="com.cq.service.impl.ProjectHistoryServiceImpl">
+		<property name="projecthistoryDao" ref="projecthistoryDao" />
+	</bean>
+	<bean id="projectManageService" class="com.cq.service.impl.ProjectManageServiceImpl">
+		<property name="bankinfoDao" ref="bankinfoDao" />
+		<property name="cominfoDao" ref="cominfoDao" />
+		<property name="executionService" ref="executionService" />
+		<property name="personDao" ref="personDao" />
+		<property name="projectHistoryService" ref="projectHistoryService" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantindexDao" ref="warrantindexDao" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="projectMonitorService" class="com.cq.service.impl.ProjectMonitorServiceImpl">
+		<property name="projectmonitorDao" ref="projectmonitorDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="receiveService" class="com.cq.service.impl.ReceiveServiceImpl">
+		<property name="chargeService" ref="chargeService" />
+		<property name="taskBaseService" ref="taskBaseService" />
+	</bean>
+	<bean id="refundService" class="com.cq.service.impl.RefundServiceImpl">
+		<property name="chargeService" ref="chargeService" />
+		<property name="taskBaseService" ref="taskBaseService" />
+	</bean>
+	<bean id="returnBailService" class="com.cq.service.impl.ReturnBailServiceImpl">
+		<property name="chargeService" ref="chargeService" />
+		<property name="taskBaseService" ref="taskBaseService" />
+	</bean>
+	<bean id="reviewChargeService" class="com.cq.service.impl.ReviewChargeServiceImpl">
+		<property name="chargeService" ref="chargeService" />
+		<property name="taskBaseService" ref="taskBaseService" />
+	</bean>
+	<bean id="reviewDataService" class="com.cq.service.impl.ReviewDataServiceImpl">
+		<property name="bankinfoDao" ref="bankinfoDao" />
+		<property name="chargeService" ref="chargeService" />
+		<property name="datareviewDao" ref="datareviewDao" />
+		<property name="docchklistDao" ref="docchklistDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="warrantinfoDao" ref="warrantinfoDao" />
+	</bean>
+	<bean id="riskestService" class="com.cq.service.impl.RiskestServiceImpl">
+		<property name="personalriskDao" ref="personalriskDao" />
+		<property name="riskestDao" ref="riskestDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+	</bean>
+	<bean id="serviceCheckService" class="com.cq.service.impl.ServiceCheckServiceImpl">
+		<property name="srvchkDao" ref="srvchkDao" />
+	</bean>
+	<bean id="startsignService" class="com.cq.service.impl.StartsignServiceImpl">
+		<property name="startsignDao" ref="startsignDao" />
+		<property name="taskBaseService" ref="taskBaseService" />
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="stationLetterService" class="com.cq.service.impl.StationLetterServiceImpl">
+ 		<property name="stationLetterDao" ref="stationLetterDao" />
+ 		<property name="userService" ref="userService" />
+ 	</bean>
+	<bean id="taskBaseService" class="com.cq.service.impl.TaskBaseServiceImpl">
+		<property name="executionService" ref="executionService" />
+		<property name="identityService" ref="identityService" />
+		<property name="projectHistoryService" ref="projectHistoryService" />
+		<property name="repositoryService" ref="repositoryService" />
+		<property name="taskService" ref="taskService" />
+	</bean>
+	<bean id="taskGroupService" class="com.cq.service.impl.TaskGroupServiceImpl">
+		<property name="identityService" ref="identityService" />
+		<property name="taskgroupDao" ref="taskgroupDao" />
+	</bean>
+	<bean id="userService" class="com.cq.service.impl.UserServiceImpl">
+		<property name="identityService" ref="identityService" />
+		<property name="groupDao" ref="groupDao" />
+		<property name="memberShipDao" ref="memberShipDao" />
+		<property name="userDao" ref="userDao" />
+	</bean>
+ 	 
+	<bean id="CQAopLog" class="com.cq.aop.CQAopLog"></bean>
+</beans>

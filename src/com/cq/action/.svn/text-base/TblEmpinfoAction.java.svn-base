@@ -1,0 +1,236 @@
+package com.cq.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import net.sf.json.JSONObject;
+
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.annotation.CQAnnotationOperlog;
+import com.cq.dao.EmpinfoDao;
+import com.cq.table.TblEmpinfo;
+import com.cq.util.WarrantException;
+import com.cq.util.tools;
+
+@CQAnnotationOperlog(tableName="企业员工信息", dataName="eif")
+public class TblEmpinfoAction {
+	static Logger log = Logger.getLogger(TblEmpinfoAction.class);
+	private String errorMsg;
+	
+	private int kid;
+	private String eid;
+	private String wid;
+	private int masterOrUp;
+	private int bachelor;
+	private int bachelorBelow;
+	private int senior;
+	private int middle;
+	private int junior;
+	private int manager;
+	private int productAndSale;
+	private int total;
+	
+    private TblEmpinfo eif;
+    
+	@Resource EmpinfoDao empinfoDao;
+		
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public void savaTblEmpinfo() throws Exception {
+		TblEmpinfo tblEmpinfo = null;
+
+		try {
+			tblEmpinfo = new TblEmpinfo();
+			tblEmpinfo.setEid(eid);
+			tblEmpinfo.setMasterOrUp(masterOrUp);
+			tblEmpinfo.setBachelor(bachelor);
+			tblEmpinfo.setBachelorBelow(bachelorBelow);
+			tblEmpinfo.setSenior(senior);
+			tblEmpinfo.setMiddle(middle);
+			tblEmpinfo.setJunior(junior);
+			tblEmpinfo.setManager(manager);
+			tblEmpinfo.setProductAndSale(productAndSale);
+			tblEmpinfo.setTotal(total);
+			
+			eif = tblEmpinfo;
+			empinfoDao.save(tblEmpinfo);
+		} catch (Exception e) {
+			errorMsg = "增加公司员工信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public void updateTblEmpinfo() throws Exception {
+		TblEmpinfo tblEmpinfo = null;
+		
+		try {
+			List<TblEmpinfo> list = empinfoDao.findByProperty("eid", eid);
+			if (list == null || list.size() == 0) {
+				errorMsg = "获取企业员工信息异常";
+				log.error(errorMsg);
+				throw new WarrantException(errorMsg);
+			} else if (1 == list.size()) {
+				tblEmpinfo = list.get(0);
+				
+				tblEmpinfo.setMasterOrUp(masterOrUp);
+				tblEmpinfo.setBachelor(bachelor);
+				tblEmpinfo.setBachelorBelow(bachelorBelow);
+				tblEmpinfo.setSenior(senior);
+				tblEmpinfo.setMiddle(middle);
+				tblEmpinfo.setJunior(junior);
+				tblEmpinfo.setManager(manager);
+				tblEmpinfo.setProductAndSale(productAndSale);
+				tblEmpinfo.setTotal(total);
+				
+				empinfoDao.update(tblEmpinfo);
+				eif = tblEmpinfo;
+			} else {
+				errorMsg = "数据库中有一个公司的多条员工信息";
+				log.error(errorMsg);
+				throw new WarrantException(errorMsg);
+			}
+		} catch (Exception e) {
+			errorMsg = "修改公司员工信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	/**
+	 * 
+	 * @Title: getEmpInfo 
+	 * @Description: TODO(获取企业的人员配备信息) 
+	 * @return 返回类型 void
+	 * @author cfe 
+	 * @throws Exception 
+	 * @date 2014年7月3日 下午4:22:35
+	 */
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void getEmpInfo() throws Exception {
+		List<TblEmpinfo> list = empinfoDao.findByProperty("eid", eid);
+		TblEmpinfo te = null;
+		if (list != null && 0 < list.size()) {
+			te = (TblEmpinfo) list.get(0);
+		}
+		
+		tools.outputInfo(JSONObject.fromObject(te));
+	}
+
+	public int getKid() {
+		return kid;
+	}
+
+	public void setKid(int kid) {
+		this.kid = kid;
+	}
+
+	public String getEid() {
+		return eid;
+	}
+
+	public void setEid(String eid) {
+		this.eid = eid;
+	}
+
+	public String getWid() {
+		return wid;
+	}
+
+	public void setWid(String wid) {
+		this.wid = wid;
+	}
+
+	public int getMasterOrUp() {
+		return masterOrUp;
+	}
+
+	public void setMasterOrUp(int masterOrUp) {
+		this.masterOrUp = masterOrUp;
+	}
+
+	public int getBachelor() {
+		return bachelor;
+	}
+
+	public void setBachelor(int bachelor) {
+		this.bachelor = bachelor;
+	}
+
+	public int getBachelorBelow() {
+		return bachelorBelow;
+	}
+
+	public void setBachelorBelow(int bachelorBelow) {
+		this.bachelorBelow = bachelorBelow;
+	}
+
+	public int getSenior() {
+		return senior;
+	}
+
+	public void setSenior(int senior) {
+		this.senior = senior;
+	}
+
+	public int getMiddle() {
+		return middle;
+	}
+
+	public void setMiddle(int middle) {
+		this.middle = middle;
+	}
+
+	public int getJunior() {
+		return junior;
+	}
+
+	public void setJunior(int junior) {
+		this.junior = junior;
+	}
+
+	public int getManager() {
+		return manager;
+	}
+
+	public void setManager(int manager) {
+		this.manager = manager;
+	}
+
+	public int getProductAndSale() {
+		return productAndSale;
+	}
+
+	public void setProductAndSale(int productAndSale) {
+		this.productAndSale = productAndSale;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public void setEmpinfoDao(EmpinfoDao empinfoDao) {
+		this.empinfoDao = empinfoDao;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+	public TblEmpinfo getEif() {
+		return eif;
+	}
+
+	public void setEif(TblEmpinfo eif) {
+		this.eif = eif;
+	}
+}

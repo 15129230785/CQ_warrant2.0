@@ -1,0 +1,280 @@
+package com.cq.service.impl;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+import org.hibernate.criterion.Conjunction;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.bean.StationLetterReciever;
+import com.cq.dao.StationLetterDao;
+import com.cq.service.StationLetterService;
+import com.cq.service.UserService;
+import com.cq.table.CQMemberShip;
+import com.cq.table.TblStationLetter;
+import com.cq.util.tools;
+
+public class StationLetterServiceImpl implements StationLetterService {
+	static Logger log = Logger.getLogger(StationLetterServiceImpl.class);
+	private String errorMsg;
+	private List<TblStationLetter> list;
+	
+	private StationLetterDao stationLetterDao;
+	private UserService userService;
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public String addLetter(String sendID, String recID, String caption,
+			String message, Date sendDate, int flag) throws Exception {
+		TblStationLetter letter = null;
+		List<CQMemberShip> ml = null;
+		
+		try {
+			letter = new TblStationLetter();
+			letter.setSendID(sendID);
+			letter.setRecID(recID);
+			letter.setCaption(tools.multiLine(caption));
+			letter.setMessage(tools.multiLine(message));
+			letter.setSendDate(sendDate);
+			letter.setSendStatus(1000);
+			letter.setUserType(flag);
+			
+			Set<StationLetterReciever> rcl = new HashSet<StationLetterReciever>();
+			if (flag == 0) {
+				StationLetterReciever slr = new StationLetterReciever();
+				slr.setName(recID);
+				slr.setStatus(1000);
+				slr.setReadFlag(1000);
+				rcl.add(slr);
+			} else if (flag == 1) {
+				ml = userService.getMemberShip(null, recID);
+				if (ml != null && ml.size() > 0) {
+					for (int i = 0; i< ml.size(); i++) {
+						String un = ml.get(i).getUser().getId();
+						//if (!un.equals(sendID)) {
+							StationLetterReciever slr = new StationLetterReciever();
+							slr.setName(un);
+							slr.setStatus(1000);
+							slr.setReadFlag(1000);
+							rcl.add(slr);
+						//}
+					}
+				}
+			}
+			letter.setRecList(rcl);
+			stationLetterDao.save(letter);
+		} catch (Exception e) {
+			errorMsg = "输出收件箱数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public void delete(int kid) throws Exception {
+		boolean snddel = false;
+		boolean rcvdel = true;
+
+		try {
+			TblStationLetter letter = stationLetterDao.get(kid);
+			Set<StationLetterReciever> rcl = letter.getRecList();
+			
+			if (letter.getSendID().equals(tools.getLoginUser())) {
+				letter.setSendStatus(1002);
+				snddel = true;
+			} else {
+				Iterator<StationLetterReciever> iter = rcl.iterator();
+				while (iter.hasNext()) {
+					StationLetterReciever slr = iter.next();
+					if (slr.getName().equals(tools.getLoginUser())) {
+						slr.setStatus(1002);
+					} else {
+						if (slr.getStatus() != 1002) {
+							rcvdel = false;
+						}
+					}
+				}
+			}
+			
+			if (snddel == true && rcvdel == true) {
+				stationLetterDao.delete(kid);
+			} else {
+				letter.setRecList(rcl);
+				stationLetterDao.update(letter);
+			}
+		} catch (Exception e) {
+			errorMsg = "删除邮件失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	@Override
+	public List<TblStationLetter> listLetter() throws Exception {
+		List<TblStationLetter> list = stationLetterDao.list();
+		return list;
+	}
+
+	@Override
+	public List<TblStationLetter> listLetterReceiver()
+			throws Exception {
+		try {
+			DetachedCriteria dc = DetachedCriteria.forClass(TblStationLetter.class);
+			String sql = "{alias}.kid = (select letterid from tbl_slreciever where name = '"
+					+ tools.getLoginUser()
+					+ "' and status = 1000"
+					+ " and letterid = {alias}.kid)";
+			dc.add(Restrictions.sqlRestriction(sql));
+			dc.addOrder(Order.desc("kid"));
+			list = stationLetterDao.findByCriterias(dc);
+		} catch (Exception e) {
+			errorMsg = "输出收件箱数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return list;
+	}
+
+	@Override
+	public void deleteRcvLetter(int kid) throws Exception {
+		boolean upflag = false;
+		
+		try {
+			TblStationLetter stationLetter = stationLetterDao.get(kid);
+			Set<StationLetterReciever> rcl = stationLetter.getRecList();
+			Iterator<StationLetterReciever> iter = rcl.iterator();
+			while (iter.hasNext()) {
+				StationLetterReciever slr = iter.next();
+				if (slr.getName().equals(tools.getLoginUser())) {
+					slr.setStatus(1001);
+					upflag = true;
+					break;
+				}
+			}
+			if (upflag) {
+				stationLetter.setRecList(rcl);
+				stationLetterDao.update(stationLetter);
+			}
+		} catch (Exception e) {
+			errorMsg = "删除邮件失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Override
+	public void deleteSndLetter(int kid) throws Exception {
+		try {
+			TblStationLetter stationLetter = stationLetterDao.get(kid);
+			stationLetter.setSendStatus(1001);
+			stationLetterDao.update(stationLetter);
+		} catch (Exception e) {
+			errorMsg = "删除邮件失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Override
+	public void updateReadStatus(int kid) throws Exception {
+		boolean upflag = false;
+		
+		try {
+			TblStationLetter stationLetter = stationLetterDao.get(kid);
+			Set<StationLetterReciever> rcl = stationLetter.getRecList();
+			Iterator<StationLetterReciever> iter = rcl.iterator();
+			while (iter.hasNext()) {
+				StationLetterReciever slr = iter.next();
+				if (slr.getName().equals(tools.getLoginUser())) {
+					slr.setReadFlag(1001);
+					upflag = true;
+					break;
+				}
+			}
+			if (upflag) {
+				stationLetter.setRecList(rcl);
+				stationLetterDao.update(stationLetter);
+			}
+		} catch (Exception e) {
+			errorMsg = "修改邮件为已读状态失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	@Override
+	public List<TblStationLetter> listLetterSend() throws Exception {
+		try {
+			DetachedCriteria dc = DetachedCriteria.forClass(TblStationLetter.class);
+			dc.add(Restrictions.eq("sendID", tools.getLoginUser()));
+			dc.add(Restrictions.eq("sendStatus", 1000));
+			dc.addOrder(Order.desc("kid"));
+			list = stationLetterDao.findByCriterias(dc);
+		} catch (Exception e) {
+			errorMsg = "输出发件箱数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return list;
+	}
+
+	@Override
+	public List<TblStationLetter> listLetterCallback()
+			throws Exception {
+		try {
+			DetachedCriteria dc = DetachedCriteria.forClass(TblStationLetter.class);
+			String sql = "{alias}.kid = (select letterid from tbl_slreciever where name = '"
+					+ tools.getLoginUser()
+					+ "' and status = 1001"
+					+ " and letterid = {alias}.kid)";
+			Disjunction dj = Restrictions.disjunction();
+			dj.add(Restrictions.sqlRestriction(sql));
+			Conjunction con = Restrictions.conjunction();
+			con.add(Restrictions.eq("sendID", tools.getLoginUser())).add(Restrictions.eq("sendStatus", 1001));
+			dj.add(con);
+			dc.add(dj);
+			dc.addOrder(Order.desc("kid"));
+			list = stationLetterDao.findByCriterias(dc);
+		} catch (Exception e) {
+			errorMsg = "输出回收箱数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return list;
+	}
+	
+	@Override
+	public int getStationLetterNumber(String user) throws Exception {
+		int number = 0;
+		
+		DetachedCriteria dc = DetachedCriteria.forClass(TblStationLetter.class);
+		String sql = "{alias}.kid = (select letterid from tbl_slreciever where name = '"
+				+ tools.getLoginUser()
+				+ "' and status = 1000"
+				+ " and readFlag = 1000"
+				+ " and letterid = {alias}.kid)";
+		dc.add(Restrictions.sqlRestriction(sql));
+
+		number = stationLetterDao.countByCriterias(dc);
+		return number;
+	}
+	
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public void setStationLetterDao(StationLetterDao stationLetterDao) {
+		this.stationLetterDao = stationLetterDao;
+	}
+
+	public List<TblStationLetter> getList() {
+		return list;
+	}
+
+	public void setList(List<TblStationLetter> list) {
+		this.list = list;
+	}
+}

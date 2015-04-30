@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<wms>    <!-- 担保方式 -->
+		<wm value="0" desc="保证" />
+		<wm value="1" desc="抵押" />
+		<wm value="2" desc="质押" />
+		<wm value="3" desc="留置" />
+		<wm value="4" desc="定金" />
+	</wms>
+	<sts>    <!-- 业务品种 -->
+		<st value="0" desc="信用证" />
+		<st value="1" desc="保函" />
+		<st value="2" desc="银行承兑汇票" />
+	</sts>
+	<lms>    <!-- 贷款模式 -->
+		<lm value="1" desc="抵押贷款" />
+		<lm value="2" desc="信用贷款" />
+		<lm value="3" desc="担保贷款" />
+		<lm value="4" desc="贴现贷款" />
+	</lms>
+</config>

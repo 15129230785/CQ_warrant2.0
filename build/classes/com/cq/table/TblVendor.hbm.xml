@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblVendor" table="tbl_vendor">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="60" not-null="true" />
+        </property>
+        <property name="yearsOfCooperation" type="java.lang.Integer">
+            <column name="YearsOfCooperation" length="25" />
+        </property>
+        <property name="annualVolume" type="java.lang.Double">
+            <column name="AnnualVolume" precision="22" scale="0" />
+        </property>
+        <property name="proportion" type="java.lang.Double">
+            <column name="Proportion" precision="5" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblCfgOverratio" table="tbl_cfg_overratio">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="or0" type="java.lang.Double">
+            <column name="or0" not-null="true" />
+        </property>
+        <property name="or1" type="java.lang.Double">
+            <column name="or1" not-null="true" />
+        </property>
+        <property name="or2" type="java.lang.Double">
+            <column name="or2" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblCashflowstatement" table="tbl_cashflowstatement">
+    	<id name="kid" type="java.lang.Integer">
+            <column name="KID"/>
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+         <property name="type" type="java.lang.Character">
+            <column name="Type" length="1" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="Date" length="10" not-null="true" />
+        </property>
+        <property name="ncffoa" type="java.lang.Double">
+            <column name="NCFFOA" precision="22" scale="0" />
+        </property>
+        <property name="cifoa" type="java.lang.Double">
+            <column name="CIFOA" precision="22" scale="0" />
+        </property>
+        <property name="cofoa" type="java.lang.Double">
+            <column name="COFOA" precision="22" scale="0" />
+        </property>
+        <property name="ncffia" type="java.lang.Double">
+            <column name="NCFFIA" precision="22" scale="0" />
+        </property>
+        <property name="cifia" type="java.lang.Double">
+            <column name="CIFIA" precision="22" scale="0" />
+        </property>
+        <property name="cofia" type="java.lang.Double">
+            <column name="COFIA" precision="22" scale="0" />
+        </property>
+        <property name="ncfffa" type="java.lang.Double">
+            <column name="NCFFFA" precision="22" scale="0" />
+        </property>
+        <property name="ciffa" type="java.lang.Double">
+            <column name="CIFFA" precision="22" scale="0" />
+        </property>
+        <property name="coffa" type="java.lang.Double">
+            <column name="COFFA" precision="22" scale="0" />
+        </property>
+        <property name="niocce" type="java.lang.Double">
+            <column name="NIOCCE" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

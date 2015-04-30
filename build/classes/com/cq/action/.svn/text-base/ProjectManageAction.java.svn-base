@@ -1,0 +1,218 @@
+package com.cq.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+
+import org.apache.log4j.Logger;
+
+import com.cq.bean.ProjectInfo;
+import com.cq.service.ProjectHistoryService;
+import com.cq.service.ProjectManageService;
+import com.cq.table.TblProjecthistory;
+import com.cq.util.tools;
+
+public class ProjectManageAction {
+	static Logger log = Logger.getLogger(ProjectManageAction.class);
+	private String errorMsg;
+	
+	private String wid;
+	private String projectType;
+	private String projectName;
+	
+	@Resource ProjectManageService projectManageService;
+	@Resource ProjectHistoryService projectHistoryService;
+
+	public void getProjectList() throws Exception {
+		StringBuffer outs = null;
+		String activityName = "";
+		String person = "";
+		String type = "";
+		
+		List<ProjectInfo> pil = projectManageService.getProjectInfo(projectType, projectName);
+		if (pil == null || pil.size() == 0) {
+			log.warn("获取项目管理信息失败" + pil);
+			return;
+		}
+
+		outs = new StringBuffer();
+		
+		outs.append("<table width='100%' cellpadding='0' cellspacing='0'>");
+		outs.append("<tr id='r2'>");
+		outs.append("<th style='display: none;'>担保项目编码</th>");
+		outs.append("<th width='25%'>项目名称</th>");
+		outs.append("<th width='15%'>项目开始时间</th>");
+		outs.append("<th width='10%'>客户类型</th>");
+		outs.append("<th width='20%'>客户名称</th>");
+		outs.append("<th width='10%'>责任人</th>");
+		outs.append("<th width='14%'>项目进度</th>");
+		outs.append("<th width='8%'>操作</th>");
+		outs.append("</tr>");
+
+		for (int i = 0; i < pil.size(); i++) {
+			activityName = "项目已结束";
+			person = "";
+			type = "";
+			ProjectInfo pi = pil.get(i);
+			if (pi.getActivity().size() > 0) {
+				activityName = "";
+				for (int j = 0; j < pi.getActivity().size() - 1; j++) {
+					activityName += pi.getActivity().get(j) + ",";
+				}
+				activityName += pi.getActivity().get(pi.getActivity().size() - 1);
+			}
+			if (pi.getAssignee().size() > 0) {
+				for (int j = 0; j < pi.getAssignee().size() - 1; j++) {
+					person += pi.getAssignee().get(j) + ",";
+				}
+				person += pi.getAssignee().get(pi.getAssignee().size() - 1);
+			}
+			if ("0".equals(pi.getClientType())) {
+				type = "企业";
+			} else if ("1".equals(pi.getClientType())) {
+				type = "个人";
+			} else {
+				type = "";
+			}
+			
+			outs.append("<tr>");
+			
+			outs.append("<td style='display: none;'>" + pi.getClientId());
+			outs.append("</td>");
+			
+			outs.append("<td align='center' style='word-break:break-all; word-wrap:break-word' onclick='updateProjectInfoJs("
+					+ '\"' + pi.getProjectId() + '\"' + ',' + '\"' + activityName + '\"' + ',' + '\"' + pi.getState() + '\"'
+					+ ")'><a href='#'>"	+ pi.getProjectName());
+			outs.append("</a></td>");
+			
+			outs.append("<td align='center'>" + pi.getProjectStartDate());
+			outs.append("</td>");
+			
+			outs.append("<td align='center'>" + type);
+			outs.append("</td>");
+			
+			outs.append("<td align='center'>" + pi.getClientName());
+			outs.append("</td>");
+			
+			outs.append("<td align='center'>" + person);
+			outs.append("</td>");
+			
+			outs.append("<td align='center'>" + activityName);
+			outs.append("</td>");
+			
+			if (pi.getDelFlag() == 1) {
+				outs.append("<td onclick='deleteProjectInfoJs("
+					+ '\"' + pi.getProjectId() + '\"'
+					+ ")'><a href='#'>删除");
+			} else if (pi.getEndFlag() == 1) {
+				outs.append("<td onclick='forceEndProjectInfoJs("
+						+ '\"' + pi.getProjectId() + '\"'
+						+ ")'><a href='#'>强制结束");
+			} else {
+				outs.append("<td>");
+			}
+			outs.append("</td>");
+			outs.append("</tr>");
+		}
+		outs.append("</table>");
+		tools.outputInfo(outs);
+	}
+	
+	public void deleteProjectInfo() throws Exception {
+		boolean flag = false;
+		
+		try {
+			flag = projectManageService.deleteProjectProcess(wid);
+			if (flag) {
+				tools.outputInfo("流程删除成功！");
+			} else {
+				tools.outputInfo("流程删除失败！");
+			}
+		} catch (Exception e) {
+			tools.outputInfo("流程删除时系统发生异常！");
+		}
+	}
+	
+	public void forceEndProcess() throws Exception {
+		boolean flag = false;
+		
+		try {
+			flag = projectManageService.forceEndProjectProcess(wid);
+			if (flag) {
+				tools.outputInfo("流程强制结束成功！");
+			} else {
+				tools.outputInfo("流程强制结束失败！");
+			}
+		} catch (Exception e) {
+			tools.outputInfo("流程强制结束时系统发生异常！");
+		}
+	}
+	
+	public void getProjectHistory() throws Exception {
+		List<TblProjecthistory> phl = null;
+		
+		phl = projectHistoryService.getProcessHistory(wid);
+		if (phl == null || phl.size() == 0) {
+			tools.outputInfo(JSONObject.fromObject(null));
+			log.warn("没有查询到项目处理记录");
+		} else {
+			JSONArray ja = new JSONArray();
+			JsonConfig cfg = tools.getJsonConfig();
+			for (int i = 0; i < phl.size(); i++) {
+				TblProjecthistory ph = new TblProjecthistory();
+				ph = phl.get(i);
+				ja.add(JSONObject.fromObject(ph, cfg));
+			}
+			JSONObject result = new JSONObject();
+			result.put("projectHistory", ja.toString());
+			tools.outputInfo(result);
+		}
+	}
+	
+	public void getProjectName() throws Exception {
+		List<String> pnl = projectManageService.getProjectNameList(projectType);
+		if (pnl == null || pnl.size() == 0) {
+			tools.outputInfo(JSONObject.fromObject(null));
+		} else {
+			JSONArray ja = new JSONArray();
+			for (int i = 0; i < pnl.size(); i++) {
+				ja.add(pnl.get(i));
+			}
+			JSONObject result = new JSONObject();
+			result.put("projectName", ja.toString());
+			tools.outputInfo(result);
+		}
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+
+	public String getWid() {
+		return wid;
+	}
+
+	public void setWid(String wid) {
+		this.wid = wid;
+	}
+
+	public String getProjectType() {
+		return projectType;
+	}
+
+	public void setProjectType(String projectType) {
+		this.projectType = projectType;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+}

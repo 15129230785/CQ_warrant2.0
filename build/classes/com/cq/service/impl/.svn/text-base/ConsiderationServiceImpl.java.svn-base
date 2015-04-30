@@ -1,0 +1,233 @@
+package com.cq.service.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.jbpm.api.task.Task;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.dao.BankinfoDao;
+import com.cq.dao.ManauditDao;
+import com.cq.dao.WarrantinfoDao;
+import com.cq.service.ChargeService;
+import com.cq.service.ConsiderationService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblCfgBankinfo;
+import com.cq.table.TblManaudit;
+import com.cq.table.TblWarrantinfo;
+import com.cq.util.ChargeType;
+import com.cq.util.WarrantException;
+import com.cq.util.tools;
+
+public class ConsiderationServiceImpl implements ConsiderationService {
+	static Logger log = Logger.getLogger(ConsiderationServiceImpl.class);
+	private String errorMsg;
+	
+	private BankinfoDao bankinfoDao;
+	private ChargeService chargeService;
+	private ManauditDao manauditDao;
+	private TaskBaseService taskBaseService;
+	private WarrantinfoDao warrantinfoDao;
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public String consideration(String taskid, String wid, String sel,
+			String finance, String law, String over, String emcee,
+			String value, String serviceType, String selValue,
+			double refundMoney) throws Exception {
+		String result = null;
+		String history = null;
+		String str = tools.getLoginUser();
+		
+		TblWarrantinfo TblWarrantinfo = warrantinfoDao.findWarrantinfoByWid(wid);
+		if (TblWarrantinfo == null) {
+			errorMsg = "获取担保项目信息失败";
+			log.error(errorMsg);
+			throw new WarrantException(errorMsg);
+		}
+
+		try {
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			if (sel.equals("stop")) {
+				if ((StringUtils.isBlank(over))) {
+					errorMsg = "选择项目终止时需要填写项目终止原因";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				} else {
+					result = "stop";
+				}
+			} else if (sel.equals("nextLater")) {
+				if (StringUtils.isBlank(finance)) {
+					errorMsg = "请选择财务评估处理责任人";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				if (StringUtils.isBlank(law)) {
+					errorMsg = "请选择法务审查处理责任人";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				if (StringUtils.isBlank(emcee)) {
+					errorMsg = "请选择发起会签的责任人";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				if (StringUtils.isBlank(selValue)) {
+					errorMsg = "请选择项目决策的责任人";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				
+				TblManaudit tblManaudit = new TblManaudit();
+				tblManaudit.setWid(wid);
+				tblManaudit.setName(str);
+				tblManaudit.setDate(sdf.parse(sdf.format(date)));
+				tblManaudit.setResult(tools.multiLine(value));
+				manauditDao.save(tblManaudit);
+				result = "yes";
+			} else if (sel.equals("refund")) {
+				if (StringUtils.isBlank(over)) {
+					errorMsg = "选择退评审费时需要填写项目终止原因";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				if (StringUtils.isBlank(selValue)) {
+					errorMsg = "请选择退评审费任务的处理责任人";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				result = "refund";
+			} else if (sel.equals("anew")) {
+				if (StringUtils.isBlank(selValue)) {
+					errorMsg = "请选择重新审核任务的处理责任人";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				result = "anew";
+			} else {
+				errorMsg = "项目选择处理方式不正确";
+				log.error(errorMsg);
+				throw new WarrantException(errorMsg);
+			}
+			
+			if ("refund".equals(result) || "stop".equals(result)) {
+				TblWarrantinfo.setEndDate(date);
+				TblWarrantinfo.setCause(over);
+				warrantinfoDao.update(TblWarrantinfo);
+				
+				String bid = TblWarrantinfo.getBank();
+				TblCfgBankinfo bank = bankinfoDao.findBankinfoByBidAndDate(bid, sdf.format(date));
+				if (bank != null) {
+					double money = TblWarrantinfo.getPracticalMoney();
+					double remaining = bank.getRemaining();
+					double quota = bank.getQuota();
+					double refundremaning = 0;
+					if (money + remaining >= quota) {
+						refundremaning = quota;
+					} else {
+						refundremaning = money + remaining;
+					}
+					
+					bank.setRemaining(refundremaning);
+					bankinfoDao.update(bank);
+				}
+			}
+			
+			if ("refund".equals(result)) {
+				chargeService.setTblCharge(refundMoney, wid, str, ChargeType.REFUND);
+				history = "项目终止，退评审费";
+			} else if ("stop".equals(result)) {
+				history = "项目终止";
+			} else if ("yes".equals(result)) {
+				history = "提交到下一步（财务评估/法务审查）处理";
+			} else if ("anew".equals(result)) {
+				history = "项目返回（资料收集）重新处理";
+			} else {
+				history = "";
+			}
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("result", result);
+			if ("yes".equals(result)) {
+				map.put("finance", finance);
+				map.put("law", law);
+				map.put("users", emcee);
+				map.put("userd", selValue);
+			} else if ("anew".equals(result)) {
+				map.put("user", selValue);
+			} else if ("refund".equals(result)) {
+				map.put("user", selValue);
+			} else {
+				log.warn("业务经理审核时,处理结果异常");
+			}
+			taskBaseService.setTaskVar(taskid, "history", history);
+			taskBaseService.nextStep(taskid, map);
+
+			// 如果是个人担保业务,跳过财务审查和法务审查
+			if ("yes".equals(result)) {
+				if ("1".equals(serviceType)) {
+					String p = wid.substring(0, wid.length() - 8);
+					List<Task> tl = taskBaseService.taskQuery().processInstanceId(p).list();
+	
+					if (tl != null) {
+						for (Task tt : tl) {
+							map.clear();
+							map.put("user", tt.getAssignee());
+							taskBaseService.nextStep(tt.getId(), map);
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			errorMsg = "业务经理审核流程失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly=true)
+	public List<TblManaudit> getTblManaudit(String wid) {
+		List<TblManaudit> ld = new ArrayList<TblManaudit>();
+
+		ld = manauditDao.findByProperty("wid", wid);
+		return ld;
+	}
+	
+	public void setTaskBaseService(TaskBaseService taskBaseService) {
+		this.taskBaseService = taskBaseService;
+	}
+
+	public void setWarrantinfoDao(WarrantinfoDao warrantinfoDao) {
+		this.warrantinfoDao = warrantinfoDao;
+	}
+
+	public void setManauditDao(ManauditDao manauditDao) {
+		this.manauditDao = manauditDao;
+	}
+
+	public void setBankinfoDao(BankinfoDao bankinfoDao) {
+		this.bankinfoDao = bankinfoDao;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+
+	public void setChargeService(ChargeService chargeService) {
+		this.chargeService = chargeService;
+	}
+}

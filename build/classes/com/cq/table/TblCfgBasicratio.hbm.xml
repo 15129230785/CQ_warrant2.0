@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblCfgBasicratio" table="tbl_cfg_basicratio">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="br0" type="java.lang.Double">
+            <column name="br0" not-null="true" />
+        </property>
+        <property name="br1" type="java.lang.Double">
+            <column name="br1" not-null="true" />
+        </property>
+        <property name="br2" type="java.lang.Double">
+            <column name="br2" not-null="true" />
+        </property>
+        <property name="br3" type="java.lang.Double">
+            <column name="br3" not-null="true" />
+        </property>
+        <property name="br4" type="java.lang.Double">
+            <column name="br4" not-null="true" />
+        </property>
+        <property name="br5" type="java.lang.Double">
+            <column name="br5" not-null="true" />
+        </property>
+        <property name="br6" type="java.lang.Double">
+            <column name="br6" not-null="true" />
+        </property>
+        <property name="br7" type="java.lang.Double">
+            <column name="br7" not-null="true" />
+        </property>
+        <property name="br8" type="java.lang.Double">
+            <column name="br8" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

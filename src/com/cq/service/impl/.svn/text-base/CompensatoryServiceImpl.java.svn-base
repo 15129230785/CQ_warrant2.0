@@ -1,0 +1,162 @@
+package com.cq.service.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.dao.PersueDao;
+import com.cq.dao.WarrantinfoDao;
+import com.cq.service.CompensatoryService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblPersue;
+import com.cq.table.TblWarrantinfo;
+import com.cq.util.WarrantException;
+import com.cq.util.tools;
+
+public class CompensatoryServiceImpl implements CompensatoryService {
+	static Logger log = Logger.getLogger(CompensatoryServiceImpl.class);
+	private String errorMsg;
+
+	private PersueDao persueDao;
+	private TaskBaseService taskBaseService;
+	private WarrantinfoDao warrantinfoDao;
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public String compensatoryProcess(String taskid, String wid, String sel,
+			String selValue, String mode, String describe0, String describe1, 
+			String describe2, String describe3, String describe4, Date startDate,
+			double benjin, double lixi, double faxi, double shouxu,
+			double zhixing, double qita) throws Exception {
+		String result = null;
+		TblWarrantinfo wi = null;
+
+		try {
+			result = "no";
+			if (sel.equals("persue")) {
+				result = "yes";
+				wi = warrantinfoDao.findWarrantinfoByWid(wid);
+				if (wi == null) {
+					errorMsg = "获取担保项目信息失败";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				wi.setPersue('1');
+				warrantinfoDao.update(wi);
+				
+				Date tmpDate = null;
+				if (null == startDate || "".equals(startDate)) {
+					Date date = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					tmpDate = sdf.parse(sdf.format(date));
+				}
+
+				if (StringUtils.isBlank(mode)) {
+					errorMsg = "需要追偿时，必须选择一种以上追偿方式，请重新选择";
+					log.error(errorMsg);
+					throw new WarrantException(errorMsg);
+				}
+				String[] m = mode.split(", ");
+				for (int i = 0; i < m.length; i++) {
+					String s = null;
+					char num = m[i].trim().charAt(0);
+					int n = Integer.parseInt(num + "");
+					
+					switch (n) {
+					case 0:
+						s = tools.multiLine(describe0);
+						break;
+					case 1:
+						s = tools.multiLine(describe1);
+						break;
+					case 2:
+						s = tools.multiLine(describe2);
+						break;
+					case 3:
+						s = tools.multiLine(describe3);
+						break;
+					case 4:
+						s = tools.multiLine(describe4);
+						break;
+					default:
+						errorMsg = "追偿方式选择不正确，请重新选择";
+						log.error(errorMsg);
+						throw new WarrantException(errorMsg);
+					}
+					if (StringUtils.isBlank(s.trim())) {
+						errorMsg = "追偿方式描述内容不能为空，必须填写";
+						log.error(errorMsg);
+						throw new WarrantException(errorMsg);
+					}
+					setPersue(wid, tmpDate, benjin, faxi, shouxu, lixi,
+							zhixing, qita, num, s);
+				}
+			}
+
+			String history = null;
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("persue", result);
+			map.put("user", selValue);
+			if ("yes".equals(result)) {
+				history = "进入下一步（追偿）处理";
+			} else {
+				history = "进入下一步（核销损失）处理";
+			}
+			taskBaseService.setTaskVar(taskid, "history", history);
+			taskBaseService.nextStep(taskid, map);
+		} catch (Exception e) {
+			errorMsg = "代偿业务流程失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+
+	private void setPersue(String wid, Date startDate, double money,
+			double latecharge, double procedure, double interest,
+			double execute, double other, char mode, String describe) throws Exception {
+		try {
+			TblPersue TblPersue = new TblPersue();
+			TblPersue.setWid(wid);
+			TblPersue.setStartDate(startDate);
+			TblPersue.setMoney(money);
+			TblPersue.setMode(mode);
+			TblPersue.setLatecharge(latecharge);
+			TblPersue.setProcedured(procedure);
+			TblPersue.setInterest(interest);
+			TblPersue.setExecute(execute);
+			TblPersue.setOther(other);
+			TblPersue.setDescription(tools.multiLine(describe));
+
+			persueDao.save(TblPersue);
+		} catch (Exception e) {
+			errorMsg = "添加追偿数据失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	public void setPersueDao(PersueDao persueDao) {
+		this.persueDao = persueDao;
+	}
+
+	public void setTaskBaseService(TaskBaseService taskBaseService) {
+		this.taskBaseService = taskBaseService;
+	}
+
+	public void setWarrantinfoDao(WarrantinfoDao warrantinfoDao) {
+		this.warrantinfoDao = warrantinfoDao;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+}

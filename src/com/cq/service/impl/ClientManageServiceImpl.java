@@ -1,0 +1,237 @@
+package com.cq.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.jbpm.api.task.Task;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.bean.ClientInfo;
+import com.cq.dao.CominfoDao;
+import com.cq.dao.PersonDao;
+import com.cq.dao.WarrantindexDao;
+import com.cq.dao.WarrantinfoDao;
+import com.cq.service.ClientManageService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblCominfo;
+import com.cq.table.TblPerson;
+import com.cq.table.TblWarrantindex;
+import com.cq.table.TblWarrantinfo;
+import com.cq.util.tools;
+
+public class ClientManageServiceImpl implements ClientManageService {
+	static Logger log = Logger.getLogger(ClientManageServiceImpl.class);
+	private String errorMsg;
+	
+	private CominfoDao cominfoDao;
+	private PersonDao personDao;
+	private TaskBaseService taskBaseService;
+	private WarrantindexDao warrantindexDao;
+	private WarrantinfoDao warrantinfoDao;
+	
+	@Override
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public List<ClientInfo> findClientByCompanyName(String name) throws Exception {
+		List<TblCominfo> cominfoList = null;
+		TblCominfo tmpCominfo = null;
+		List<TblWarrantindex> wiList = null;
+		List<TblWarrantinfo> wList = null;
+		List<ClientInfo> clientList = null;
+		List<Task> taskList = null;
+		
+		boolean flag = false;
+
+		try {
+			cominfoList = cominfoDao.findCominfoByWildName(name);
+
+			if (cominfoList == null || cominfoList.size() == 0) {
+				log.warn("数据库查询企业信息失败" + cominfoList);
+				return null;
+			}
+			clientList = new ArrayList<ClientInfo>();
+			
+			taskList = taskBaseService.taskQuery().activityName("companyApply").list();
+			if (taskList != null && taskList.size() > 0) {
+				flag = true;
+			} else {
+				log.warn("数据库查询企业的任务信息失败" + taskList);
+			}
+
+			for (int i = 0; i < cominfoList.size(); i++) {
+				wList = new ArrayList<TblWarrantinfo>();
+				wList.clear();
+				ClientInfo client = new ClientInfo();
+				tmpCominfo = cominfoList.get(i);
+				client.setId(tmpCominfo.getEid());
+				client.setName(tmpCominfo.getName());
+				client.setType("0");
+				
+				wiList = warrantindexDao.findWarrantInfoByIdAndType(tmpCominfo.getEid(), '0');
+				if (wiList != null && wiList.size() > 0) {
+					for (int j = 0; j < wiList.size(); j++) {
+						TblWarrantinfo warrantInfo = new TblWarrantinfo();
+						warrantInfo = warrantinfoDao.findWarrantinfoByWid(wiList.get(j).getWid());
+						wList.add(warrantInfo);
+					}
+				}
+				
+				if (true == flag) {
+					for (Task task : taskList) {
+						String eid = (String) taskBaseService.getTaskVar(task.getId(), "Eid");
+						if (eid != null && eid.equals(tmpCominfo.getEid())) {
+							String wid = (String) taskBaseService.getTaskVar(task.getId(), "Wid");
+							boolean widFlag = false;
+							for (TblWarrantinfo winfo : wList) {
+								if (wid.equals(winfo.getWid())) {
+									widFlag = true;
+									break;
+								}
+							}
+							if (false == widFlag) {
+								TblWarrantinfo warrantInfo = new TblWarrantinfo();
+								warrantInfo = warrantinfoDao.findWarrantinfoByWid(wid);
+								if (warrantInfo != null) {
+									wList.add(warrantInfo);
+								}
+							}
+						}
+					}
+				}
+				client.setProject(wList);
+				clientList.add(client);
+			}
+		} catch (Exception e) {
+			errorMsg = "查询企业客户信息时系统出现异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return clientList;
+	}
+
+	@Override
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public List<ClientInfo> findClientByPersonName(String name) throws Exception {
+		List<TblPerson> personList = null;
+		TblPerson tmpPerson = null;
+		List<TblWarrantindex> wiList = null;
+		List<TblWarrantinfo> wList = null;
+		List<ClientInfo> clientList = null;
+		List<Task> taskList = null;
+		
+		boolean flag = false;
+
+		try {
+			personList = personDao.findPersonByWildName(name);
+
+			if (personList == null || personList.size() == 0) {
+				log.warn("数据库查询个人信息失败" + personList);
+				return null;
+			}
+			clientList = new ArrayList<ClientInfo>();
+			
+			taskList = taskBaseService.taskQuery().activityName("personApply").list();
+			if (taskList != null && taskList.size() > 0) {
+				flag = true;
+			} else {
+				log.warn("数据库查询个人的任务信息失败" + taskList);
+			}
+
+			for (int i = 0; i < personList.size(); i++) {
+				wList = new ArrayList<TblWarrantinfo>();
+				wList.clear();
+				ClientInfo client = new ClientInfo();
+				tmpPerson = personList.get(i);
+				client.setId(tmpPerson.getId());
+				client.setName(tmpPerson.getName());
+				client.setType("1");
+				
+				wiList = warrantindexDao.findWarrantInfoByIdAndType(tmpPerson.getId(), '1');
+				if (wiList != null && wiList.size() > 0) {
+					for (int j = 0; j < wiList.size(); j++) {
+						TblWarrantinfo warrantInfo = new TblWarrantinfo();
+						warrantInfo = warrantinfoDao.findWarrantinfoByWid(wiList.get(j).getWid());
+						wList.add(warrantInfo);
+					}
+				}
+				
+				if (true == flag) {
+					for (Task task : taskList) {
+						String pid = (String) taskBaseService.getTaskVar(task.getId(), "PerID");
+						if (pid != null && pid.equals(tmpPerson.getId())) {
+							String wid = (String) taskBaseService.getTaskVar(task.getId(), "Wid");
+							boolean widFlag = false;
+							for (TblWarrantinfo winfo : wList) {
+								if (wid.equals(winfo.getWid())) {
+									widFlag = true;
+									break;
+								}
+							}
+							if (false == widFlag) {
+								TblWarrantinfo warrantInfo = new TblWarrantinfo();
+								warrantInfo = warrantinfoDao.findWarrantinfoByWid(wid);
+								if (warrantInfo != null) {
+									wList.add(warrantInfo);
+								}
+							}
+						}
+					}
+				}
+				client.setProject(wList);
+				clientList.add(client);
+			}
+		} catch (Exception e) {
+			errorMsg = "查询个人客户信息时系统出现异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return clientList;
+	}
+	
+	@Override
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public List<String> findCompanyClientName() throws Exception {
+		List<String> nameList = null;
+		
+		try {
+			nameList = cominfoDao.findCompanyNameList();
+		} catch (Exception e) {
+			errorMsg = "查询个人客户信息时系统出现异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return nameList;
+	}
+
+	@Override
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public List<String> findPersonClientName() throws Exception {
+		List<String> nameList = null;
+		
+		try {
+			nameList = personDao.findPersonNameList();
+		} catch (Exception e) {
+			errorMsg = "查询个人客户信息时系统出现异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return nameList;
+	}
+
+	public void setWarrantinfoDao(WarrantinfoDao warrantinfoDao) {
+		this.warrantinfoDao = warrantinfoDao;
+	}
+
+	public void setCominfoDao(CominfoDao cominfoDao) {
+		this.cominfoDao = cominfoDao;
+	}
+
+	public void setPersonDao(PersonDao personDao) {
+		this.personDao = personDao;
+	}
+
+	public void setWarrantindexDao(WarrantindexDao warrantindexDao) {
+		this.warrantindexDao = warrantindexDao;
+	}
+
+	public void setTaskBaseService(TaskBaseService taskBaseService) {
+		this.taskBaseService = taskBaseService;
+	}
+}

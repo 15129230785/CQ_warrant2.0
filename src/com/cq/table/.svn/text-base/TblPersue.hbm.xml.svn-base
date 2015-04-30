@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblPersue" table="tbl_persue">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+		<property name="wid" type="string">
+            <column name="WID" length="60" not-null="true"/>
+        </property>
+        <property name="startDate" type="date">
+            <column name="StartDate" length="10" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="EndDate" length="10" />
+        </property>
+        <property name="money" type="double">
+            <column name="Money" precision="22" scale="0" />
+        </property>
+        <property name="latecharge" type="double">
+            <column name="LateCharge" precision="22" scale="0" />
+        </property>
+        <property name="procedured" type="double">
+            <column name="Procedured" precision="22" scale="0" />
+        </property>
+        <property name="interest" type="double">
+            <column name="Interest" precision="22" scale="0" />
+        </property>
+        <property name="execute" type="double">
+            <column name="Execute" precision="22" scale="0" />
+        </property>
+        <property name="other" type="double">
+            <column name="Other" precision="22" scale="0" />
+        </property>
+        <property name="trueMoney" type="double">
+            <column name="TrueMoney" precision="22" scale="0" />
+        </property>
+        <property name="date" type="date">
+            <column name="Date" length="10" />
+        </property>
+        <property name="mode" type="java.lang.Character">
+            <column name="Mode" length="1" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" length="1024"  />
+        </property>
+    </class>
+</hibernate-mapping>

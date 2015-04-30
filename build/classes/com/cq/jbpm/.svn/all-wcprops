@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/jbpm
+END
+Examineok.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/jbpm/Examineok.java
+END
+FieldSurvey.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/jbpm/FieldSurvey.java
+END
+BankPass.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/jbpm/BankPass.java
+END
+CQIdentitySessionImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/jbpm/CQIdentitySessionImpl.java
+END
+Finance.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/jbpm/Finance.java
+END
+Law.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/jbpm/Law.java
+END
+ApplyJudge.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/jbpm/ApplyJudge.java
+END
+JbpmFactoryLocator.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/jbpm/JbpmFactoryLocator.java
+END
+JbpmAutowire.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/jbpm/JbpmAutowire.java
+END
+Normal.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/jbpm/Normal.java
+END
+ReviewOk.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/jbpm/ReviewOk.java
+END
+DecisionResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/jbpm/DecisionResult.java
+END

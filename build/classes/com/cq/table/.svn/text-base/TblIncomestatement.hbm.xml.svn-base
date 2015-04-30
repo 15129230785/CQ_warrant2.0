@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblIncomestatement" table="tbl_incomestatement">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+        <property name="type" type="java.lang.Character">
+            <column name="Type" length="1" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="Date" length="10" not-null="true" />
+        </property>
+        <property name="salesRevenue" type="java.lang.Double">
+            <column name="SalesRevenue" precision="22" scale="0" />
+        </property>
+        <property name="costofSales" type="java.lang.Double">
+            <column name="CostofSales" precision="22" scale="0" />
+        </property>
+        <property name="mainBusinessProfit" type="java.lang.Double">
+            <column name="MainBusinessProfit" precision="22" scale="0" />
+        </property>
+        <property name="sellingExpenses" type="java.lang.Double">
+            <column name="SellingExpenses" precision="22" scale="0" />
+        </property>
+        <property name="managementExpenses" type="java.lang.Double">
+            <column name="ManagementExpenses" precision="22" scale="0" />
+        </property>
+        <property name="financingExpenses" type="java.lang.Double">
+            <column name="FinancingExpenses" precision="22" scale="0" />
+        </property>
+        <property name="totalProfits" type="java.lang.Double">
+            <column name="TotalProfits" precision="22" scale="0" />
+        </property>
+        <property name="netProfit" type="java.lang.Double">
+            <column name="NetProfit" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

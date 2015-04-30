@@ -1,0 +1,309 @@
+package com.cq.action;
+
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import net.sf.json.JSONObject;
+
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.annotation.CQAnnotationOperlog;
+import com.cq.dao.InvestDao;
+import com.cq.table.TblInvest;
+import com.cq.util.GlobalData;
+import com.cq.util.tools;
+
+@CQAnnotationOperlog(tableName="企业对外投资信息", dataName="invest")
+public class TblInvestAction {
+	static Logger log = Logger.getLogger(TblInvestAction.class);
+	private String errorMsg;
+	
+	private int kid;
+	private String eid;
+	private String name;
+	private String startDate;
+	private String endDate;
+	private char investMode;
+	private double money;
+	private double lastYearIncome;
+	private double forecastIncome;
+	private TblInvest invest;
+	
+	@Resource InvestDao investDao;
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void applyinvest() throws Exception {
+		String str = "invet";
+		try {
+			List<TblInvest> listTblInvest = investDao.findInvestByEidAndName(eid, name);
+			if (listTblInvest != null && listTblInvest.size() > 0) {
+				str =listTblInvest.get(0).getEid();
+			}
+			tools.outputInfo(str);
+		} catch (Exception e) {
+			errorMsg = "查询企业投资信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	public void applyinvest1() throws Exception {
+		String str = "invet";
+		try {
+			List<TblInvest> listTblInvest = investDao.findInvestByEidAndName1(kid,eid, name);
+			if (listTblInvest != null && listTblInvest.size() > 0) {
+				str =listTblInvest.get(0).getEid();
+			}
+			tools.outputInfo(str);
+		} catch (Exception e) {
+			errorMsg = "查询企业投资信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public String savaTblInvest() throws Exception {
+		Date tmpDate = null;
+		
+		try {
+			TblInvest tblInvest = new TblInvest();
+			tblInvest.setEid(eid);
+			tblInvest.setName(name);
+			
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			tmpDate = df.parse(startDate);
+			tblInvest.setStartDate(tmpDate);
+			tmpDate = df.parse(endDate);
+			tblInvest.setEndDate(tmpDate);
+			
+			tblInvest.setInvestMode(investMode);
+			tblInvest.setMoney(money);
+			tblInvest.setLastYearIncome(lastYearIncome);
+			tblInvest.setForecastIncome(forecastIncome);
+	        invest = tblInvest;
+			investDao.save(invest);
+			tools.fillQueryInfo(1, eid, "TblInvest");
+		} catch (Exception e) {
+			errorMsg = "保存企业投资信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+	
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public void outDeleteTblInvest() throws Exception {
+		try {		
+			invest = investDao.get(kid);
+			investDao.delete(kid);
+			this.selectAjaxTblInvest();
+		} catch (Exception e) {
+			errorMsg = "删除企业投资信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void selectAjaxTblInvest() throws Exception {
+		String Name1 = null;
+		String InvestMode2 = null;
+		StringBuffer outs = null;
+		
+		List<TblInvest> listTblInvest = investDao.findByProperty("eid", eid);
+		if ((listTblInvest == null)
+			|| !(listTblInvest.size() > 0)) {
+			log.warn("没有查询到企业投资信息");
+			return;
+		}
+		
+		outs = new StringBuffer();
+		outs.append("<table>");
+		outs.append("<tr>");
+		outs.append("<th width='13%'>投资项目名称</th>");
+		outs.append("<th width='13%'>投资起始日期</th>");
+		outs.append("<th width='13%'>投资终止日期</th>");
+		outs.append("<th width='13%'>投资金额</th>");
+		outs.append("<th width='13%'>投资方式</th>");
+		outs.append("<th width='13%'>上年投资收益</th>");
+		outs.append("<th width='13%'>当年收益预测</th>");
+		outs.append("<th width='9%'>操作</th>");
+		outs.append("</tr>");
+		
+		for (int i = 0; i < listTblInvest.size(); i++) {
+			Name1 = listTblInvest.get(i).getName();
+			DecimalFormat decimalFormat=new DecimalFormat("###0.00");
+			InvestMode2 = GlobalData.investModes.get(
+					Character.toString(listTblInvest.get(i).getInvestMode()));
+			
+			outs.append("<tr>");
+			outs.append("<td onclick='updateInvestJs("
+					+ listTblInvest.get(i).getKid()
+					+ ")'><a href='#'>" + Name1);
+			outs.append("</td>");
+			outs.append("<td>"
+					+ listTblInvest.get(i).getStartDate());
+			outs.append("</td>");
+			outs.append("<td>"
+					+ listTblInvest.get(i).getEndDate());
+			outs.append("</td>");
+			outs.append("<td>" + decimalFormat.format(listTblInvest.get(i).getMoney()));
+			outs.append("</td>");
+			outs.append("<td>" + InvestMode2);
+			outs.append("</td>");
+			outs.append("<td>"
+					+ decimalFormat.format(listTblInvest.get(i).getLastYearIncome()));
+			outs.append("</td>");
+			outs.append("<td>"
+					+ decimalFormat.format(listTblInvest.get(i).getForecastIncome()));
+			outs.append("</td>");
+			outs.append("<td onclick='investListOne("
+					+ listTblInvest.get(i).getKid() + ','
+					+ '\"' + listTblInvest.get(i).getEid() + '\"'
+					+ ")'><a href='#'>删除");
+			outs.append("</a></td>");
+			outs.append("</tr>");
+		}
+		outs.append("</table>");
+		
+		tools.outputInfo(outs);
+	}
+	
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public String updateTblInvest() throws Exception {
+		Date tmpDate = null;
+		
+		try {
+			invest = investDao.get(kid);
+
+			invest.setName(name);
+			
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			tmpDate = df.parse(startDate);
+			invest.setStartDate(tmpDate);
+			tmpDate = df.parse(endDate);
+			invest.setEndDate(tmpDate);
+			
+			invest.setInvestMode(investMode);
+			invest.setMoney(money);
+			invest.setLastYearIncome(lastYearIncome);
+			invest.setForecastIncome(forecastIncome);
+			tools.fillQueryInfo(1, eid, "TblInvest");
+			investDao.update(invest);
+		} catch (Exception e) {
+			errorMsg = "修改企业投资信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void getTblInvest() throws Exception {
+		TblInvest bi = investDao.get(kid);
+		
+		if(bi == null) {
+			tools.outputInfo(JSONObject.fromObject(""));
+			log.warn("没有查询到企业对外投资信息" + kid);
+			return;
+		}
+		tools.outputInfo(JSONObject.fromObject(bi, tools.getJsonConfig()));
+	}
+
+	public int getKid() {
+		return kid;
+	}
+
+	public void setKid(int kid) {
+		this.kid = kid;
+	}
+
+	public String getEid() {
+		return eid;
+	}
+
+	public void setEid(String eid) {
+		this.eid = eid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public Character getInvestMode() {
+		return investMode;
+	}
+
+	public void setInvestMode(Character investMode) {
+		this.investMode = investMode;
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
+	public double getLastYearIncome() {
+		return lastYearIncome;
+	}
+
+	public void setLastYearIncome(double lastYearIncome) {
+		this.lastYearIncome = lastYearIncome;
+	}
+
+	public double getForecastIncome() {
+		return forecastIncome;
+	}
+
+	public void setForecastIncome(double forecastIncome) {
+		this.forecastIncome = forecastIncome;
+	}
+
+	public void setInvestMode(char investMode) {
+		this.investMode = investMode;
+	}
+
+	public void setInvestDao(InvestDao investDao) {
+		this.investDao = investDao;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+	public TblInvest getInvest() {
+		return invest;
+	}
+	public void setInvest(TblInvest invest) {
+		this.invest = invest;
+	}
+}

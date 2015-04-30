@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblFamily" table="tbl_family">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="id" type="string">
+            <column name="ID" length="20" not-null="true"/>
+        </property>
+        <property name="sid" type="string">
+            <column name="SID" length="60" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="60" not-null="true" />
+        </property>
+        <property name="gender" type="java.lang.Character">
+            <column name="Gender" length="1" not-null="true" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="Birthday" length="10" not-null="true" />
+        </property>
+        <property name="vocation" type="string">
+            <column name="Vocation" length="1024" not-null="true"/>
+        </property>
+        <property name="relationship" type="string">
+            <column name="Relationship" length="1024" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" length="1024" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<genders>
+		<gender name="女" value="0"></gender>
+		<gender name="男" value="1"></gender>
+	</genders>
+</config>

@@ -1,0 +1,239 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src/com/cq/service
+END
+StartsignService.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/StartsignService.java
+END
+TaskGroupService.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/TaskGroupService.java
+END
+FileService.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/FileService.java
+END
+CollectDataService.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/CollectDataService.java
+END
+ProjectManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/ProjectManageService.java
+END
+LossService.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/LossService.java
+END
+ReceiveService.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/ReceiveService.java
+END
+CompensatoryService.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/3750/CQ_warrant2.0/src/com/cq/service/CompensatoryService.java
+END
+RiskestService.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/RiskestService.java
+END
+ApplyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/ApplyService.java
+END
+ClearService.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/ClearService.java
+END
+BankinfoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/BankinfoService.java
+END
+ReviewDataService.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/ReviewDataService.java
+END
+DeployService.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/3180/CQ_warrant2.0/src/com/cq/service/DeployService.java
+END
+DecisionService.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/DecisionService.java
+END
+TaskBaseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/TaskBaseService.java
+END
+CountersignService.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/3526/CQ_warrant2.0/src/com/cq/service/CountersignService.java
+END
+ComdoclistService.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/ComdoclistService.java
+END
+StationLetterService.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/3439/CQ_warrant2.0/src/com/cq/service/StationLetterService.java
+END
+FieldSurveyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/FieldSurveyService.java
+END
+PersueService.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/PersueService.java
+END
+FinanceService.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/FinanceService.java
+END
+ReturnBailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/ReturnBailService.java
+END
+LawauditService.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/LawauditService.java
+END
+ProjectMonitorService.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/3526/CQ_warrant2.0/src/com/cq/service/ProjectMonitorService.java
+END
+UserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/service/UserService.java
+END
+IntactService.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/IntactService.java
+END
+RefundService.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/RefundService.java
+END
+ClientManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/ClientManageService.java
+END
+ProjectHistoryService.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/ProjectHistoryService.java
+END
+ChargeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/ChargeService.java
+END
+GuarantyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/GuarantyService.java
+END
+ServiceCheckService.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/ServiceCheckService.java
+END
+ConsiderationService.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/ConsiderationService.java
+END
+CompanyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/CompanyService.java
+END
+OperlogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/service/OperlogService.java
+END
+LoginService.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/LoginService.java
+END
+ReviewChargeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/service/ReviewChargeService.java
+END
+BankService.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/cq/!svn/ver/4302/CQ_warrant2.0/src/com/cq/service/BankService.java
+END

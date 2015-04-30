@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cq.table.TblDocchklist" table="tbl_docchklist">
+		<id name="kid" type="java.lang.Integer" >
+			<column name="KID"/>
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="WID" length="60" not-null="true" />
+		</property>
+		<property name="name" type="string">
+			<column name="Name" length="10" />
+		</property>
+		<property name="date" type="date">
+			<column name="Date" length="10" />
+		</property>
+		<!-- <property name="endDate" type="date"><column name="EndDate" length="10" 
+			/></property> -->
+		<property name="did" type="string">
+			<column name="DID" length="60"/>
+		</property>
+		<property name="complete" type="string">
+			<column name="Complete" length="255" default="1"/>
+		</property>
+		<property name="save" type="string">
+			<column name="Save" length="255" default="1" />
+		</property>
+		<property name="path" type="string">
+			<column name="Path" length="255"/>
+		</property>
+		<property name="state" type="int">
+			<column name="State" />
+		</property>
+		<property name="times" type="int">
+			<column name="Times" />
+		</property>
+	</class>
+</hibernate-mapping>

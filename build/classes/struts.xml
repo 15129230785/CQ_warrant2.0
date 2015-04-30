@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.multipart.maxSize" value="1073741824"></constant>
+	<constant name="struts.action.excludePattern" value="/verifyGraph" />
+	<constant name="struts.objectFactory.spring.autoWire" value="name"></constant>
+	
+	<package name="userLoginPackage" extends="struts-default"
+		namespace="/">
+		<action name="UserLoginaction" class="com.cq.action.LoginAction"
+			method="userLogin">
+			<result name="success">/SysView.jsp</result>
+			<result name="error">/newLogin.jsp</result>
+		</action>
+		<action name="deploy" class="com.cq.action.DeployAction" method="deploy">
+			<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="LoadData" class="com.cq.action.DeployAction" method="loadData">
+			<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+	
+	<package name="basicActionPackage" extends="struts-default"	namespace="/">
+		<interceptors>
+			<interceptor name="loginCheck" class="com.cq.action.LoginCheck" />
+			<interceptor-stack name="cq-default">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginCheck" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="cq-default" />
+		
+		<global-results>
+			<result name="login">/newLogin.jsp</result>
+			<result name="warrantException">/exception.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
+			<result name="letterSuccess">/letterSuccess.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="warrantException" exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings>
+		
+		<action name="ApplyYanZheng" class="com.cq.action.ApplyWarrantAction"
+			method="applyYanZheng">
+		</action>
+		<!--add by kj  -->
+		<action name="getEmpInfo" class="com.cq.action.TblEmpinfoAction"
+			method="getEmpInfo">
+		</action>
+		<!--add by kj  -->
+		<action name="GetProductSale" class="com.cq.action.TblProductAction"
+			method="getProductSale">
+		</action>
+		<!--add by kj  -->
+		<action name="findCompInfoIsOrNot" class="com.cq.action.TblCominfoAction"
+			method="findCompInfoIsOrNot">
+		</action>
+		<action name="ApplyPerson" class="com.cq.action.ApplyWarrantAction"
+			method="applyPerson">
+		</action>
+		<action name="ApplyWarrant" class="com.cq.action.ApplyWarrantAction"
+			method="applyWarrant">
+			<result name="company">/apply/companyApply.jsp</result>
+			<result name="person">/apply/personApply.jsp</result>
+<!--            <result name="Person">/apply/personalManageLoanApply.jsp</result> -->
+			<!-- <result name="ServiceCheckFail">/error.jsp</result> -->
+		</action>
+
+		<action name="File" class="com.cq.action.FileAction" method="file">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Charge" class="com.cq.action.ChargeAction"
+			method="charge">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="collectNext" class="com.cq.action.CollectDataAction"
+			method="collect">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="ReviewCharge" class="com.cq.action.ReviewChargeAction"
+			method="reviewCharge">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Reviewdata" class="com.cq.action.ReviewDataAction"
+			method="reviewdata">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="FieldSurvey" class="com.cq.action.FieldSurveyAction"
+			method="fieldSurvey">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="ApplyPass" class="com.cq.action.ApplyWarrantAction"
+			method="applyPass">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Consideration" class="com.cq.action.ConsiderationAction"
+			method="consideration">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Decision" class="com.cq.action.DecisionAction"
+			method="decision">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Bank" class="com.cq.action.BankAction" method="bank">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Receive" class="com.cq.action.ReceiveAction"
+			method="receive">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Track" class="com.cq.action.TrackAction" method="track">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Clear" class="com.cq.action.ClearAction" method="clear">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Compensatory" class="com.cq.action.CompensatoryAction"
+			method="compensatory">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="StartSign" class="com.cq.action.StartSignAction"
+			method="startSign">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Countersign" class="com.cq.action.CounterSignAction"
+			method="countersign">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Sign" class="com.cq.action.SignAction" method="sign">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+		<action name="Guaranty" class="com.cq.action.GuarantyAction"
+			method="guaranty">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+		<action name="Notice" class="com.cq.action.NoticeAction"
+			method="notice">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+		<action name="Persue" class="com.cq.action.PersueAction"
+			method="persue">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+		<action name="Loss" class="com.cq.action.LossAction" method="loss">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+		<action name="Refund" class="com.cq.action.RefundAction"
+			method="refund">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+		<action name="ReturnBail" class="com.cq.action.ReturnBailAction"
+			method="returnBail">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Law" class="com.cq.action.LawAction" method="law">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Finance" class="com.cq.action.FinanceAction"
+			method="finance">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+		<action name="Risk" class="com.cq.action.RiskAction" method="risk">
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+
+<!-- 		<action name="" class="com.cq.action.ApplyWarrantAction" -->
+<!-- 			method="transfer"> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+<!-- 		</action> -->
+
+		<action name="RunApply" class="com.cq.action.ApplyWarrantAction"
+			method="runApply">
+		</action>
+		<action name="GetServiceType" class="com.cq.action.TblWarrantindexAction"
+			method="getServiceType">
+		</action>
+		<action name="UploadFile" class="com.cq.action.FileOpAction"
+			method="uploadFile">
+			<param name="savePath">WEB-INF/document</param>
+		</action>
+		<action name="DownloadFile" class="com.cq.action.FileOpAction"
+			method="downloadFile">
+			<param name="savePath">WEB-INF/document</param>
+<!-- 			<result name="success">/apply/success.jsp</result> -->
+<!-- 			<result name="error">/apply/error.jsp</result> -->
+		</action>
+		<action name="DeleteFile" class="com.cq.action.FileOpAction"
+			method="deleteFile">
+			<param name="savePath">WEB-INF/document</param>
+<!-- 			<result name="success">/document/DownloadFile.jsp</result> -->
+<!-- 			<result name="error">/document/DownloadFile.jsp</result> -->
+		</action>
+		<action name="GetFileList" class="com.cq.action.FileOpAction"
+			method="getFileList">
+			<param name="savePath">WEB-INF/document</param>
+		</action>
+		<action name="GetComDocList" class="com.cq.action.CollectDataAction"
+			method="getComDocList">
+		</action>
+		<action name="StationLetter"  class="com.cq.action.StationLetterAction" >
+		</action>
+		<action name="SystemNewRemind" class="com.cq.action.SystemNewRemind">
+		</action>
+		<action name="SysLog" class="com.cq.action.SysLogAction">
+		</action>
+	</package>
+
+	<include file="/xml/apply.xml"></include>
+	<include file="/xml/data.xml"></include>
+	<include file="/xml/servicecheck.xml"></include>
+	<include file="/xml/bankinfo.xml"></include>
+	<include file="/xml/basicratio.xml"></include>
+	<include file="/xml/overratio.xml"></include>
+	<include file="/xml/calculateindex.xml"></include>
+	<include file="/xml/analysisindex.xml"></include>
+	<include file="/xml/user.xml"></include>
+	<include file="/xml/companyApplyYz.xml"></include>
+	<include file="/xml/companyApplyFhx.xml"></include>
+	<include file="/xml/project.xml"></include>
+	<include file="/xml/client.xml"></include>
+</struts>

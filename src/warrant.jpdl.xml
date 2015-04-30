@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="warrant" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="252,0,37,37" name="start">
+      <transition g="-100,-29" name="toapply" to="apply"/>
+   </start>
+   <task assignee="#{user}" form="apply/apply.jsp" g="73,22,97,49" name="apply">
+      <transition g="104,218;101,656;101,1134:27,-468" name="toend_cancel" to="end_cancel">
+         <timer duedate="2 minutes"/>
+      </transition>
+      <transition name="toapplyjudge" to="applyjudge" g="-53,1"/>
+   </task>
+
+   <task assignee="#{user}" form="collect-data/collect-data.jsp" g="228,468,97,49" name="collect-data">
+      <transition g="-116,-7" name="toreviewdata" to="review-data"/>
+   </task>
+   <task assignee="#{user}" form="review-data/review-data.jsp" g="228,552,97,49" name="review-data">
+      <transition g="12,-18" name="toexamine_ok" to="examine_ok"/>
+   </task>
+   <task assignee="#{user}" form="field-survey/field-survey.jsp" g="228,732,97,49" name="field-survey">
+      <transition g="3,-8" name="tosurvey_ok" to="survey_ok"/>
+   </task>
+   <task assignee="#{user}" form="consideration/consideration.jsp" g="228,888,97,49" name="consideration">
+      <transition g="7,-18" name="toreview_ok" to="review_ok"/>
+   </task>
+   <decision g="252,384,25,49" name="accept">
+      <handler class="com.cq.jbpm.Accept" />
+      <transition g="134,410;130,695;129,1127:-16,-314" name="toend_cancel" to="end_cancel"/>
+      <transition g="-83,-15" name="tocollect-data" to="collect-data"/>
+   </decision>
+   <decision g="252,636,49,13" name="examine_ok">
+      <handler class="com.cq.jbpm.Examineok" />
+      <transition g="181,660;180,1127:-33,-257" name="toend_cancel" to="end_cancel"/>
+      <transition g="6,-4" name="tofield-survey" to="field-survey"/>
+      <transition g="155,697;153,1157:-85,-29" name="torefund" to="refund"/>
+   </decision>
+   <decision g="252,804,37,49" name="survey_ok">
+      <handler class="com.cq.jbpm.FieldSurvey" />
+      <transition g="216,827;218,1127:-73,-171" name="toend_cancel" to="end_cancel"/>
+      <transition g="21,-13" name="toconsideration" to="consideration"/>
+      <transition g="203,865:-85,-29" name="torefund" to="refund"/>
+   </decision>
+   <decision g="252,996,37,25" name="review_ok">
+   	  <handler class="com.cq.jbpm.ReviewOk" />
+      <transition g="402,1019;454,1021;454,815;455,23;648,25:-68,208" name="tofork1" to="fork1"/>
+      <transition g="7,-6" name="toend_cancel" to="end_cancel"/>
+      <transition g="419,1015;418,490:-87,-293" name="tocollect-data" to="collect-data"/>
+      <transition g="-85,-29" name="torefund" to="refund"/>
+   </decision>
+   <fork g="624,48,37,25" name="fork1">
+      <transition g="-100,-29" name="tofinance" to="finance"/>
+      <transition g="25,0" name="tolaw" to="law"/>
+   </fork>
+   
+   <task assignee="#{user}" form="finance/finance.jsp" g="502,124,97,49" name="finance">
+      <assignment-handler class="com.cq.jbpm.Finance"/>
+      <transition g="-58,-29" name="torisk" to="risk"/>
+   </task>
+   <task assignee="#{user}" form="law/law.jsp" g="683,149,97,49" name="law">
+      <assignment-handler class="com.cq.jbpm.Law"/>
+      <transition g="8,9" name="tojoin1" to="join1"/>
+   </task>
+   
+   <join g="624,348,37,37" name="join1">
+      <transition g="-76,-18" name="tostartsign" to="startsign"/>
+   </join>
+   
+   <decision g="624,900,25,37" name="decision_result">
+      <handler class="com.cq.jbpm.DecisionResult" />
+      <transition g="557,924;504,926;501,1128:-22,12" name="toend_cancel" to="end_cancel"/>
+      <transition g="4,-7" name="tobank" to="bank"/>
+      <transition g="515,903;519,491:-35,55" name="tocollect-data" to="collect-data"/>
+      <transition g="-85,-29" name="torefund" to="refund"/>
+   </decision>
+   <task assignee="#{userd}" form="decision/decision.jsp" g="599,824,97,49" name="decision">
+      <transition g="27,-8" name="todecision_result" to="decision_result"/>
+   </task>
+   <task assignee="#{user}" form="bank/bank.jsp" g="600,984,97,49" name="bank">
+      <transition g="7,-13" name="tobank_pass" to="bank_pass"/>
+   </task>
+   <task assignee="#{user}" form="charge/charge.jsp" g="924,-12,97,49" name="charge">
+      <transition g="4,-28" name="toreceive" to="receive"/>
+   </task>
+   <decision g="624,1068,37,25" name="bank_pass">
+      <handler class="com.cq.jbpm.BankPass" />
+      <transition g="648,1127;553,1127:-86,-35" name="toend_cancel" to="end_cancel"/>
+      <transition g="828,1093;830,13:-100,549" name="tocharge" to="charge"/>
+      <transition g="-85,-29" name="torefund" to="refund"/>
+   </decision>
+   <task assignee="#{user}" form="sign/sign.jsp" g="924,72,97,49" name="sign">
+      <transition g="-100,-29" name="toguaranty" to="guaranty"/>
+   </task>
+   <task assignee="#{user}" form="guaranty/guaranty.jsp" g="924,168,97,49" name="guaranty">
+      <transition g="-54,-13" name="tofile" to="file"/>
+   </task>
+   <task assignee="#{user}" form="file/file.jsp" g="924,240,97,49" name="file">
+      <transition g="-100,-29" name="totrack" to="track"/>
+   </task>
+   <task assignee="#{user}" form="track/track.jsp" g="924,324,97,49" name="track">
+      <transition g="-81,-13" name="toexpire" to="expire"/>
+   </task>
+   <decision expr="#{expire == 'yes' ? 'tonotice' : 'totrack'}" g="948,408,37,37" name="expire">
+      <transition g="1067,434;1069,349:-48,43" name="totrack" to="track"/>
+      <transition g="-100,-29" name="tonotice" to="notice"/>
+   </decision>
+   <task assignee="#{user}" form="notice/notice.jsp" g="924,492,97,49" name="notice">
+      <transition g="-100,-29" name="toclear" to="clear"/>
+   </task>
+   <task assignee="#{user}" form="clear/clear.jsp" g="924,576,97,49" name="clear">
+      <transition g="-89,-20" name="tonormal" to="normal"/>
+   </task>
+   <decision g="948,660,25,37" name="normal">
+      <handler class="com.cq.jbpm.Normal" />
+      <transition g="-64,-29" name="tocompensatory" to="compensatory"/>
+      <transition g="-46,-29" name="toreturnbail" to="returnbail"/>
+   </decision>
+   <task assignee="#{user}" form="compensatory/compensatory.jsp" g="924,744,97,49" name="compensatory">
+      <transition g="-91,-14" name="topersue_yes" to="persue_yes"/>
+   </task>
+   <decision expr="#{persue == 'yes' ? 'topersue' : 'toloss'}" g="948,828,37,37" name="persue_yes">
+      <transition g="-64,-29" name="topersue" to="persue"/>
+      <transition g="1069,853;1067,1011:-50,-104" name="toloss" to="loss"/>
+   </decision>
+   <task assignee="#{user}" form="persue/persue.jsp" g="924,900,97,49" name="persue">
+      <transition g="-100,-29" name="toloss" to="loss"/>
+   </task>
+   <task assignee="#{user}" form="loss/loss.jsp" g="924,984,97,49" name="loss">
+      <transition g="-111,-29" name="toend_error" to="end_error"/>
+   </task>
+   <end-error g="948,1068,37,37" name="end_error"/>
+   <end g="1200,804,37,37" name="end_normal"/>
+   <end-cancel g="252,1104,49,25" name="end_cancel"/>
+   <task assignee="#{user}" form="risk/risk.jsp" g="499,247,97,49" name="risk">
+      <transition g="-71,-29" name="tojoin1" to="join1"/>
+   </task>
+   <task assignee="#{user}" form="review-charge/review-charge.jsp" g="228,300,97,49" name="review-charge">
+      <transition g="11,-11" name="toaccept" to="accept"/>
+   </task>
+   <decision expr="#{apply_pass == 'yes' ? 'toreview-charge' : 'toend_cancel'}" g="252,192,49,25" name="apply-pass">
+      <transition g="-150,-29" name="toreview-charge" to="review-charge"/>
+   </decision>
+   <foreach g="624,528,30,29" in="#{judges}" name="foreach1" var="judge">
+      <transition g="-130,-29" name="tocountersign" to="countersign"/>
+   </foreach>
+   <task assignee="#{judge}" form="countersign/countersign.jsp" g="600,624,95,50" name="countersign">
+      <transition g="16,0" name="tojoin2" to="join2"/>
+   </task>
+   <join g="624,720,49,13" multiplicity="#{judge_number}" name="join2">
+      <transition g="10,-18" name="todecision" to="decision"/>
+   </join>
+   <task assignee="#{users}" form="startsign/startsign.jsp" g="600,432,85,49" name="startsign">
+      <transition g="-103,-29" name="toforeach1" to="foreach1"/>
+   </task>
+   <task assignee="#{user}" form="refund/refund.jsp" g="144,1200,97,61" name="refund">
+      <transition g="-123,-29" name="toend_cancel" to="end_cancel"/>
+   </task>
+   <task assignee="#{user}" form="returnbail/returnbail.jsp" g="1140,660,85,49" name="returnbail">
+      <transition g="-130,-29" name="toend_normal" to="end_normal"/>
+   </task>
+   <task assignee="#{user}" form="receive/receive.jsp" g="1092,36,85,49" name="receive">
+      <transition g="-18,8" name="tosign" to="sign"/>
+   </task>
+   <decision g="235,59,48,48" name="applyjudge">
+   <handler class="com.cq.jbpm.ApplyJudge" />
+      <transition g="-7,7" name="tocompanyApply" to="companyApply"/>
+      <transition g="1,-20" name="topensonApply" to="personApply"/>
+   </decision>
+   <task assignee="#{user}" form="apply/companyApply.jsp" g="54,106,92,52" name="companyApply">
+      <transition g="-85,-22" name="toapply-pass" to="apply-pass"/>
+   </task>
+   <task assignee="#{user}" form="apply/personApply.jsp" g="326,96,92,52" name="personApply">
+      <transition g="-85,-22" name="toapply-pass" to="apply-pass"/>
+   </task>
+</process>

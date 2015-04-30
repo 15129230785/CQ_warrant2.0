@@ -1,0 +1,81 @@
+package com.cq.service.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.dao.PersueDao;
+import com.cq.service.PersueService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblPersue;
+import com.cq.util.tools;
+
+public class PersueServiceImpl implements PersueService {
+	static Logger log = Logger.getLogger(PersueServiceImpl.class);
+	private String errorMsg;
+	
+	private PersueDao persueDao;
+	private TaskBaseService taskBaseService;
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public String persue(String taskid, String selValue, String wwid,
+			String mode, String money, double persueMoney) throws Exception {
+		String result = "";
+		String wid = null;
+		TblPersue persue = null;
+		
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String d = sdf.format(date);
+
+		wid = wwid.substring(wwid.lastIndexOf("w"));
+		
+		try {
+			String[] pm = money.split(", ");
+			String[] md = mode.split(", ");
+			for (int i = 0; i < pm.length; i++) {
+				persue = persueDao.findPersueByWidAndMode(wid, md[i].trim());
+				if (persue != null) {
+					persue.setTrueMoney(Double.parseDouble(pm[i].trim()));
+					persue.setDate(sdf.parse(d));
+					persueDao.update(persue);
+				}
+			}
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("persue", result);
+			map.put("user", selValue);
+			taskBaseService.setTaskVar(taskid, "history", "进入下一步（核销损失）处理");
+			taskBaseService.nextStep(taskid, map);
+		} catch (Exception e) {
+			errorMsg = "追偿业务流程处理失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly=true)
+	public List<TblPersue> getTblPersue(String wid) {
+		List<TblPersue> ld = null;
+
+		ld = persueDao.findByProperty("wid", wid);
+		return ld;
+	}
+
+	public void setPersueDao(PersueDao persueDao) {
+		this.persueDao = persueDao;
+	}
+
+	public void setTaskBaseService(TaskBaseService taskBaseService) {
+		this.taskBaseService = taskBaseService;
+	}
+
+}

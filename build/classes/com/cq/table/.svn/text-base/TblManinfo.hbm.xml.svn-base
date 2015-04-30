@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblManinfo" table="tbl_maninfo">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+        <property name="type" type="java.lang.Character">
+            <column name="Type" length="1" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="255" />
+        </property>
+        <property name="gender" type="java.lang.Character">
+            <column name="Gender" length="1" not-null="true" />
+        </property>
+        <property name="maritalStatus" type="java.lang.Character">
+            <column name="MaritalStatus" length="1" not-null="true" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="Birthday" length="10" not-null="true" />
+        </property>
+        <property name="country" type="string">
+            <column name="Country" length="255" not-null="true" />
+        </property>
+        <property name="education" type="java.lang.Character">
+            <column name="Education" length="1" not-null="true" />
+        </property>
+        <property name="manId" type="string">
+            <column name="ManID" length="18" />
+        </property>
+        <property name="yearsOfManager" type="java.lang.Character">
+            <column name="YearsOfManager" length="2" />
+        </property>
+        <property name="yearsOfVocation" type="java.lang.Character">
+            <column name="YearsOfVocation" length="2" />
+        </property>
+        <property name="record" type="string">
+            <column name="Record" length="1024"  />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,92 @@
+package com.cq.service.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.dao.WarrantinfoDao;
+import com.cq.service.FileService;
+import com.cq.service.ReviewDataService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblWarrantinfo;
+import com.cq.util.WarrantException;
+import com.cq.util.tools;
+
+public class FileServiceImpl implements FileService{
+	static Logger log = Logger.getLogger(FileServiceImpl.class);
+	private String errorMsg;
+	
+	private ReviewDataService reviewDataService;
+	private TaskBaseService taskBaseService;
+	private WarrantinfoDao warrantinfoDao;
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public String file(String taskid, String sel, String selValue, String wwid, String checkbox) throws Exception {
+		String wid = wwid.substring(wwid.lastIndexOf("w"));
+		
+		try {
+			updateFileDate(wid);
+
+			if (sel.equals("nextLater")) {
+				if (checkbox != null) {
+					String[] string = checkbox.split(",");
+					reviewDataService.setComdoclistSave(wid, string);
+				}
+			}
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("user", selValue);
+			taskBaseService.setTaskVar(taskid, "history", "提交到下一步（项目跟踪）处理");
+			taskBaseService.nextStep(taskid, map);
+		} catch (Exception e) {
+			errorMsg = "资料归档业务流程失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+	
+	private void updateFileDate(String wid) throws Exception {
+		TblWarrantinfo wi = warrantinfoDao.findWarrantinfoByWid(wid);
+		if (wi == null) {
+			errorMsg = "获取担保项目信息失败";
+			log.error(errorMsg);
+			throw new WarrantException(errorMsg);
+		}
+		
+		try {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String sj = sdf.format(new Date());
+		
+		wi.setFileSaveDate(sdf.parse(sj));
+		warrantinfoDao.update(wi);
+		} catch (Exception e) {
+			errorMsg = "修改担保信息数据中归档时间失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+
+	public void setWarrantinfoDao(WarrantinfoDao warrantinfoDao) {
+		this.warrantinfoDao = warrantinfoDao;
+	}
+
+	public void setTaskBaseService(TaskBaseService taskBaseService) {
+		this.taskBaseService = taskBaseService;
+	}
+
+	public void setReviewDataService(ReviewDataService reviewDataService) {
+		this.reviewDataService = reviewDataService;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+}

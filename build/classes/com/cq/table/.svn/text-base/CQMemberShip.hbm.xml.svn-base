@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.CQMemberShip" table="JBPM4_cq_membership">
+        <id name="kid" type="java.lang.Long">
+            <column name="kid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="user" column="user_" not-null="true" 
+        	class="com.cq.table.CQUser" foreign-key="FK_MEM_USER"
+                 index="IDX_MEM_USER" lazy="false"/>
+        <many-to-one name="group" column="group_" not-null="true" 
+        	class="com.cq.table.CQGroup" foreign-key="FK_MEM_GROUP"
+                 index="IDX_MEM_GROUP" lazy="false"/>
+    </class>
+</hibernate-mapping>

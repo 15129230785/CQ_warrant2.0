@@ -1,0 +1,365 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src/com/cq/dao/impl
+END
+ReginfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ReginfoDaoImpl.java
+END
+WarrantinfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src/com/cq/dao/impl/WarrantinfoDaoImpl.java
+END
+CominfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src/com/cq/dao/impl/CominfoDaoImpl.java
+END
+AntiwarrantDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/AntiwarrantDaoImpl.java
+END
+EmpinfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/EmpinfoDaoImpl.java
+END
+DecisionDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/DecisionDaoImpl.java
+END
+VendorDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/VendorDaoImpl.java
+END
+IncomestatementDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/IncomestatementDaoImpl.java
+END
+SysparamDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/dao/impl/SysparamDaoImpl.java
+END
+CountersignDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/CountersignDaoImpl.java
+END
+ShareholderDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ShareholderDaoImpl.java
+END
+ComdoclistDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ComdoclistDaoImpl.java
+END
+SrvchkDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/SrvchkDaoImpl.java
+END
+HistoryDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/HistoryDaoImpl.java
+END
+FieldSurveyDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/FieldSurveyDaoImpl.java
+END
+StationLetterDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/dao/impl/StationLetterDaoImpl.java
+END
+ManauditDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ManauditDaoImpl.java
+END
+CQUserDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/3375/CQ_warrant2.0/src/com/cq/dao/impl/CQUserDaoImpl.java
+END
+PersueDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/PersueDaoImpl.java
+END
+EvaluateDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/EvaluateDaoImpl.java
+END
+PersonDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src/com/cq/dao/impl/PersonDaoImpl.java
+END
+WarrantindexDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src/com/cq/dao/impl/WarrantindexDaoImpl.java
+END
+DeptinfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/DeptinfoDaoImpl.java
+END
+BranchinfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/BranchinfoDaoImpl.java
+END
+LawauditDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/LawauditDaoImpl.java
+END
+SalerevenuecheckDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/SalerevenuecheckDaoImpl.java
+END
+PersonalriskDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/PersonalriskDaoImpl.java
+END
+UnduewarrantDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/UnduewarrantDaoImpl.java
+END
+CQGroupDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3375/CQ_warrant2.0/src/com/cq/dao/impl/CQGroupDaoImpl.java
+END
+PersonalwarrantDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/PersonalwarrantDaoImpl.java
+END
+ChargeDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ChargeDaoImpl.java
+END
+UndueloanDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/UndueloanDaoImpl.java
+END
+CashflowstatementDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/CashflowstatementDaoImpl.java
+END
+RelatedcominfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/RelatedcominfoDaoImpl.java
+END
+DatareviewDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/DatareviewDaoImpl.java
+END
+BanlanceSheetDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/BanlanceSheetDaoImpl.java
+END
+RegshareholderDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/RegshareholderDaoImpl.java
+END
+ChangeinfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ChangeinfoDaoImpl.java
+END
+OperlogDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/OperlogDaoImpl.java
+END
+InvestDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/InvestDaoImpl.java
+END
+OverratioDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/OverratioDaoImpl.java
+END
+AnalysisindexDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/AnalysisindexDaoImpl.java
+END
+ProjectmonitorDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ProjectmonitorDaoImpl.java
+END
+DebtDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/DebtDaoImpl.java
+END
+StartsignDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/StartsignDaoImpl.java
+END
+CQMemberShipDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/3382/CQ_warrant2.0/src/com/cq/dao/impl/CQMemberShipDaoImpl.java
+END
+FinanceestDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/FinanceestDaoImpl.java
+END
+TaskGroupDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/3383/CQ_warrant2.0/src/com/cq/dao/impl/TaskGroupDaoImpl.java
+END
+BasicratioDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/BasicratioDaoImpl.java
+END
+ProductDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ProductDaoImpl.java
+END
+FamilyDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/FamilyDaoImpl.java
+END
+CompensatoryDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/CompensatoryDaoImpl.java
+END
+UnduebillDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/UnduebillDaoImpl.java
+END
+RiskestDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/RiskestDaoImpl.java
+END
+ProblemtrackDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ProblemtrackDaoImpl.java
+END
+CalculateindexDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/CalculateindexDaoImpl.java
+END
+BankinfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/BankinfoDaoImpl.java
+END
+DocchklistDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/DocchklistDaoImpl.java
+END
+ManinfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/dao/impl/ManinfoDaoImpl.java
+END
+ProjecthistoryDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/com/cq/dao/impl/ProjecthistoryDaoImpl.java
+END

@@ -1,0 +1,410 @@
+package com.cq.service.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.jbpm.api.ExecutionService;
+import org.jbpm.api.ProcessInstance;
+import org.jbpm.api.TaskQuery;
+import org.jbpm.api.task.Task;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.bean.ProjectInfo;
+import com.cq.dao.BankinfoDao;
+import com.cq.dao.CominfoDao;
+import com.cq.dao.PersonDao;
+import com.cq.dao.WarrantindexDao;
+import com.cq.dao.WarrantinfoDao;
+import com.cq.service.ProjectHistoryService;
+import com.cq.service.ProjectManageService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblCfgBankinfo;
+import com.cq.table.TblCominfo;
+import com.cq.table.TblPerson;
+import com.cq.table.TblWarrantindex;
+import com.cq.table.TblWarrantinfo;
+import com.cq.util.GlobalData;
+import com.cq.util.tools;
+
+public class ProjectManageServiceImpl implements ProjectManageService {
+	static Logger log = Logger.getLogger(ProjectManageServiceImpl.class);
+	private String errorMsg;
+	
+	private BankinfoDao bankinfoDao;
+	private CominfoDao cominfoDao;
+	private ExecutionService executionService;
+	private PersonDao personDao;
+	private ProjectHistoryService projectHistoryService;
+	private TaskBaseService taskBaseService;
+	private WarrantindexDao warrantindexDao;
+	private WarrantinfoDao warrantinfoDao;
+	
+	@Override
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public List<ProjectInfo> getProjectInfo(String projectType,
+			String projectName) throws Exception {
+		List<ProjectInfo> pil = null;
+		TblWarrantinfo warrantInfo = null;
+		TblWarrantindex warrantIndex = null;
+		String pid = null;
+		List<Task> ltask = null;
+		List<String> acl = null;
+		List<String> as = null;
+		
+		List<TblWarrantinfo> list = warrantinfoDao
+				.findWarrantByTypeAndName(projectType, projectName);
+		if (list == null || list.size() == 0) {
+			log.warn("数据库查询企业信息失败" + list);
+			return null;
+		}
+		
+		pil = new ArrayList<ProjectInfo>();
+		for (int i = 0; i < list.size(); i++) {
+			acl = null;
+			acl = new ArrayList<String>();
+			as = null;
+			as = new ArrayList<String>();
+			
+			ProjectInfo pi = new ProjectInfo();
+			warrantInfo = list.get(i);
+			pi.setProjectId(warrantInfo.getWid());
+			pi.setProjectName(warrantInfo.getName());
+			pi.setProjectStartDate(new SimpleDateFormat("yyyy-MM-dd").format(warrantInfo.getStartDate()));
+			pi.setState(warrantInfo.getState());
+			pi.setEndFlag(0);
+			
+			pid = warrantInfo.getWid().substring(0, list.get(i).getWid().length() - 8);
+			ltask = taskBaseService.taskQuery().processInstanceId(pid).list();
+			if (ltask != null && ltask.size() > 0) {
+				for (int j = 0; j < ltask.size(); j++) {
+					String temp = ltask.get(j).getActivityName();
+					String ass = ltask.get(j).getAssignee();
+					acl.add(GlobalData.taskNames.get(temp));
+					as.add(ass);
+				}
+				pi.setEndFlag(1);
+			}
+			pi.setActivity(acl);
+			pi.setAssignee(as);
+			
+			boolean addFlag = false;
+			warrantIndex = warrantindexDao.findByWid(warrantInfo.getWid());
+			if (warrantIndex != null) {
+				if ("0".equals(projectType)
+						|| ("1".equals(projectType) && warrantIndex.getType() == '0')
+						|| ("2".equals(projectType) && warrantIndex.getType() == '1')) {
+					addFlag = true;
+					pi.setClientId(warrantIndex.getId());
+					pi.setClientType(Character.toString(warrantIndex.getType()));
+					pi.setClientName(warrantIndex.getName());
+				}
+			} else {
+				if (ltask != null && ltask.size() > 0) {
+					for (int j = 0; j < ltask.size(); j++) {
+						String temp = ltask.get(j).getActivityName();
+						if (temp.equals("companyApply")
+								&& (("0".equals(projectType))
+									|| ("1".equals(projectType)))) {
+							addFlag = true;
+							String eid = (String) taskBaseService.getTaskVar(ltask.get(j).getId(), "Eid");
+							pi.setClientId(eid);
+							pi.setClientType("0");
+							if (null != eid) {
+								TblCominfo cominfo = cominfoDao.findCominfoByEid(eid);
+								if (cominfo != null) {
+									pi.setClientName(cominfo.getName());
+								}
+							}
+						} else if (temp.equals("personApply")
+								&& (("0".equals(projectType))
+										|| ("2".equals(projectType)))) {
+							addFlag = true;
+							String perId = (String) taskBaseService.getTaskVar(ltask.get(j).getId(), "PerID");
+							pi.setClientId(perId);
+							pi.setClientType("1");
+							if (null != perId) {
+								TblPerson person = personDao.findPersonByID(perId);
+								if (person != null) {
+									pi.setClientName(person.getName());
+								}
+							}
+						}
+					}
+				}
+			}
+			pi.setDelFlag(0);
+			if (addFlag) {
+				pil.add(pi);
+			}
+		}
+		
+		List<Task> taskList = null;
+		TaskQuery taskQuery = taskBaseService.taskQuery().orderDesc(TaskQuery.PROPERTY_CREATEDATE);
+		
+		if ("0".equals(projectType) || "1".equals(projectType)) {
+			taskList = taskQuery.activityName("companyApply").list();
+			for (int i = 0; i < taskList.size(); i++) {
+				ProjectInfo pi = new ProjectInfo();
+				Task task = taskList.get(i);
+				String tmpwid = (String) taskBaseService.getTaskVar(task.getId(), "Wid");
+				
+				if (findWid(tmpwid, list)) {
+					continue;
+				}
+	
+				acl = null;
+				acl = new ArrayList<String>();
+				as = null;
+				as = new ArrayList<String>();
+	
+				acl.add(GlobalData.taskNames.get(task.getActivityName()));
+				pi.setActivity(acl);
+	
+				as.add(task.getAssignee());
+				pi.setAssignee(as);
+	
+				String tmpeid = (String) taskBaseService.getTaskVar(task.getId(), "Eid");
+				pi.setClientName("");
+				if (StringUtils.isBlank(tmpeid)) {
+					pi.setClientId("");
+				} else {
+					pi.setClientId(tmpeid);
+					TblCominfo tmpcominfo = cominfoDao.findCominfoByEid(tmpeid);
+					if (tmpcominfo != null) {
+						pi.setClientName(tmpcominfo.getName());
+					}
+				}
+				
+				pi.setClientType("0");
+				pi.setProjectId(tmpwid);
+				pi.setProjectName((String) taskBaseService.getTaskVar(task.getId(), "qyname"));
+				pi.setProjectStartDate("");
+				pi.setState(null);
+				pi.setDelFlag(1);
+				pi.setEndFlag(0);
+	
+				pil.add(pi);
+			}
+		}
+
+		if ("0".equals(projectType) || "2".equals(projectType)) {
+			taskList = taskQuery.activityName("personApply").list();
+			for (int i = 0; i < taskList.size(); i++) {
+				ProjectInfo pi = new ProjectInfo();
+				Task task = taskList.get(i);
+				String tmpwid = (String) taskBaseService.getTaskVar(task.getId(), "Wid");
+				
+				if (findWid(tmpwid, list)) {
+					continue;
+				}
+	
+				acl = null;
+				acl = new ArrayList<String>();
+				as = null;
+				as = new ArrayList<String>();
+	
+				acl.add(GlobalData.taskNames.get(task.getActivityName()));
+				pi.setActivity(acl);
+	
+				as.add(task.getAssignee());
+				pi.setAssignee(as);
+	
+				String tmppid = (String) taskBaseService.getTaskVar(task.getId(), "PerID");
+				pi.setClientName("");
+				if (StringUtils.isBlank(tmppid)) {
+					pi.setClientId("");
+				} else {
+					pi.setClientId(tmppid);
+					TblPerson tmpperson = personDao.findOnlyByProperty("id", tmppid);
+					if (tmppid != null) {
+						pi.setClientName(tmpperson.getName());
+					}
+				}
+				
+				pi.setClientType("1");
+				pi.setProjectId(tmpwid);
+				pi.setProjectName((String) taskBaseService.getTaskVar(task.getId(), "qyname"));
+				pi.setProjectStartDate("");
+				pi.setState(null);
+				pi.setDelFlag(1);
+				pi.setEndFlag(0);
+	
+				pil.add(pi);
+			}
+		}
+		
+		taskList = taskQuery.activityName("apply").list();
+		for (int i = 0; i < taskList.size(); i++) {
+			ProjectInfo pi = new ProjectInfo();
+			Task task = taskList.get(i);
+			String tmpwid = (String) taskBaseService.getTaskVar(task.getId(), "Wid");
+
+			acl = null;
+			acl = new ArrayList<String>();
+			as = null;
+			as = new ArrayList<String>();
+
+			acl.add(GlobalData.taskNames.get(task.getActivityName()));
+			pi.setActivity(acl);
+
+			as.add(task.getAssignee());
+			pi.setAssignee(as);
+
+			pi.setClientId("");
+			pi.setClientName("");
+			pi.setClientType("");
+			pi.setProjectId(tmpwid);
+			pi.setProjectName("");
+			pi.setProjectStartDate("");
+			pi.setState(null);
+			pi.setDelFlag(1);
+			pi.setEndFlag(0);
+
+			pil.add(pi);
+		}
+		
+		return pil;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public boolean deleteProjectProcess(String wid) throws Exception {
+		String pid = null;
+		ProcessInstance pi = null;
+		
+		try {
+			pid = wid.substring(0, wid.length() - 8);
+			pi = executionService.findProcessInstanceById(pid);
+			if (pi == null) {
+				tools.returnError(log, "项目流程在系统中不存在，可能已经被删除");
+				return false;
+			}
+			executionService.deleteProcessInstanceCascade(pid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			errorMsg = "删除项目流程时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return true;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public boolean forceEndProjectProcess(String wid) throws Exception {
+		String pid = null;
+		List<Task> taskList = null;
+		
+		try {
+			pid = wid.substring(0, wid.length() - 8);
+			taskList = taskBaseService.taskQuery().processInstanceId(pid).list();
+			
+			String taskName = taskList.get(0).getActivityName();
+
+			taskBaseService.manualTaskOut(wid, taskName, "end_cancel");
+			projectHistoryService.addProcessHistory(wid, tools.getLoginUser() + "强行终止了项目");
+			restoreBankQuota(wid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			errorMsg = "强行结束项目流程时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return true;
+	}
+	
+	private void restoreBankQuota(String wid) {
+		TblWarrantinfo wi = warrantinfoDao.findWarrantinfoByWid(wid);
+		double money = 0;
+		Character warrantState = wi.getState();
+		
+		if ((warrantState != null)
+			&& (warrantState == '1')
+			&& (wi.getMoney() != 0)) {
+			money = wi.getMoney();
+		} else if (wi.getPracticalMoney() != 0) {
+			money = wi.getPracticalMoney();
+		}
+		
+		Date enddate = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String bid = wi.getBank();
+		TblCfgBankinfo bank = bankinfoDao.findBankinfoByBidAndDate(bid, sdf.format(enddate));
+		if (bank != null) {
+			double remaining = bank.getRemaining();
+			double quota = bank.getQuota();
+			double newRemaining = 0;
+			if (money + remaining >= quota) {
+				newRemaining = quota;
+			} else {
+				newRemaining = money + remaining;
+			}
+			
+			bank.setRemaining(newRemaining);
+			bankinfoDao.update(bank);
+		} else {
+			log.warn("数据库查询银行信息失败" + bid);
+		}
+
+		wi.setEndDate(enddate);
+		wi.setCause("用户(" + tools.getLoginUser() + ")强制结束");
+		warrantinfoDao.update(wi);
+	}
+	
+	@Override
+	public List<String> getProjectNameList(String projectType) {
+		List<String> pnl = null;
+		pnl = warrantinfoDao.findWarrantName(projectType);
+		return pnl;
+	}
+
+	private boolean findWid(String wid, List<TblWarrantinfo> wi) {
+		if (wid == null || wi == null) {
+			return false;
+		}
+		
+		int size = wi.size();
+		for (int i = 0; i < size; i++) {
+			if (wid.equals(wi.get(i).getWid())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void setWarrantinfoDao(WarrantinfoDao warrantinfoDao) {
+		this.warrantinfoDao = warrantinfoDao;
+	}
+
+	public void setWarrantindexDao(WarrantindexDao warrantindexDao) {
+		this.warrantindexDao = warrantindexDao;
+	}
+
+	public void setCominfoDao(CominfoDao cominfoDao) {
+		this.cominfoDao = cominfoDao;
+	}
+
+	public void setPersonDao(PersonDao personDao) {
+		this.personDao = personDao;
+	}
+
+	public void setExecutionService(ExecutionService executionService) {
+		this.executionService = executionService;
+	}
+
+	public void setBankinfoDao(BankinfoDao bankinfoDao) {
+		this.bankinfoDao = bankinfoDao;
+	}
+
+	public void setProjectHistoryService(ProjectHistoryService projectHistoryService) {
+		this.projectHistoryService = projectHistoryService;
+	}
+
+	public void setTaskBaseService(TaskBaseService taskBaseService) {
+		this.taskBaseService = taskBaseService;
+	}
+}

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/cq/!svn/ver/5441/CQ_warrant2.0/src
+END
+warrant.png
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/cq/!svn/ver/3244/CQ_warrant2.0/src/warrant.png
+END
+struts.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/struts.xml
+END
+jbpm.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/jbpm.cfg.xml
+END
+warrant.jpdl.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/warrant.jpdl.xml
+END
+applicationcontext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/applicationcontext.xml
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/log4j.properties
+END
+warrant.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/warrant.cfg.xml
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/cq/!svn/ver/4778/CQ_warrant2.0/src/jdbc.properties
+END

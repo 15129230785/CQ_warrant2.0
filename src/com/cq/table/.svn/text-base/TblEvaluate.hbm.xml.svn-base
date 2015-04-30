@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblEvaluate" table="tbl_evaluate">
+    	<id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="wid" type="string">
+            <column name="WID" length="60" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="60" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="Date" length="10" not-null="true" />
+        </property>
+        <property name="asset" type="big_decimal">
+            <column name="Asset" precision="10" not-null="true" />
+        </property>
+        <property name="debt" type="big_decimal">
+            <column name="Debt" precision="10" not-null="true" />
+        </property>
+        <property name="netAsset" type="big_decimal">
+            <column name="NetAsset" precision="10" not-null="true" />
+        </property>
+        <property name="loan" type="big_decimal">
+            <column name="Loan" precision="10" not-null="true" />
+        </property>
+        <property name="currentAsset" type="big_decimal">
+            <column name="CurrentAsset" precision="10" not-null="true" />
+        </property>
+        <property name="currentDebt" type="big_decimal">
+            <column name="CurrentDebt" precision="10" not-null="true" />
+        </property>
+        <property name="salesCashFlow" type="big_decimal">
+            <column name="SalesCashFlow" precision="10" not-null="true" />
+        </property>
+        <property name="dueDebt" type="big_decimal">
+            <column name="DueDebt" precision="10" not-null="true" />
+        </property>
+        <property name="sales" type="big_decimal">
+            <column name="Sales" precision="10" not-null="true" />
+        </property>
+        <property name="meanAsset" type="big_decimal">
+            <column name="MeanAsset" precision="10" not-null="true" />
+        </property>
+        <property name="netProfit" type="big_decimal">
+            <column name="NetProfit" precision="10" not-null="true" />
+        </property>
+        <property name="lastYearSales" type="big_decimal">
+            <column name="LastYearSales" precision="10" not-null="true" />
+        </property>
+        <property name="forcastCash" type="big_decimal">
+            <column name="ForcastCash" precision="10" not-null="true" />
+        </property>
+        <property name="loanMoney" type="big_decimal">
+            <column name="LoanMoney" precision="10" not-null="true" />
+        </property>
+        <property name="loanUsage" type="java.lang.Character">
+            <column name="LoanUsage" length="1" not-null="true" />
+        </property>
+        <property name="experience" type="java.lang.Character">
+            <column name="Experience" length="1" not-null="true" />
+        </property>
+        <property name="future" type="java.lang.Character">
+            <column name="Future" length="1" not-null="true" />
+        </property>
+        <property name="resource" type="java.lang.Character">
+            <column name="Resource" length="1" not-null="true" />
+        </property>
+        <property name="skill" type="java.lang.Character">
+            <column name="Skill" length="1" not-null="true" />
+        </property>
+        <property name="creditRecord" type="java.lang.Character">
+            <column name="CreditRecord" length="1" not-null="true" />
+        </property>
+        <property name="risk" type="big_decimal">
+            <column name="Risk" precision="5" not-null="true" />
+        </property>
+        <property name="conclusion" type="string">
+            <column name="Conclusion" length="1024" />
+        </property>
+    </class>
+</hibernate-mapping>

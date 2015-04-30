@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<cms>
+		<cm value="0" desc="货币" />
+		<cm value="1" desc="实物" />
+		<cm value="2" desc="知识产权" />
+		<cm value="3" desc="土地使用权" />
+		<cm value="4" desc="劳务" />
+		<cm value="5" desc="信用" />
+	</cms>
+</config>

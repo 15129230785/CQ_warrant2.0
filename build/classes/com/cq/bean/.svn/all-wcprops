@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/cq/!svn/ver/4204/CQ_warrant2.0/src/com/cq/bean
+END
+DocList.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/bean/DocList.java
+END
+Intact.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/bean/Intact.java
+END
+ProjectInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/4204/CQ_warrant2.0/src/com/cq/bean/ProjectInfo.java
+END
+EventType.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/bean/EventType.java
+END
+TaskName.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/cq/!svn/ver/3180/CQ_warrant2.0/src/com/cq/bean/TaskName.java
+END
+StationLetterReciever.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/cq/!svn/ver/3439/CQ_warrant2.0/src/com/cq/bean/StationLetterReciever.java
+END
+CompanyType.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cq/!svn/ver/2727/CQ_warrant2.0/src/com/cq/bean/CompanyType.java
+END
+ClientInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/bean/ClientInfo.java
+END
+CompanyProperty.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/bean/CompanyProperty.java
+END
+MemberShip.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cq/!svn/ver/3372/CQ_warrant2.0/src/com/cq/bean/MemberShip.java
+END
+BankName.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/cq/!svn/ver/2692/CQ_warrant2.0/src/com/cq/bean/BankName.java
+END
+UserRight.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/cq/!svn/ver/3384/CQ_warrant2.0/src/com/cq/bean/UserRight.java
+END

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblFieldsurvey" table="tbl_fieldsurvey">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="WID" length="60" />
+		</property>
+        <property name="name" type="string">
+            <column name="Name" length="60" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="StartDate" length="10" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="EndDate" length="10" />
+        </property>
+        <property name="product" type="string">
+            <column name="Product" length="1024"/>
+        </property>
+        <property name="equipment" type="string">
+            <column name="Equipment" length="1024" />
+        </property>
+        <property name="manage" type="string">
+            <column name="Manage" length="1024"/>
+        </property>
+        <property name="staff" type="string">
+            <column name="Staff" length="1024"/>
+        </property>
+        <property name="workplace" type="string">
+            <column name="Workplace" length="1024"/>
+        </property>
+        <property name="counterGuarantee" type="string">
+            <column name="CounterGuarantee" length="1024"/>
+        </property>
+          <property name="loausanalysis" type="string">
+            <column name="Loausanalysis" length="1024"/>
+        </property>
+    </class>
+</hibernate-mapping>

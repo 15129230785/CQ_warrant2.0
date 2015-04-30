@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="user" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="loginCheck" class="com.cq.action.LoginCheck" />
+			<interceptor-stack name="cq-default">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginCheck" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="cq-default" />
+
+		<global-results>
+			<result name="login">/newLogin.jsp</result>
+			<result name="warrantException">/exception.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="warrantException" exception="java.lang.Exception" />
+		</global-exception-mappings>
+		
+		<!-- 添加用户 -->
+		<action name="AddUser" class="com.cq.action.UserAction"	method="addUser">
+			<result name="success">/user/user.jsp</result>
+<!-- 			<result name="error">/error.jsp</result> -->
+		</action>
+		<!-- 删除用户 -->
+		<action name="DeleteUser" class="com.cq.action.UserAction" method="deleteUser">
+			<result name="success">/user/user.jsp</result>
+<!-- 			<result name="error">/error.jsp</result> -->
+		</action>
+		<!-- 获取所有用户信息 -->
+		<action name="GetUserList" class="com.cq.action.UserAction" method="getUserList"></action>
+		<!-- 模糊查询 -->
+		<action name="ListUser" class="com.cq.action.UserAction" method="CXsel"></action>
+		<!-- 获取被修改用户信息 -->
+		<action name="GetUserByName" class="com.cq.action.UserAction" method="getUserByName"></action>
+		
+		<!-- 添加组成员 -->
+		<action name="AddGroup" class="com.cq.action.RoleAction" method="addGroup">
+			<result name="success">/group/group.jsp</result>
+<!-- 			<result name="error">/error.jsp</result> -->
+		</action>
+		<!-- 修改用户信息 -->
+		<action name="LoginActionU" class="com.cq.action.UserAction"
+			method="updateUser">
+			<result name="success">/over.jsp</result>
+		</action>
+		
+		<action name="DeleteGroup" class="com.cq.action.RoleAction" method="deleteGroup"></action>
+		<action name="GetGroupList" class="com.cq.action.RoleAction" method="getGroupList"></action>
+		
+		<action name="AddMemberShip" class="com.cq.action.MemberAction" method="addMemberShip">
+			<result name="success">/memberShip.jsp</result>
+		</action>
+		<action name="DeleteMemberShip" class="com.cq.action.MemberAction" method="deleteMemberShip">
+			<result name="success">/membership/memberShip.jsp</result>
+		</action>
+		<action name="GetMemberShipList" class="com.cq.action.MemberAction" method="getMemberShipList"></action>
+		
+		<!-- 获取任务指定处理人 -->
+		<action name="GetMemShip" class="com.cq.action.MemberAction" method="getMemShip"></action>
+		<action name="GetUserRight" class="com.cq.action.CustomerAction" method="getUserRight"></action>
+	</package>
+</struts>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<ims>
+		<im value="0" desc="货币" />
+		<im value="1" desc="实物" />
+		<im value="2" desc="工业产权和非专利技术" />
+		<im value="3" desc="土地使用权" />
+	</ims>
+</config>

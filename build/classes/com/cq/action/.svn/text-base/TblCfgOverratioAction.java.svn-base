@@ -1,0 +1,139 @@
+package com.cq.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.annotation.CQAnnotationOperlog;
+import com.cq.dao.OverratioDao;
+import com.cq.table.TblCfgOverratio;
+import com.cq.util.tools;
+
+@CQAnnotationOperlog(tableName="过度系数", dataName="co")
+public class TblCfgOverratioAction {
+	static Logger log = Logger.getLogger(TblCfgOverratioAction.class);
+	private String errorMsg;
+	
+	private double or0;
+	private double or1;
+	private double or2;
+	private TblCfgOverratio co;
+	
+	@Resource OverratioDao overratioDao;
+
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public String update() throws Exception {
+		List<TblCfgOverratio> orl = null;
+		TblCfgOverratio or = null;
+		try {
+			orl = overratioDao.list();
+			if (orl == null || orl.size() == 0) {
+				tools.returnError(log, "系统中没有要修改的数据");
+				return "error";
+			} else {
+				co = or;
+				co = orl.get(0);
+				
+				co.setOr0(or0);
+				co.setOr1(or1);
+				co.setOr2(or2);
+				
+				overratioDao.update(co);
+			}
+		} catch (Exception e) {
+			errorMsg = "修改失败";
+			tools.throwException(e, log, errorMsg);
+		}
+		return "success";
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void list() throws Exception {
+		StringBuffer outs = null;
+		
+		TblCfgOverratio or = null;
+		List<TblCfgOverratio> orl = null;
+		
+		orl = overratioDao.list();
+		if (orl == null || orl.size() == 0) {
+			tools.outputInfo(new StringBuffer("<p>没有配置过度系数信息。</p>"));
+		} else {
+			outs = new StringBuffer();
+			or = orl.get(0);
+			
+			or0 = or.getOr0();
+			or1 = or.getOr1();
+			or2 = or.getOr2();
+
+			outs.append("<p>过度系数配置</p>");
+			outs.append("<table width='100%' border='0' align='center'>");
+			outs.append("<tr>");
+			outs.append("<td width='150px'></td>");
+			outs.append("<td width='150px'>贷款年限1年以下(含1年)%</td>");
+			outs.append("<td width='150px'>贷款年限1-2年(含2年)%</td>");
+			outs.append("<td width='150px'>贷款年限2-3年(含3年)%</td>");
+			outs.append("</tr>");
+			outs.append("<tr>");
+			outs.append("<td width='150px'><a href='#'  onclick='updateOverRatioJs("
+					+ or0 + ',' + or1 + ',' + or2 + ")'>" + "修改");
+			outs.append("</td>");
+			outs.append("<td width='150px'>" + or0);
+			outs.append("</td>");
+			outs.append("<td width='150px'>" + or1);
+			outs.append("</td>");
+			outs.append("<td width='150px'>" + or2);
+			outs.append("</td>");
+			outs.append("</tr>");
+			outs.append("</table>");
+			
+			tools.outputInfo(outs);
+		}
+	}
+
+	public double getOr0() {
+		return or0;
+	}
+
+	public void setOr0(double or0) {
+		this.or0 = or0;
+	}
+
+	public double getOr1() {
+		return or1;
+	}
+
+	public void setOr1(double or1) {
+		this.or1 = or1;
+	}
+
+	public double getOr2() {
+		return or2;
+	}
+
+	public void setOr2(double or2) {
+		this.or2 = or2;
+	}
+
+	public void setOverratioDao(OverratioDao overratioDao) {
+		this.overratioDao = overratioDao;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+	public TblCfgOverratio getCo() {
+		return co;
+	}
+
+	public void setCo(TblCfgOverratio co) {
+		this.co = co;
+	}
+}

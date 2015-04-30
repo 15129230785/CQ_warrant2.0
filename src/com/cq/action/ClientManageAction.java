@@ -1,0 +1,182 @@
+package com.cq.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.apache.log4j.Logger;
+import org.jbpm.api.task.Task;
+
+import com.cq.bean.ClientInfo;
+import com.cq.service.ClientManageService;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblWarrantinfo;
+import com.cq.util.GlobalData;
+import com.cq.util.tools;
+
+public class ClientManageAction {
+	static Logger log = Logger.getLogger(ClientManageAction.class);
+	private String errorMsg;
+	
+	@Resource ClientManageService clientManageService;
+	@Resource TaskBaseService taskBaseService;
+	
+	private String clientType;
+	private String txt;
+
+	public void getClientInfo() throws Exception {
+		StringBuffer outs = null;
+		List<ClientInfo> temp1 = null;
+		List<ClientInfo> temp2 = null;
+		
+		outs = new StringBuffer();
+
+		switch (clientType) {
+		case "1":
+			temp1 = clientManageService.findClientByCompanyName(txt);
+			break;
+		case "2":
+			temp2 = clientManageService.findClientByPersonName(txt);
+			break;
+		case "0":
+		default:
+			temp1 = clientManageService.findClientByCompanyName(txt);
+			temp2 = clientManageService.findClientByPersonName(txt);
+			break;
+		}
+		
+		if (null == temp1 && null == temp2) {
+			outs.append("根据输入条件没有查询到相关信息，请重新输入查询条件进行查询");
+		} else {
+			outs.append("<table width='100%'>");
+			outs.append("<tr>");
+			outs.append("<th width='40%'>客户名称</th>");
+			outs.append("<th width='15%'>客户类型</th>");
+			outs.append("<th width='45%'>项目名称</th>");
+			outs.append("</tr>");
+			if (temp1 != null) {
+				outs.append(getClientList(temp1));
+			}
+			if(temp2 != null) {
+				outs.append(getClientList(temp2));
+			}
+			outs.append("</table>");
+		}
+		
+		tools.outputInfo(outs.toString());
+	}
+	
+	public void getClientName() throws Exception {
+		List<String> temp1 = null;
+		List<String> temp2 = null;
+		
+		switch (clientType) {
+		case "1":
+			temp1 = clientManageService.findCompanyClientName();
+			break;
+		case "2":
+			temp2 = clientManageService.findPersonClientName();
+			break;
+		case "0":
+		default:
+			temp1 = clientManageService.findCompanyClientName();
+			temp2 = clientManageService.findPersonClientName();
+			break;
+		}
+
+		if (null == temp1 && null == temp2) {
+			tools.outputInfo(JSONObject.fromObject(null));
+		} else {
+			JSONArray ja = new JSONArray();
+			if (temp1 != null) {
+				for (int i = 0; i < temp1.size(); i++) {
+					ja.add(temp1.get(i));
+				}
+			}
+			if(temp2 != null) {
+				for (int i = 0; i < temp2.size(); i++) {
+					ja.add(temp2.get(i));
+				}
+			}
+			JSONObject result = new JSONObject();
+			result.put("clientName", ja.toString());
+			tools.outputInfo(result);
+		}
+	}
+	
+	private StringBuffer getClientList(List<ClientInfo> list) throws Exception {
+		ClientInfo client = null;
+		List<TblWarrantinfo> wList = null;
+		StringBuffer outs = null;
+		String activityName = "";
+		
+		if (list == null || list.size() == 0) {
+			log.warn("处理客户信息列表时参数异常" + list);
+			return null; 
+		}
+		
+		try {
+			outs = new StringBuffer();
+			for (int i = 0; i < list.size(); i++) {
+				client = list.get(i);
+				wList = client.getProject();
+				outs.append("<tr>");
+				if ("0".equals(client.getType())) {
+					outs.append("<td style='cursor:pointer' onclick='upcominfoJs(" 
+							+ '\"' + client.getId() + '\"' + ")'>"
+							+ client.getName() + "</td>");
+					outs.append("<td>企业</td><td>");
+				} else {
+					outs.append("<td style='cursor:pointer' onclick='procominfoJs(" 
+							+ '\"' + client.getId() + '\"' + ")'>"
+							+ client.getName() + "</td>");
+					outs.append("<td>个人</td><td>");
+				}
+				if (wList != null && wList.size() > 0) {
+					for (int j = 0; j < wList.size(); j++) {
+						activityName = "";
+						String wid = wList.get(j).getWid();
+						int len = wid.length()-8;
+						String w = wid.substring(0, len);
+						List<Task> ltask = taskBaseService.taskQuery().processInstanceId(w).list();
+						if(ltask != null && ltask.size() > 0){
+							if (null != ltask.get(0).getActivityName() && !"".equals(ltask.get(0).getActivityName())) {
+								activityName = ltask.get(0).getActivityName();
+							}
+						}
+						outs.append("<a href='#' onclick='updateProjectDataJs(" + '\"'
+								+ wList.get(j).getWid() + '\"' + ',' + '\"'
+								+ GlobalData.taskNames.get(activityName) + '\"' + ',' + '\"'
+								+ wList.get(j).getState() + '\"' + ")'>"
+								+ wList.get(j).getName() + "</a><br>");
+					}
+				}
+				outs.append("</td></tr>");
+			}
+		} catch (Exception e) {
+			errorMsg = "生成客户信息列表时系统发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+		return outs;
+	}
+
+	public String getClientType() {
+		return clientType;
+	}
+
+	public void setClientType(String clientType) {
+		this.clientType = clientType;
+	}
+
+	public String getTxt() {
+		return txt;
+	}
+
+	public void setTxt(String txt) {
+		this.txt = txt;
+	}
+
+}

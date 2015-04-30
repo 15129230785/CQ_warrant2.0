@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblDeptinfo" table="tbl_deptinfo">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="255" not-null="true" />
+        </property>
+        <property name="duty" type="string">
+            <column name="Duty" length="1024" />
+        </property>
+    </class>
+</hibernate-mapping>

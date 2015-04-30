@@ -1,0 +1,40 @@
+body {
+	font: normal 12px "宋体";
+	background: url(../tabs/images/bg.gif) repeat-x 0 5px;
+	color: #474747;
+}
+#filelistdiv table{
+	border: 1px solid #B1CDE3;
+	border-collapse: collapse;
+	width: 100%;
+	margin:5px 0;
+}
+
+#filelistdiv table th
+{
+	font: bold 12px/30px "宋体";
+	color: #797268;
+	background: #D8E0E0;
+	border: 1px solid #476074;
+	border-collapse: collapse;
+	line-height:150%;
+	text-align:center;
+}
+
+#filelistdiv table td{
+	border: 1px solid #B1CDE3;
+	background: #fff;
+	font: normal 12px "宋体";
+	padding: 3px 0;
+	color: #4f6b72;
+	text-align: center;
+}
+a {
+	color: #4f6b72;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ff3300;
+	text-decoration: underline;
+}

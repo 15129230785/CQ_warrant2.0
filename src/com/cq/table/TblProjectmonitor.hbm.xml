@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblProjectmonitor" table="tbl_projectmonitor">
+		<id name="kid" type="java.lang.Integer">
+			<column name="KID" />
+			<generator class="identity" />
+		</id>
+		<property name="wid" type="string">
+			<column name="WID" length="60" not-null="true" />
+		</property>
+        <property name="date" type="date">
+            <column name="Date" length="10" not-null="true" />
+        </property>
+        <property name="person" type="string">
+            <column name="Person" length="10" not-null="true" />
+        </property>
+        <property name="work" type="string">
+            <column name="Work" length="1024" />
+        </property>
+        <property name="fund" type="string">
+            <column name="Fund" length="1024" />
+        </property>
+        <property name="finance" type="string">
+            <column name="Finance" length="1024" />
+        </property>
+        <property name="antiwarrant" type="string">
+            <column name="Antiwarrant" length="1024" />
+        </property>
+        <property name="matter" type="string">
+            <column name="Matter" length="1024" />
+        </property>
+        <property name="conclusion" type="string">
+            <column name="Conclusion" length="1024" />
+        </property>
+        <property name="issue" type="string">
+            <column name="Issue" length="1024" />
+        </property>
+    </class>
+</hibernate-mapping>

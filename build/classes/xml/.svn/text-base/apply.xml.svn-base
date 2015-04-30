@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="apply" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="loginCheck" class="com.cq.action.LoginCheck" />
+			<interceptor-stack name="cq-default">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginCheck" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="cq-default" />
+
+		<global-results>
+			<result name="login">/newLogin.jsp</result>
+			<result name="warrantException">/exception.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="warrantException"
+				exception="java.lang.Exception" />
+		</global-exception-mappings>
+
+		<action name="SelectAjax*" class="com.cq.action.{1}Action" method="selectAjax{1}"></action>
+		<action name="OutDelete*" class="com.cq.action.{1}Action" method="outDelete{1}"></action>
+		<action name="GetTbl*" class="com.cq.action.Tbl{1}Action" method="getTbl{1}"></action>
+		<action name="Sava*" class="com.cq.action.{1}Action" method="sava{1}">
+			<result name="success">/apply/tableSuccess.jsp</result>
+		</action>
+		<action name="Update*" class="com.cq.action.{1}Action" method="update{1}">
+			<result name="success">/apply/tableSuccess.jsp</result>
+		</action>
+		<action name="GetTblWarrantinfo" class="com.cq.action.TblWarrantinfoAction"
+			method="getTblWarrantinfo">
+		</action>
+		<action name="GetTblWarrantinfoList" class="com.cq.action.TblWarrantinfoAction"
+			method="getTblWarrantinfoList">
+		</action>
+		<action name="GetPersonInfo" class="com.cq.action.TblPersonAction"
+			method="getPersonInfo">
+		</action>
+		<action name="GetTaskVar" class="com.cq.action.TaskBaseAction"
+			method="getTaskVar"></action>
+		<action name="GetBankName" class="com.cq.action.TblCfgBankinfoAction"
+			method="getBankName"></action>
+		<action name="IsTaskExist" class="com.cq.action.TaskBaseAction"
+			method="isTaskExist"></action>
+		<action name="GetMyTaskList" class="com.cq.action.TaskBaseAction"
+			method="getMyTaskList"></action>
+		<action name="GetCompanyType" class="com.cq.action.ApplyWarrantAction"
+			method="getCompanyType"></action>
+		<action name="GetCompanyProperty" class="com.cq.action.ApplyWarrantAction"
+			method="getCompanyProperty"></action>
+		<action name="GetEventTypeList" class="com.cq.action.TblHistoryAction"
+			method="getEventTypeList"></action>
+		<action name="GetProjectDocList" class="com.cq.action.CollectDataAction"
+			method="getProjectDocList"></action>
+		<action name="GetChargeInfo" class="com.cq.action.ChargeAction"
+			method="getChargeInfo"></action>
+		<action name="GetRiskReviewInfo" class="com.cq.action.StartSignAction"
+			method="getRiskReviewInfo"></action>
+		<action name="GetReviewerList" class="com.cq.action.StartSignAction"
+			method="getReviewerList"></action>
+		<action name="GetPersueInfo" class="com.cq.action.PersueAction"
+			method="getPersueInfo"></action>
+		<action name="GetTrackInfo" class="com.cq.action.TrackAction"
+			method="getTrackInfo"></action>
+		<action name="GetFieldSurveyInfo" class="com.cq.action.FieldSurveyAction"
+			method="getFieldSurveyInfo"></action>
+		<action name="GetReviewDataInfo" class="com.cq.action.ReviewDataAction"
+			method="getReviewDataInfo"></action>
+		<action name="GetCounterSignInfo" class="com.cq.action.CounterSignAction"
+			method="getCounterSignInfo"></action>
+		<action name="GetDecisionResultInfo" class="com.cq.action.DecisionAction"
+			method="getDecisionResultInfo"></action>
+		<action name="GetManauditInfo" class="com.cq.action.ConsiderationAction"
+			method="getManauditInfo"></action>
+		<action name="GetLawauditInfo" class="com.cq.action.LawAction"
+			method="getLawauditInfo"></action>
+		<action name="GetFinanceestInfo" class="com.cq.action.FinanceAction"
+			method="getFinanceestInfo"></action>
+		<action name="GetCompanyRiskestInfo" class="com.cq.action.RiskAction"
+			method="getCompanyRiskestInfo"></action>
+		<action name="GetPersonRiskestInfo" class="com.cq.action.RiskAction"
+			method="getPersonRiskestInfo"></action>
+		<action name="AddCustomer" class="com.cq.action.CustomerAction"
+			method="addCustomer"></action>
+		<action name="DeleteCustomer" class="com.cq.action.CustomerAction"
+			method="deleteCustomer"></action>
+		<action name="SelectCustomer" class="com.cq.action.CustomerAction"
+			method="selectCustomer"></action>
+		<action name="CxCustomer" class="com.cq.action.CustomerAction"
+			method="cxCustomer"></action>
+		<action name="GetTaskNameList" class="com.cq.action.CustomerAction"
+			method="getTaskNameList"></action>
+		<action name="GetOperlogList" class="com.cq.action.OperLogAction"
+			method="getOperlogList"></action>
+	</package>
+</struts>

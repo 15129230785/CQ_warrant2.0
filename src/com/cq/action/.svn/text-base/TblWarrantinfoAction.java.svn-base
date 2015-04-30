@@ -1,0 +1,292 @@
+package com.cq.action;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cq.annotation.CQAnnotationOperlog;
+import com.cq.dao.WarrantindexDao;
+import com.cq.dao.WarrantinfoDao;
+import com.cq.service.TaskBaseService;
+import com.cq.table.TblWarrantindex;
+import com.cq.table.TblWarrantinfo;
+import com.cq.util.tools;
+
+@CQAnnotationOperlog(tableName="担保基本信息", dataName="wtf")
+public class TblWarrantinfoAction {
+	static Logger log = Logger.getLogger(TblWarrantinfoAction.class);
+	private String errorMsg;
+	
+	private String taskid;
+	private String wid;
+	private String name;
+	private Date startDate;
+	private double money;
+	private String bank;
+	private String usages;
+	private String description;
+	private String paySource;
+	private String payPlan;
+	private Integer deadline;
+	private TblWarrantinfo wtf;
+	private char type;
+	
+	@Resource WarrantinfoDao warrantinfoDao;
+	@Resource TaskBaseService taskBaseService;
+	@Resource WarrantindexDao warrantindexDao;
+	
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public void savaTblWarrantinfo() throws Exception {
+		TblWarrantinfo tblWarrantinfo = null;
+
+		try {
+			tblWarrantinfo = warrantinfoDao.findWarrantinfoByWid(wid);
+			if (tblWarrantinfo != null) {
+				tblWarrantinfo.setName(name);
+				tblWarrantinfo.setStartDate(startDate);
+				tblWarrantinfo.setPracticalMoney(money);
+				tblWarrantinfo.setBank(bank);
+				tblWarrantinfo.setDeadline(deadline);
+				tblWarrantinfo.setUsages(tools.multiLine( usages.trim()));
+				tblWarrantinfo.setDescription(tools.multiLine(description.trim()));
+				tblWarrantinfo.setPaySource(tools.multiLine(paySource.trim()));
+				tblWarrantinfo.setPayPlan(tools.multiLine(payPlan.trim()));
+				
+				warrantinfoDao.update(tblWarrantinfo);
+			} else {
+				tblWarrantinfo = new TblWarrantinfo();
+				tblWarrantinfo.setWid(wid.trim());
+				tblWarrantinfo.setName(name.trim());
+				tblWarrantinfo.setStartDate(startDate);
+				tblWarrantinfo.setPracticalMoney(money);
+				tblWarrantinfo.setBank(bank.trim());
+				tblWarrantinfo.setDeadline(deadline);
+				tblWarrantinfo.setUsages(tools.multiLine(usages.trim()));
+				tblWarrantinfo.setDescription(tools.multiLine(description.trim()));
+				tblWarrantinfo.setPaySource(tools.multiLine(paySource.trim()));
+				tblWarrantinfo.setPayPlan(tools.multiLine(payPlan.trim()));
+				
+				warrantinfoDao.save(tblWarrantinfo);
+			}
+			wtf = tblWarrantinfo;
+			taskBaseService.setTaskVar(taskid, "qyname", name);
+		} catch (Exception e) {
+			errorMsg = "添加担保申请信息失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Transactional (propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public void updateTblWarrantinfo() throws Exception {
+		TblWarrantinfo wi = null;
+		
+		try {
+			wi = warrantinfoDao.findWarrantinfoByWid(wid);
+			wi.setName(name);
+			wi.setStartDate(startDate);
+			wi.setPracticalMoney(money);
+			wi.setBank(bank);
+			wi.setDeadline(deadline);
+			wi.setUsages(tools.multiLine( usages.trim()));
+			wi.setDescription(tools.multiLine(description.trim()));
+			wi.setPaySource(tools.multiLine(paySource.trim()));
+			wi.setPayPlan(tools.multiLine(payPlan.trim()));
+			
+			taskBaseService.setTaskVar(taskid, "qyname", name);
+			
+			warrantinfoDao.update(wi);
+			wtf = wi;
+		} catch (Exception e) {
+			errorMsg = "修改担保申请信息失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void selectTblWarrantinfoYz() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String name = null;
+		
+		String str = "sf";
+		
+		try {
+			name = new String(request.getParameter("name").getBytes(
+					"iso8859-1"), "utf-8");
+			
+			List<TblWarrantinfo> listTblWarrantinfo = warrantinfoDao.findByProperty("name", name);
+			if (listTblWarrantinfo == null || listTblWarrantinfo.size() == 0) {
+				str = "sd";
+			}
+			tools.outputInfo(str);
+		} catch (Exception e) {
+			errorMsg = "查询企业担保申请信息失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void getTblWarrantinfo() throws Exception {
+		wtf = null;
+
+		try {
+			wtf = warrantinfoDao.findWarrantinfoByWid(wid);
+			if(wtf == null) {
+				tools.outputInfo(JSONObject.fromObject(null));
+			} else {
+				tools.outputInfo(JSONObject.fromObject(wtf, tools.getJsonConfig()));
+			}
+		} catch (Exception e) {
+			errorMsg = "验证信息失败";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	@Transactional (propagation=Propagation.NOT_SUPPORTED, readOnly=true)
+	public void getTblWarrantinfoList() throws Exception {
+		List<TblWarrantinfo> twi = null;
+		TblWarrantinfo wi = null;
+		List<TblWarrantindex> lt = null;
+		
+		try {
+			lt = warrantindexDao.findByProperty("type", type);
+			if((lt == null) || (lt.size() <= 0)) {
+				tools.outputInfo("");
+				log.warn("获取企业项目列表信息失败" + lt);
+				return ;
+			}
+			twi = new ArrayList<TblWarrantinfo>();
+			for (int j = 0; j < lt.size(); j++) {
+				wi = warrantinfoDao.findWarrantinfoByWid(lt.get(j).getWid());
+				Character wistate = wi.getState();
+				if (wistate != null && wistate == '1' ) {
+					twi.add(wi);
+				} else {
+					continue;
+				}
+			}
+			tools.outputInfo(JSONArray.fromObject(twi, tools.getJsonConfig()));
+		} catch (Exception e) {
+			errorMsg = "获取企业项目信息时发生异常";
+			tools.throwException(e, log, errorMsg);
+		}
+	}
+	
+	public String getTaskid() {
+		return taskid;
+	}
+	public void setTaskid(String taskid) {
+		this.taskid = taskid;
+	}
+	public String getWid() {
+		return wid;
+	}
+	public void setWid(String wid) {
+		this.wid = wid;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public double getMoney() {
+		return money;
+	}
+	public void setMoney(double money) {
+		this.money = money;
+	}
+	/*public BigDecimal getRate() {
+		return rate;
+	}
+	public void setRate(BigDecimal rate) {
+		this.rate = rate;
+	}*/
+	public String getBank() {
+		return bank;
+	}
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+	public String getUsages() {
+		return usages;
+	}
+	public void setUsages(String usages) {
+		this.usages = usages;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getPaySource() {
+		return paySource;
+	}
+	public void setPaySource(String paySource) {
+		this.paySource = paySource;
+	}
+	public String getPayPlan() {
+		return payPlan;
+	}
+	public void setPayPlan(String payPlan) {
+		this.payPlan = payPlan;
+	}
+	public Integer getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(Integer deadline) {
+		this.deadline = deadline;
+	}
+
+	public void setWarrantinfoDao(WarrantinfoDao warrantinfoDao) {
+		this.warrantinfoDao = warrantinfoDao;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setTaskBaseService(TaskBaseService taskBaseService) {
+		this.taskBaseService = taskBaseService;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
+	public TblWarrantinfo getWtf() {
+		return wtf;
+	}
+
+	public void setWtf(TblWarrantinfo wtf) {
+		this.wtf = wtf;
+	}
+
+	public void setWarrantindexDao(WarrantindexDao warrantindexDao) {
+		this.warrantindexDao = warrantindexDao;
+	}
+
+	public char getType() {
+		return type;
+	}
+
+	public void setType(char type) {
+		this.type = type;
+	}
+}

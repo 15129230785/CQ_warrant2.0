@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblUndueloan" table="tbl_undueloan">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+            <property name="borrower" type="string">
+            <column name="Borrower" length="60" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="StartDate" length="10" not-null="true" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="EndDate" length="10" not-null="true" />
+        </property>
+            <property name="bank" type="string">
+            <column name="Bank" length="60" not-null="true" />
+        </property>
+        <property name="rate" type="double">
+            <column name="Rate" precision="5" />
+        </property>
+         <property name="loaner" type="string">
+            <column name="Loaner" length="255" />
+        </property>
+          <property name="wmode" type="java.lang.Character">
+            <column name="WMode" length="1" />
+        </property>
+        <property name="mode" type="java.lang.Character">
+            <column name="Mode" length="1" />
+        </property>
+        <property name="money" type="double">
+            <column name="Money" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="remaining" type="double">
+            <column name="Remaining" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

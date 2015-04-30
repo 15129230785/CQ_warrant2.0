@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="bankinfo" extends="struts-default" namespace="/bankinfo">
+		<interceptors>
+			<interceptor name="loginCheck" class="com.cq.action.LoginCheck" />
+			<interceptor-stack name="cq-default">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginCheck" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="cq-default" />
+
+		<global-results>
+			<result name="login">/newLogin.jsp</result>
+			<result name="warrantException">/exception.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="warrantException" exception="java.lang.Exception" />
+		</global-exception-mappings>
+	
+		<action name="listBankinfo" class="com.cq.action.TblCfgBankinfoAction" method="list">
+		</action>
+		<action name="GetTblCfgBankinfo" class="com.cq.action.TblCfgBankinfoAction" method="getTblCfgBankinfo">
+		</action>
+		<action name="addBankinfo" class="com.cq.action.TblCfgBankinfoAction" method="savaTblCfgBankinfo">
+			<result name="success">updateSuccess.jsp</result>
+		</action>
+		<action name="deleteBankinfo" class="com.cq.action.TblCfgBankinfoAction" method="outDeleteTblCfgBankinfo">
+		</action>
+		<action name="updateBankinfo" class="com.cq.action.TblCfgBankinfoAction" method="updateTblCfgBankinfo">
+			<result name="success">updateSuccess.jsp</result>
+		</action>
+	</package>
+</struts>

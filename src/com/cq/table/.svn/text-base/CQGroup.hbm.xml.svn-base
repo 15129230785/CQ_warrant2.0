@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.CQGroup" table="JBPM4_cq_group">
+        <id name="kid" type="java.lang.Long">
+            <column name="kid" />
+            <generator class="assigned" />
+        </id>
+        <property name="id" type="string">
+            <column name="id" length="50" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <many-to-one name="leader" column="leader" not-null="false" 
+        	class="com.cq.table.CQUser" foreign-key="FK_GROUP_USER"
+                 index="IDX_GROUP_USER" lazy="false"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="zapply"  extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="loginCheck" class="com.cq.action.LoginCheck" />
+			<interceptor-stack name="cq-default">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginCheck" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="cq-default" />
+
+		<global-results>
+			<result name="login">/newLogin.jsp</result>
+			<result name="warrantException">/exception.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="warrantException" exception="java.lang.Exception" />
+		</global-exception-mappings>
+	    
+		<action name="SelectTblWarrantinfoYz" class="com.cq.action.TblWarrantinfoAction" method="selectTblWarrantinfoYz"></action>
+		<action name="ApplyPassYz" class="com.cq.action.ApplyWarrantAction" method="applyPassYz"></action>
+		<action name="ApplyYanZheng1" class="com.cq.action.TblManinfoAction" method="applyYanZheng1"></action>
+		<action name="YzAntiwarrantPreserveAjaxZq" class="com.cq.action.TblAntiwarrantAction" method="yzAntiwarrantPreserveAjaxZq"></action>
+		<action name="SelectTblAntiwarrantYzWid" class="com.cq.action.TblAntiwarrantAction" method="selectTblAntiwarrantYzWid"></action>
+		<action name="CheckEID" class="com.cq.action.DataBaseAction" method="CheckEID"></action>
+		<action name="CheckRID" class="com.cq.action.DataBaseAction" method="CheckRID"></action>
+		<action name="CheckPerID" class="com.cq.action.DataBaseAction" method="CheckPerID"></action>
+		<action name="getReginfo" class="com.cq.action.TblReginfoAction" method="getReginfo"></action>
+		<action name="ApplyCheckPersonData" class="com.cq.action.ApplyWarrantAction" method="applyCheckPersonData"></action>
+	</package>
+</struts>

@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblBanlancesheet" table="tbl_banlancesheet">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID"/>
+            <generator class="identity" />
+        </id>
+         <property name="eid" type="string">
+            <column name="Eid" length="50" not-null="true" />
+        </property>
+        <property name="type" type="java.lang.Character">
+            <column name="Type" length="1" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="Date" length="10" not-null="true" />
+        </property>
+        <property name="totalAssets" type="java.lang.Double">
+            <column name="TotalAssets" precision="22" scale="0" />
+        </property>
+        <property name="currentAssets" type="java.lang.Double">
+            <column name="CurrentAssets" precision="22" scale="0" />
+        </property>
+        <property name="moneyFunds" type="java.lang.Double">
+            <column name="MoneyFunds" precision="22" scale="0" />
+        </property>
+        <property name="temporaryInvestment" type="java.lang.Double">
+            <column name="TemporaryInvestment" precision="22" scale="0" />
+        </property>
+        <property name="noteReceivable" type="java.lang.Double">
+            <column name="NoteReceivable" precision="22" scale="0" />
+        </property>
+        <property name="receivables" type="java.lang.Double">
+            <column name="Receivables" precision="22" scale="0" />
+        </property>
+        <property name="prepaidAccounts" type="java.lang.Double">
+            <column name="PrepaidAccounts" precision="22" scale="0" />
+        </property>
+        <property name="otherReceivables" type="java.lang.Double">
+            <column name="OtherReceivables" precision="22" scale="0" />
+        </property>
+        <property name="inventory" type="java.lang.Double">
+            <column name="Inventory" precision="22" scale="0" />
+        </property>
+        <property name="unamortizedExpenditures" type="java.lang.Double">
+            <column name="UnamortizedExpenditures" precision="22" scale="0" />
+        </property>
+        <property name="longtermInvestments" type="java.lang.Double">
+            <column name="LongtermInvestments" precision="22" scale="0" />
+        </property>
+        <property name="netFixedAssets" type="java.lang.Double">
+            <column name="NetFixedAssets" precision="22" scale="0" />
+        </property>
+        <property name="intangibleandDeferredAssets" type="java.lang.Double">
+            <column name="IntangibleandDeferredAssets" precision="22" scale="0" />
+        </property>
+        <property name="totalIndebtedness" type="java.lang.Double">
+            <column name="TotalIndebtedness" precision="22" scale="0" />
+        </property>
+        <property name="currentLiabilities" type="java.lang.Double">
+            <column name="CurrentLiabilities" precision="22" scale="0" />
+        </property>
+        <property name="shorttermLoans" type="java.lang.Double">
+            <column name="ShorttermLoans" precision="22" scale="0" />
+        </property>
+        <property name="notesPayable" type="java.lang.Double">
+            <column name="NotesPayable" precision="22" scale="0" />
+        </property>
+        <property name="accountPayable" type="java.lang.Double">
+            <column name="AccountPayable" precision="22" scale="0" />
+        </property>
+        <property name="depositReceived" type="java.lang.Double">
+            <column name="DepositReceived" precision="22" scale="0" />
+        </property>
+        <property name="otherPayables" type="java.lang.Double">
+            <column name="OtherPayables" precision="22" scale="0" />
+        </property>
+        <property name="ltldwoy" type="java.lang.Double">
+            <column name="LTLDWOY" precision="22" scale="0" />
+        </property>
+        <property name="longtermDebt" type="java.lang.Double">
+            <column name="LongtermDebt" precision="22" scale="0" />
+        </property>
+        <property name="longtermLoans" type="java.lang.Double">
+            <column name="LongtermLoans" precision="22" scale="0" />
+        </property>
+        <property name="bondPayable" type="java.lang.Double">
+            <column name="BondPayable" precision="22" scale="0" />
+        </property>
+        <property name="longtermPayables" type="java.lang.Double">
+            <column name="LongtermPayables" precision="22" scale="0" />
+        </property>
+        <property name="ownerEquity" type="java.lang.Double">
+            <column name="OwnerEquity" precision="22" scale="0" />
+        </property>
+        <property name="paidupCapital" type="java.lang.Double">
+            <column name="PaidupCapital" precision="22" scale="0" />
+        </property>
+        <property name="capitalReserve" type="java.lang.Double">
+            <column name="CapitalReserve" precision="22" scale="0" />
+        </property>
+        <property name="undistributedProfit" type="java.lang.Double">
+            <column name="UndistributedProfit" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.CQUser" table="JBPM4_cq_user">
+        <id name="kid" type="java.lang.Long">
+            <column name="kid" />
+            <generator class="assigned" />
+        </id>
+        <property name="id" type="string">
+            <column name="id" length="50" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="255" not-null="true" />
+        </property>
+        <property name="moddate" type="string">
+            <column name="moddate" length="20" not-null="true" />
+        </property>
+        <property name="sex" type="char">
+            <column name="sex" length="1" not-null="false" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="40" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

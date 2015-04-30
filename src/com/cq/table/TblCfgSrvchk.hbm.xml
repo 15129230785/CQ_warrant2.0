@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cq.table.TblCfgSrvchk" table="tbl_cfg_srvchk">
+        <id name="kid" type="java.lang.Integer">
+            <column name="KID" />
+            <generator class="identity" />
+        </id>
+        <property name="comtype" type="string">
+            <column name="comtype" length="255" not-null="true" />
+        </property>
+        <property name="comrevenue" type="java.lang.Double">
+            <column name="comrevenue" not-null="true" />
+        </property>
+        <property name="employee" type="int">
+            <column name="employee" not-null="true" />
+        </property>
+        <property name="year" type="int">
+            <column name="year" not-null="true" />
+        </property>
+        <property name="mortgage" type="java.lang.Double">
+            <column name="mortgage" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="255" not-null="true" />
+        </property>
+        <property name="vocation" type="string">
+            <column name="vocation" length="1024" not-null="true" />
+        </property>
+        <property name="income" type="java.lang.Double">
+            <column name="income" not-null="true" />
+        </property>
+        <property name="personmortgage" type="java.lang.Double">
+            <column name="personmortgage" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
